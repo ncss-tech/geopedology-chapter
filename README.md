@@ -27,4 +27,5 @@
  * pair-wise distance
  * misc. vizualization methods (via `sharpshootR`)
  * Soil Taxonomy related
+ * generalized horizon labels: why / how
  * ???

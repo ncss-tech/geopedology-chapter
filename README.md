@@ -10,7 +10,7 @@
 
 **Algorithms for Quantitative Pedology**
 
-*D.E. Beaudette, A.G. Brown, S.M. Roecker, P.Roudier, and J.M. Skovlin*
+*D.E. Beaudette, A.G. Brown, S.M. Roecker, P.Roudier, and J. Skovlin*
 
 The Algorithms for Quantitative Pedology (AQP) project was started in 2009 to organize and document a set of algorithms and methods related to soil profile visualization, aggregation, and classification into a software library for the R programming language. Over the past decade, the project has grown into a suite of inter-related R packages that enhance and simplify the quantitative analysis of soil profile data. Central to the AQP project is a new vocabulary of specialized functions and data structures that can accommodate the inherent complexity of soil profile information; freeing the scientist to focus on ideas rather than boilerplate data processing tasks. These functions and data structures have been extensively tested and documented, applied to projects involving hundreds of thousands of soil profiles, and deeply integrated into widely used tools such as SoilWeb. The AQP suite of R packages offer a convenient platform for bridging the gap between pedometric theory and practice. These software components currently serve an important role in routine data analysis within the USDA-NRCS Soil Survey program, and in other soil survey programs across the world. 
 

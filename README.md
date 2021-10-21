@@ -3,7 +3,7 @@
 ## Deadlines
  * internal review: ASAP
  * abstract: June 30
- * chapter: Nov 31
+ * chapter: Nov 31, or when it is done.
 
 ## Abstract
 
@@ -17,16 +17,16 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 ## Topics to Cover
 *add/remove as-needed, and pick 1-3 that you want to write about*
 
- * the `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc.
- * data cleaning, fixing, validity, etc.
- * scaling via `data.table` back-end
- * thickness, soil depth estimation
- * profile sketches
- * all things soil color
- * soil data aggregation
- * pair-wise distance
- * misc. vizualization methods (via `sharpshootR`)
- * Soil Taxonomy related
- * generalized horizon labels: why / how
- * linkages to spectral data
- * ???
+ * the `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc. (Dylan)
+ * data cleaning, fixing, validity, etc. (Andrew)
+ * scaling via `data.table` back-end (Andrew)
+ * thickness, soil depth estimation (Stephen)
+ * profile sketches (Dylan)
+ * all things soil color (Dylan)
+ * soil data aggregation (Stephen)
+ * pair-wise distance (Dylan)
+ * misc. vizualization methods (via `sharpshootR`) (Jay)
+ * Soil Taxonomy related (Andrew)
+ * generalized horizon labels: why / how (Jay)
+ * linkages to spectral data (Pierre)
+ * **add other topics here**

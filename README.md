@@ -1,5 +1,8 @@
 # geopedology-chapter
 
+## Organization
+We can coordinate our work by placing our sections into files (`dylan.Rmd` or something like that), working there, and then combining at the end.
+
 ## Deadlines
  * internal review: ASAP
  * abstract: June 30
@@ -16,8 +19,9 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 
 ## Topics to Cover
 *add/remove as-needed, and pick 1-3 that you want to write about*
-
- * the `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc. (Dylan)
+ 
+ * Intro (Dylan)
+ * the `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc. (Dylan / Andrew)
  * data cleaning, fixing, validity, etc. (Andrew)
  * scaling via `data.table` back-end (Andrew)
  * thickness, soil depth estimation (Stephen)

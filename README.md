@@ -20,8 +20,8 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 ## Topics to Cover
 *add/remove as-needed, and pick 1-3 that you want to write about*
  
- * Intro (Dylan)
- * the `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc. (Dylan / Andrew)
+ * Intro (Dylan / Pierre)
+ * the `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc. (Dylan / Andrew / Pierre)
  * data cleaning, fixing, validity, etc. (Andrew)
  * scaling via `data.table` back-end (Andrew)
  * thickness, soil depth estimation (Stephen)
@@ -33,4 +33,5 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
  * Soil Taxonomy related (Andrew)
  * generalized horizon labels: why / how (Jay)
  * linkages to spectral data (Pierre)
- * **add other topics here**
+ * **add other topics here** 
+ * *Suggestion: something about linking/plotting with spatial data?*

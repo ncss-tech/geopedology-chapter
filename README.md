@@ -4,9 +4,12 @@
 We can coordinate our work by placing our sections into files (`dylan.Rmd` or something like that), working there, and then combining at the end.
 
 ## Deadlines
- * internal review: ASAP
- * abstract: June 30
- * chapter: Nov 31, or when it is done.
+ * 30/01/2022 Full manuscript due
+ * 28/02/2022 Editors review and provide feedback
+ * 30/03/2022 Final draft submitted 
+ * 30/09/2022 Publication 
+ 
+
 
 ## Abstract
 
@@ -35,3 +38,7 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
  * linkages to spectral data (Pierre)
  * **add other topics here** 
  * *Suggestion: something about linking/plotting with spatial data?*
+
+
+## A Common Narrative
+I'd suggest we use a related set of tasks / problems associated with the synthesis of pedon data to describe key features of the packages. The [competing series tutorial](http://ncss-tech.github.io/AQP/soilDB/competing-series.html) is close to what I'm envisioning. We could use a single series, multiple series, or a single subgroup as the example dataset. Once we decide (ASAP) it will be critical to "freeze" the example data such that changes to pedons or OSDs do not impact the results as we are writing. In addition, having all code + data in a companion GH repo would make the chapter a lot more useful.

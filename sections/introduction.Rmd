@@ -1,6 +1,15 @@
 ---
 title: "Algorithms for Quantitative Pedology"
-output: html_document
+output:
+  word_document:
+    fig_caption: yes
+  pdf_document:
+    fig_caption: yes
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    theme: journal
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -10,4 +19,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # Introduction
 
 in the beginning
+
+[@beaudette2013]
 

@@ -23,16 +23,16 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 ## Topics to Cover
 *add/remove as-needed, and pick 1-3 that you want to write about*
  
- * Intro (Dylan / Pierre)
- * the `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc. (Dylan / Andrew / Pierre)
+ * [Intro](sections/introduction.Rmd) (Dylan / Pierre)
+ * [The `SoilProfileCollection`, method dispatch, subsetting, iteration, inspection, etc.](sections/SPC-objects.Rmd) (Andrew / Dylan / Pierre)
  * data cleaning, fixing, validity, etc. (Andrew)
  * scaling via `data.table` back-end (Andrew)
  * thickness, soil depth estimation (Stephen)
- * profile sketches (Dylan)
- * all things soil color (Dylan)
+ * [profile sketches](sections/sketches.Rmd) (Dylan)
+ * [soil color](sections/soil-color.Rmd) (Dylan)
  * soil data aggregation (Stephen)
- * pair-wise distance (Dylan)
- * misc. vizualization methods (via `sharpshootR`) (Jay)
+ * [pair-wise distance](sections/pair-wise-distances.Rmd) (Dylan)
+ * misc. visualization methods (via `sharpshootR`) (Jay)
  * Soil Taxonomy related (Andrew)
  * generalized horizon labels: why / how (Jay)
  * linkages to spectral data (Pierre)

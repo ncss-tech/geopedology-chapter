@@ -1,0 +1,13 @@
+---
+title: "Algorithms for Quantitative Pedology"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Soil Profile Sketches
+
+in the beginning
+

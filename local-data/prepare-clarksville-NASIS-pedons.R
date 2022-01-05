@@ -16,7 +16,6 @@ length(x)
 ## filtering / subset / cleaning
 
 # normalize / subset taxonname
-# 902
 table(x$taxonname)
 table(x$taxonkind)
 
@@ -24,16 +23,24 @@ x$taxonname <- toupper(x$taxonname)
 z <- subset(x, taxonname == 'CLARKSVILLE' & taxonkind %in% c('series', 'taxadjunct'))
 length(z)
 
+# remove any with taxonname that don't fit the series classification
+z <- subset(z, taxonname == 'CLARKSVILLE' & taxsubgrp %in% c('typic paleudults'))
+length(z)
+
+# pedons described to 150cm or greater - series is very deep
+n.d <- profileApply(z, estimateSoilDepth, name = 'hzname')
+idx <- which(n.d >=150)
+length(idx)
+z <- z[idx, ]
+
 
 # keep only those profiles with > 3 horizons 
-# 739
 n.hz <- profileApply(z, nrow)
 idx <- which(n.hz > 3)
 length(idx)
 z <- z[idx, ]
 
 # unique profiles
-# 620
 v <- c(horizonDepths(z), hzdesgnname(z))
 z <- unique(z, vars = v, SPC = TRUE)
 length(z)
@@ -43,7 +50,6 @@ plotSPC(z[1:10, ])
 
 
 # full set of data: color, horizon designations, fine earth texture class
-# 395
 z$missing.data.summary <- evalMissingData(z, name = hzdesgnname(z), vars = c('moist_soil_color', hzdesgnname(z), 'texture_class'))
 summary(z$missing.data.summary)
 

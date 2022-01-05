@@ -30,3 +30,6 @@ Relevant papers:
 
 
 
+## Example Data
+
+Find an ideal block diagram.

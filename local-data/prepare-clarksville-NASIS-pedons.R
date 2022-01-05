@@ -77,6 +77,7 @@ groupedProfilePlot(subset(z, pedlabsampnum %in% lab.dupes), groups = 'pedlabsamp
 
 
 
+### quick look at some of the data
 
 previewColors(zz$moist_soil_color, method = 'MDS', pt.cex = 1.5)
 title('Clarksville Soil Colors')
@@ -94,3 +95,9 @@ g <- x$genhz
 colorChart(m, g = g, chip.cex = 2)
 colorChart(m, g = g, chip.cex = 2, size = FALSE, annotate = TRUE)
 
+p <- colorChart(m, g = g, chip.cex = 2, size = FALSE, annotate = TRUE)
+sf <- 1.75
+
+svglite::svglite(filename = 'colorChart.svg', width = nrow(p) * sf, height = ncol(p) * sf, pointsize = 12)
+print(update(p, asp = 1))
+dev.off()

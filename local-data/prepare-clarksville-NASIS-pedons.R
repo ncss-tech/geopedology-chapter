@@ -41,14 +41,23 @@ length(z)
 par(mar = c(0, 0, 0, 0))
 plotSPC(z[1:10, ])
 
-# profiles with basic soil properties?
-# 55
-zz <- subset(z, !is.na(clay))
-length(zz)
-plotSPC(zz[1:15, ], color = 'clay')
+
+# full set of data: color, horizon designations, fine earth texture class
+# 395
+z$missing.data.summary <- evalMissingData(z, name = hzdesgnname(z), vars = c('moist_soil_color', hzdesgnname(z), 'texture_class'))
+summary(z$missing.data.summary)
+
+z <- subset(z, missing.data.summary == 1)
+length(z)
+
+par(mar = c(0, 0, 0, 0))
+plotSPC(z[1:20, ])
+
+
+
 
 # lab pedons
-# 251 (including copies)
+# 167 (including copies)
 zz <- subset(z, !is.na(pedlabsampnum))
 length(zz)
 plotSPC(zz[1:15, ])

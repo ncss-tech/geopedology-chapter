@@ -1,14 +1,14 @@
 ---
 title: "Algorithms for Quantitative Pedology"
 output:
-  word_document:
-    fig_caption: yes
-  pdf_document:
-    fig_caption: yes
   html_document:
     fig_caption: yes
     number_sections: yes
     theme: journal
+  pdf_document:
+    fig_caption: yes
+  word_document:
+    fig_caption: yes
 bibliography: bibliography.bib
 ---
 
@@ -20,5 +20,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 in the beginning
 
+
+
+Relevant papers:
+
 [@beaudette2013]
+
+[@Maynard_et_al_2020]
+
+
 

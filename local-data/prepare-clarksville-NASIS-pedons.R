@@ -23,8 +23,16 @@ x$taxonname <- toupper(x$taxonname)
 z <- subset(x, taxonname == 'CLARKSVILLE' & taxonkind %in% c('series', 'taxadjunct'))
 length(z)
 
+table(z$taxsubgrp)
+
 # remove any with taxonname that don't fit the series classification
-z <- subset(z, taxonname == 'CLARKSVILLE' & taxsubgrp %in% c('typic paleudults'))
+z <- subset(z, taxsubgrp == 'typic paleudults')
+length(z)
+
+table(z$taxpartsize)
+
+# remove any with taxonname that don't fit the series classification
+z <- subset(z, taxpartsize == 'loamy-skeletal')
 length(z)
 
 # pedons described to 150cm or greater - series is very deep

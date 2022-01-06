@@ -45,4 +45,20 @@ I'd suggest we use a related set of tasks / problems associated with the synthes
 
 Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdavis.edu/sde/?series=clarksville) series. See example data in `local-data` folder.
 
+I've asked the editors for a one month extension.
+
+# Notes from Editors
+
+The number of your chapter is 11. Please, note that this number should head the titles, subtitles, tables, and figures, as indicated in the manuscript guidelines that we attach herewith.
+ 
+Kindly note that the manuscript should have a length of no more than 15 typeset pages. The main text should not exceed 6,000 words (excluding Abstract, References, and figure and table captions). The abstract should have 250 words maximum. Some overlap with the Abstract is acceptable.
+ 
+There are no specific requirements for the main body of the text. You can organize it in a way that best suits the theme of the chapter.
+ 
+Figure captions should not have more than 40 words per figure, and Tables should fit in one page.
+
+  * 30/01/2022 Full manuscript
+  * 28/02/2022 Editors review and provide feedback
+  * 30/03/2022 Final draft submitted 
+  * 30/09/2022 Publication 
 

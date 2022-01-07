@@ -1,3 +1,10 @@
+
+%% Notes:
+%  * must use INCOLLECTION for book chapters, Mendely does this wrong and uses book_section
+
+
+%% current citations here
+
 @article{Maynard_et_al_2020,
 author = {Maynard, Jonathan J. and Salley, Shawn W. and Beaudette, Dylan E. and Herrick, Jeffery E.},
 title = {Numerical soil classification supports soil identification by citizen scientists using limited, simple soil observations},
@@ -39,6 +46,114 @@ author = {R.A. {Viscarra Rossel} and B. Minasny and P. Roudier and A.B. McBratne
 keywords = {Soil colour, Munsell soil colour, CIE, RGB, Helmholtz chromaticity coordinates, Soil organic carbon},
 abstract = {Soil colour is an important soil property. It is frequently used by soil scientists for the identification and classification of soil. It is also used as an indicator of field soil physical, chemical and biological properties as well as of the occurrence of soil processes. Measurements of soil colour are commonly made using the Munsell soil colour charts. A number of other colour space models, that overcome some of the limitations of the Munsell HVC system exist and may be used to more aptly describe soil colour. We looked at nine colour space models and a redness index: Munsell HVC, RGB, decorrelated RGB (DRGB), CIE XYZ, CIE Yxy, CIELAB, CIELUV, CIELHC, and Helmoltz chromaticity coordinates. The aims of this paper are to (i) describe the algorithms used for transformations between these colour space models, (ii) compare their representational qualities and their relationships to the Munsell soil colour system, and (iii) in a case study, determine the model best suited to describe the relationship between soil colour and soil organic carbon. The type of colour model to use will depend on the purpose. For example, if soil colour is being used for merely descriptive purposes, then the Munsell HVC system will remain appropriate; if it is being used for numerical statistical or predictive analysis, as in our case study, then colour models that use Cartesian-type coordinate systems will be more useful. Of these, the CIELUV and CIELCH models appear to be more suitable for predictions of soil organic carbon.}
 }
+
+
+
+@book{Munsell1947,
+   author = {A.H. Munsell},
+   city = {Baltimore, MD},
+   edition = {10},
+   publisher = {Munsell Color Company, Inc.},
+   title = {A color notation},
+   year = {1947},
+}
+
+@INCOLLECTION{Simonson1993,
+   author = {R.W. Simonson},
+   city = {Madison, WI},
+   editor = {J.M. Bigham and E.J. Ciolkosz},
+   booktitle = {Soil Color, SSSA Special Publication Number 31},
+   pages = {1--20},
+   publisher = {Soil Science Society of America, Inc.},
+   title = {Soil Color Standards and Terms for Field Use—History of their Development},
+   year = {1993},
+}
+
+@INCOLLECTION{Schwertmann1993,
+   author = {U. Schwertmann},
+   city = {Madison, WI},
+   editor = {J.M. Bigham and E.J. Ciolkosz},
+   booktitle = {Soil Color, SSSA Special Publication Number 31},
+   pages = {1--20},
+   publisher = {Soil Science Society of America, Inc.},
+   title = {Relations between Iron Oxides, Soil Color, and Soil Formation},
+   year = {1993},
+}
+
+@INCOLLECTION{Marcus1998,
+   author = {R.T. Marcus},
+   city = {New York},
+   editor = {K. Nassau},
+   booktitle = {Color for Science, Art and Technology},
+   pages = {31--96},
+   publisher = {Elsivier},
+   title = {The Measurement of Color},
+   year = {1998},
+}
+
+@book{SoilSurveyManual2017,
+   author = {Soil Science Division Staff},
+   city = {Washington, D.C.},
+   edition = {USDA Handbook 18},
+   editor = {C. Ditzler and K. Scheffe and H.C. Monger},
+   publisher = {Government Printing Office},
+   title = {Soil Survey Manual},
+   year = {2017},
+}
+
+
+
+
+
+@misc{OSD_reference,
+ author = {{Soil Survey Staff}},
+ editor = {{Natural Resources Conservation Service, United States Department of Agriculture}},
+ title = {Official Soil Series Descriptions},
+ url = {https://soilseries.sc.egov.usda.gov/OSD_Docs/L/LOAFERCREEK.html},
+ lastchecked = {10.01.2022}
+}
+
+
+
+
+
+@manual{R,
+   title = {{R: A Language and Environment for Statistical Computing}},
+   author = {{R Core Team}},
+   organization = {R Foundation for Statistical Computing},
+   address = {Vienna, Austria},
+   year = {2022},
+   url = {http://www.R-project.org/}
+}
+
+
+@Article{Hudson1990,
+  Title                    = {Concepts of soil mapping and interpretation},
+  Author                   = {B.D. Hudson},
+  Journal                  = {Soil Survey Horizons},
+  Year                     = {1990},
+  Pages                    = {36--72},
+  Volume                   = {31},
+  Owner                    = {Dylan.Beaudette},
+  Timestamp                = {2015.07.20}
+}
+
+
+
+
+
+%% R packages
+
+
+
+
+
+
+
+%% to sort / remove
+
+
+
 
 
 
@@ -286,33 +401,8 @@ author = {D.M. Evans and Alfred E. Hartemink}
   Timestamp                = {2015.07.17}
 }
 
-@misc{OSD_reference,
- author = {{Soil Survey Staff}},
- editor = {{Natural Resources Conservation Service, United States Department of Agriculture}},
- title = {Official Soil Series Descriptions},
- url = {https://soilseries.sc.egov.usda.gov/OSD_Docs/L/LOAFERCREEK.html},
- lastchecked = {18.07.2015}
-}
 
 
-@manual{R,
-   title = {{R: A Language and Environment for Statistical Computing}},
-   author = {{R Core Team}},
-   organization = {R Foundation for Statistical Computing},
-   address = {Vienna, Austria},
-   year = {2013},
-   url = {http://www.R-project.org/}
-}
 
 
-@Article{Hudson1990,
-  Title                    = {Concepts of soil mapping and interpretation},
-  Author                   = {B.D. Hudson},
-  Journal                  = {Soil Survey Horizons},
-  Year                     = {1990},
-  Pages                    = {36--72},
-  Volume                   = {31},
-  Owner                    = {Dylan.Beaudette},
-  Timestamp                = {2015.07.20}
-}
 

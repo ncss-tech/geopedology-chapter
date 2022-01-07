@@ -40,6 +40,11 @@ I'd suggest we use a related set of tasks / problems associated with the synthes
 
 Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdavis.edu/sde/?series=clarksville) series. See example data in `local-data` folder.
 
+# TODO
+ - [] Jay: assemble Clarksville example data
+ - [] Dylan: add relevant citations (and remove unused) in [bibtex DB](sections/bibliography.bib)
+ - [] everything else
+
 
 # Outline
 

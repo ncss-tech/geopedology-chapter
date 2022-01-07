@@ -19,6 +19,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 color spaces [@Rossel_et_al_2006]
 
+Munsell [@Munsell1947], use in soil survey [@Simonson1993]
+
+color measurement, standard observers, mixtures [@Marcus1998]
+
+
 
 Just for fun, this is what 6,000 words looks like.
 

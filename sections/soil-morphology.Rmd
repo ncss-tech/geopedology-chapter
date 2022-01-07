@@ -39,13 +39,26 @@ knitr::opts_chunk$set(echo = TRUE)
  
 
 ### Soil Color
-[soil color](sections/soil-color.Rmd) (Dylan)
 
-  * Munsell system and other color spaces
-  * conversion functions / limitations
-  * contrast
-  * simulated, subtractive mixtures
-  * RIC (?)
+  * Munsell system and other color spaces (Dylan)
+  * conversion functions / limitations (Dylan)
+  * contrast (Dylan)
+  * simulated, subtractive mixtures (Dylan)
+  * describing a range in soil color (Dylan)
+  * soil color indices (Andrew)
+
+
+color measurement, standard observers, mixtures [@Marcus1998]
+
+color spaces [@Rossel_et_al_2006]
+
+Munsell [@Munsell1947], use in soil survey [@Simonson1993]
+
+Fe-oxides [@Scheinost1999], [@Schwertmann1993]
+
+soil carbon [@Wills2007], Liles2013
+
+soil color and catenary relationships [@Brown2004]
 
 ### Depth
 

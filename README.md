@@ -108,7 +108,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
  
 
 ### Soil Color
-[soil color](sections/soil-color.Rmd) (Dylan)
+(Dylan)
 
   * Munsell system and other color spaces
   * conversion functions / limitations

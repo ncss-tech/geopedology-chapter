@@ -1,5 +1,5 @@
 ---
-title: "Algorithms for Quantitative Pedology"
+title: "Pair-Wise Distances Between Profiles"
 output:
   html_document:
     fig_caption: yes
@@ -16,7 +16,6 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Pair-Wise Distances Between Profiles
 
 in the beginning
 

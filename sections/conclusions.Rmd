@@ -1,5 +1,5 @@
 ---
-title: "Algorithms for Quantitative Pedology"
+title: "Conclusions"
 output:
   html_document:
     fig_caption: yes
@@ -16,14 +16,6 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Resampling / Aggregation
-
-in the beginning
+Conclusions
 
 
-
-
-
-## Example Data
-
-Find an ideal block diagram.

@@ -1,5 +1,5 @@
 ---
-title: "Algorithms for Quantitative Pedology"
+title: "Soil Color"
 output:
   html_document:
     fig_caption: yes
@@ -16,9 +16,6 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Soil Color
-
-in the beginning
 
 color spaces [@Rossel_et_al_2006]
 

@@ -1,5 +1,5 @@
 ---
-title: "Algorithms for Quantitative Pedology"
+title: "Introduction"
 output:
   html_document:
     fig_caption: yes
@@ -16,7 +16,6 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Introduction
 
 in the beginning
 
@@ -32,4 +31,4 @@ Relevant papers:
 
 ## Example Data
 
-Find an ideal block diagram.
+Clarksville

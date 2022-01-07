@@ -1,5 +1,5 @@
 ---
-title: "Algorithms for Quantitative Pedology"
+title: "Spectral Data"
 output:
   html_document:
     fig_caption: yes
@@ -16,14 +16,5 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Resampling / Aggregation
 
-in the beginning
-
-
-
-
-
-## Example Data
-
-Find an ideal block diagram.
+Do we have any MIR spectra associated with Clarksville? 

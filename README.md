@@ -58,28 +58,29 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
   * rationale
   * basic design / strategy
+  * various back-ends
 
 ### Subsetting
 
-  * `[`-methods, keywords, adjacency
-  * `subset()`
-  * other functions
+  * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
+  * `subset()` and NSE (Andrew)
+  * `glom()`, `trunc()` and related (Andrew) 
+  * other methods
 
 ### Iteration
 
-  * `profileApply()`
   * implicit vectorization
+  * `profileApply()` (Andrew)
 
 ### Misc.
 
  * data cleaning, fixing, validity, etc. (Andrew)
- * scaling via `data.table` back-end (Andrew)
- * functions that return SPC objects (soilDB)
+ * functions that return SPC objects via soilDB (Dylan, Jay, Stephen)
  
 
 
 ## Soil Morphology
-[1,600 words.](sections/soil-morphology.Rmd)
+[1,600 words.](sections/soil-morphology.Rmd) (Dylan, ???)
 
   * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
   * major goals
@@ -98,7 +99,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 ### Genetic / Generalized Horizons
  * generalized horizon labels: why / how (Jay)
  * horizon boundaries
- * regular expressions used to "find" contact etc.
+ * regular expressions used to "find" contact etc. (Andrew, Stephen)
  
 
 ### Soil Color
@@ -122,19 +123,20 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## Resampling / Aggregation
-[1,000 words.](sections/resampling-aggregation.Rmd)
+[800 words.](sections/resampling-aggregation.Rmd)
 
-### Slice/Dice
-
-### Slab
-
-### Segment etc.
+  * slicing - `dice()`
+  * `slab()`, continuous and categorical
+  * `segment()`
+  * `L1`, if there is space
 
 ### Visualization
 
 
 ## Numerical Classification
 [800 words](sections/pair-wise-distances.Rmd) (Dylan)
+
+  * major concepts, cite / rely on two papers for details
 
 ### Visualization
 
@@ -143,6 +145,9 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 ## Spectral Data ?
 [800 words](sections/spectral-data.Rmd) (Pierre)
+
+  * use some NZ data, or Clarksville MIR if available
+
 
 ## Conclusions
 [500 words](sections/conclusion.Rmd)

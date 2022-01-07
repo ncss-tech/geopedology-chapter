@@ -1,5 +1,5 @@
 ---
-title: "Algorithms for Quantitative Pedology"
+title: "Soil Profile Sketches"
 output:
   html_document:
     fig_caption: yes
@@ -16,7 +16,5 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Soil Profile Sketches
 
-in the beginning
-
+xxx

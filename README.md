@@ -16,6 +16,14 @@ Figure captions should not have more than 40 words per figure, and Tables should
 
 Update: we have a one month extension.
 
+## Style Notes
+
+   A key objective of this new edition of the book is to provide an update on soil-geomorphic landscape relationships and their link with geodiversity and relevant features of biodiversity. It will not only focus on existing challenges, but also provide insight into the possibility and opportunity of problem solving. 
+
+   I think most readers of this book are within the classical methods of soil mapping. I thought it would be nice to show how you can use AQP to study the soil-landscape relations, comparing soil profiles, horizons associations, etc. For most readers this will be the first time they hear about AQP and R, so it should not go into much coding details.
+
+
+
 # Abstract
 
 
@@ -46,7 +54,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## SoilProfileCollection Object / Methods
-[1,200 words](sections/SPC-objects.Rmd) (Andrew / Dylan / Pierre)
+[1,000 words](sections/SPC-objects.Rmd) (Andrew / Dylan / Pierre)
 
   * rationale
   * basic design / strategy
@@ -71,7 +79,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## Soil Morphology
-1,000 words.
+1,600 words.
 
   * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
   * major goals
@@ -133,7 +141,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
   * dendrogram + profiles
 
 
-## Spectral Data
+## Spectral Data ?
 800 words. (Pierre)
 
 

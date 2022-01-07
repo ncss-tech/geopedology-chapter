@@ -134,7 +134,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## Numerical Classification
-[800 words](sections/pair-wise-distances.Rmd) (Dylan)
+[800 words](sections/numerical-classification.Rmd) (Dylan)
 
   * major concepts, cite / rely on two papers for details
 

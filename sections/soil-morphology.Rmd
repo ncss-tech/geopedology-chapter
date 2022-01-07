@@ -18,12 +18,41 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Soil Morphology
 
-in the beginning
+  * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
+  * major goals
+  * limitation (analysis vs. archival formats)
+  * critical data: depths, horizon designations, color, ...
 
+### Sketches
+[profile sketches](sections/sketches.Rmd) (Dylan)
 
+  * `plotSPC()`
+  * annotation
+  * other profile plotting functions
+  * future work (grid graphics, pattern fill)
+  
 
+### Genetic / Generalized Horizons
+ * generalized horizon labels: why / how (Jay)
+ * horizon boundaries
+ * regular expressions used to "find" contact etc. (Andrew, Stephen)
+ 
 
+### Soil Color
+[soil color](sections/soil-color.Rmd) (Dylan)
 
-## Example Data
+  * Munsell system and other color spaces
+  * conversion functions / limitations
+  * contrast
+  * simulated, subtractive mixtures
+  * RIC (?)
 
-Find an ideal block diagram.
+### Depth
+
+ * thickness, soil depth estimation (Stephen)
+ * `depthOf()` family of functions (Andrew)
+
+### Misc.
+
+ * misc. visualization methods (via `sharpshootR`) (Jay)
+

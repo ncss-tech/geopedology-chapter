@@ -7,4 +7,25 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-xxx
+## SPC
+
+  * rationale
+  * basic design / strategy
+  * various back-ends
+
+### Subsetting
+
+  * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
+  * `subset()` and NSE (Andrew)
+  * `glom()`, `trunc()` and related (Andrew) 
+  * other methods
+
+### Iteration
+
+  * implicit vectorization
+  * `profileApply()` (Andrew)
+
+### Misc.
+
+ * data cleaning, fixing, validity, etc. (Andrew)
+ * functions that return SPC objects via soilDB (Dylan, Jay, Stephen)

@@ -1,5 +1,5 @@
 ---
-title: "Pair-Wise Distances Between Profiles"
+title: "Numerical Classification"
 output:
   html_document:
     fig_caption: yes
@@ -16,7 +16,13 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Numerical Classification
 
-in the beginning
+
+  * major concepts, cite / rely on two papers for details
+
+### Visualization
+
+  * dendrogram + profiles
 
 recent numerical classification paper [@Maynard_et_al_2020]

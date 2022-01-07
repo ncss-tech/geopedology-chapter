@@ -17,3 +17,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+## Resampling / Aggregation
+
+  * slicing - `dice()`
+  * `slab()`, continuous and categorical
+  * `segment()`
+  * `L1`, if there is space
+
+### Visualization

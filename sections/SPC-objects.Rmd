@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
   * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
   
-#### "bracket" extraction methods (`x[i,j,k1,k2,...]`)
+#### "bracket" extraction methods (`x[i,j,k...]`)
 
 <!-- The code block below could be translated to a paragraph. -->
 
@@ -87,12 +87,9 @@ Partitioning data based on logical expressions of site and horizon level propert
 ```{r, echo = FALSE}
 library(aqp)
 
-# this is an example two-pane figure where a small subset of profiles is shown based on i index
-# then one profile gets "zoomed in on" and the different [ horizon extraction methods are demonstrated
 x <- readRDS("../local-data/clarksville-all-pedons.rds")
 par(mar=c(1,1,1,1), mfrow=c(1,1))
 
-# figure of first five profiles
 plotMultipleSPC(list(x[3,], glom(x[3,], 50, 100), trunc(x[3,], 50, 100)),
                 args=list(list(max.depth = 250), list(max.depth = 250), list(max.depth = 250)),
                 group.labels=c("x[3,]", "glom(x[3,], 50, 100)", "trunc(x[3,], 50, 100)"))

@@ -1,0 +1,29 @@
+---
+title: "Algorithms for Quantitative Pedology"
+output:
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    theme: journal
+  pdf_document:
+    fig_caption: yes
+  word_document:
+    fig_caption: yes
+bibliography: bibliography.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Soil Morphology
+
+in the beginning
+
+
+
+
+
+## Example Data
+
+Find an ideal block diagram.

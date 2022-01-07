@@ -79,7 +79,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## Soil Morphology
-1,600 words.
+[1,600 words.](sections/soil-morphology.Rmd)
 
   * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
   * major goals
@@ -122,7 +122,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## Resampling / Aggregation
-1,000 words.
+[1,000 words.](sections/resampling-aggregation.Rmd)
 
 ### Slice/Dice
 
@@ -142,7 +142,11 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## Spectral Data ?
-800 words. (Pierre)
+[800 words](sections/spectral-data.Rmd) (Pierre)
+
+## Conclusions
+[500 words](sections/conclusion.Rmd)
+
 
 
 ## Soil Taxonomy (space-permitting)

@@ -16,8 +16,90 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Subsetting
 
   * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
+  
+#### "bracket" extraction methods (`x[i,j,k1,k2,...]`)
+
+<!-- The code block below could be translated to a paragraph. -->
+
+<!-- ```{r, eval = FALSE} -->
+<!-- # i-index is for profiles -->
+<!-- x[1,]      # first profile  -->
+
+<!-- # j-index is for horizons -->
+<!-- x[,1]      # first horizon (of each profile)  -->
+
+<!-- # k-index is for "special" functions of horizons (.FIRST/.LAST/.HZID),  -->
+<!-- x[,,.LAST]   # last horizon (of each profile)  -->
+
+<!-- # indices can be combined -->
+
+<!-- # i and j -->
+<!-- x[1:2, 1:2]      # first two horizons of first two profiles  -->
+
+<!-- # i and k (k overrides j) -->
+<!-- x[1:2, , .LAST]  # last horizon of first two profiles i -->
+<!-- ``` -->
+
+One of the primary approaches to subsetting a SoilProfileCollection uses the "bracket" `[` methods to extract smaller collections from a larger collection based on numeric or logical indices. The syntax is similar to extracting rows and columns from matrix or data.frame objects in base R. 
+
+If `x` is a SoilProfileCollection then the syntax for the bracket methods is: `x[i,j,k...]`; where `i` is a profile index, `j` is a within-profile horizon index and `k...` represents optional special functions that can operate on the horizon data in the collection to replace the profile-specific `j`-index.
+
+To obtain the first profile in the collection, you can use the syntax `x[1,]`. For the first horizon in each profile you can use `x[,1]`. To get the last horizon of each profile, you can use `x[,,.LAST]` where `.LAST` is a special "keyword" that can identify the `j`-index of the deepest horizon in each profile. 
+
+Subsets based on `i`, `j` and `k` indices of the SoilProfileCollection can be combined, for instance: `x[1:2, 1:2]` gives the first two horizons of the first two profiles. Also, the `k` index can be combined with the `i` index, for instance `x[1:2, , .LAST]` gives the last horizon of the first two profiles.
+
+Here is a visual representation of the concept:
+
+```{r, echo = FALSE}
+library(aqp)
+# this is an example two-pane figure where a small subset of profiles is shown based on i index
+# then one profile gets "zoomed in on" and the different [ horizon extraction methods are demonstrated
+x <- readRDS("../local-data/clarksville-all-pedons.rds")
+par(mar=c(0,0,0,0), mfrow=c(2,1))
+
+# figure of first five profiles
+plotSPC(x[1:5,])
+
+# figure of horizon subsets within 3rd profile
+.LAST <- NULL
+plotMultipleSPC(list(x[3, ], x[3, 1], x[3, 1:3], x[3, , .LAST]), 
+                     args = list(
+                       list(color = "soil_color", print.id = TRUE),
+                       list(color = "soil_color", print.id = FALSE),
+                       list(color = "soil_color", print.id = FALSE),
+                       list(color = "soil_color", print.id = FALSE)
+                     ),
+                     group.labels = c("\nx[3,]", "\nx[3, 1]",
+                                      "\nx[3, 1:3]", "\nx[3, , .LAST]"))
+# TODO: add bbox around 3rd profile and lines to below subsets?
+```
+
+The representation of horizons position with the `j`-index can be extended to develop other "horizon spatial predicates" such as `hzAbove()`, `hzBelow()` and `hzOffset()`. The former two take logical expressions to match horizons, and return the part of the collection adjacent to the match (above or below respectively). `hzOffset()` allows arbitrary horizon indices and offsets to be calculated. This type of logic is further helpful for inspecting and fixing horizon geometry for errors or inconsistencies.
+
   * `subset()` and NSE (Andrew)
+
+Often we do not know which indices of profiles or horizons in our collection meet criteria of interest. We can use the aqp functions `subset()` and `subsetHz()` to use logical expressions in terms of the site or horizon variables to specify the constraints. These expressions make use of site or horizon-level variables in the collection. `subset()` returns whole profiles; if criteria were specified for horizon data then only some of the horizons of those profiles may meet criteria. `subsetHz()` requires horizon-level expressions and returns only the portion of horizons within profiles that meet criteria.
+
   * `glom()`, `trunc()` and related (Andrew) 
+
+Partitioning data based on logical expressions of site and horizon level properties is powerful, but in soil science we often want to be able to extract data for specific ranges of depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in aqp. `glom()` returns the subset of horizons in a collection that fall within a specific depth interval `[z1, z2]`. The depth interval could be a point or a range (`z2` optional). The interval could be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not creating a "ragged" SoilProfileCollection. When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
+
+```{r, echo = FALSE}
+library(aqp)
+
+# this is an example two-pane figure where a small subset of profiles is shown based on i index
+# then one profile gets "zoomed in on" and the different [ horizon extraction methods are demonstrated
+x <- readRDS("../local-data/clarksville-all-pedons.rds")
+par(mar=c(1,1,1,1), mfrow=c(1,1))
+
+# figure of first five profiles
+plotMultipleSPC(list(x[3,], glom(x[3,], 50, 100), trunc(x[3,], 50, 100)),
+                args=list(list(max.depth = 250), list(max.depth = 250), list(max.depth = 250)),
+                group.labels=c("x[3,]", "glom(x[3,], 50, 100)", "trunc(x[3,], 50, 100)"))
+lines(seq(0,3.25,0.25), rep(50, 14), lwd=2,lty=2)
+lines(seq(0,3.25,0.25), rep(100, 14), lwd=2,lty=2)
+```
+
   * other methods
 
 ### Iteration

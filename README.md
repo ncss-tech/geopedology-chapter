@@ -38,36 +38,74 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 ## Introduction
 [800 words](sections/introduction.Rmd) (Dylan / Pierre)
 
+  * brief history
+  * motivation
+  * evolution
+  * current use
+  * major TODOs / vision
+
 
 ## SoilProfileCollection Object / Methods
 [1,200 words](sections/SPC-objects.Rmd) (Andrew / Dylan / Pierre)
 
+  * rationale
+  * basic design / strategy
+
 ### Subsetting
 
+  * `[`-methods, keywords, adjacency
+  * `subset()`
+  * other functions
+
 ### Iteration
+
+  * `profileApply()`
+  * implicit vectorization
 
 ### Misc.
 
  * data cleaning, fixing, validity, etc. (Andrew)
  * scaling via `data.table` back-end (Andrew)
+ * functions that return SPC objects (soilDB)
+ 
 
 
 ## Soil Morphology
 1,000 words.
 
+  * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
+  * major goals
+  * limitation (analysis vs. archival formats)
+  * critical data: depths, horizon designations, color, ...
+
 ### Sketches
 [profile sketches](sections/sketches.Rmd) (Dylan)
 
+  * `plotSPC()`
+  * annotation
+  * other profile plotting functions
+  * future work (grid graphics, pattern fill)
+  
+
 ### Genetic / Generalized Horizons
-generalized horizon labels: why / how (Jay)
+ * generalized horizon labels: why / how (Jay)
+ * horizon boundaries
+ * regular expressions used to "find" contact etc.
+ 
 
 ### Soil Color
 [soil color](sections/soil-color.Rmd) (Dylan)
 
+  * Munsell system and other color spaces
+  * conversion functions / limitations
+  * contrast
+  * simulated, subtractive mixtures
+  * RIC (?)
 
 ### Depth
 
  * thickness, soil depth estimation (Stephen)
+ * `depthOf()` family of functions (Andrew)
 
 ### Misc.
 
@@ -84,6 +122,7 @@ generalized horizon labels: why / how (Jay)
 
 ### Segment etc.
 
+### Visualization
 
 
 ## Numerical Classification
@@ -91,11 +130,14 @@ generalized horizon labels: why / how (Jay)
 
 ### Visualization
 
+  * dendrogram + profiles
+
+
 ## Spectral Data
 800 words. (Pierre)
 
 
 ## Soil Taxonomy (space-permitting)
-< 800 words, still over limit
+< 800 words, still over limit (Andrew)
 
 

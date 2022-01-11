@@ -141,31 +141,45 @@ plotSPC(z)
 
 
 
-# lab pedons
-# 167 (including copies)
-zz <- subset(z, !is.na(pedlabsampnum))
-length(zz)
-plotSPC(zz[1:15, ])
-
-
-
-# lab copies: which one to pick?
-lab.dupes <- names(which(table(z$pedlabsampnum) > 1))
-groupedProfilePlot(subset(z, pedlabsampnum %in% lab.dupes), groups = 'pedlabsampnum', group.name.offset = - 12)
-groupedProfilePlot(subset(z, pedlabsampnum %in% lab.dupes), groups = 'pedlabsampnum', group.name.offset = - 12, color = 'clay')
+# # lab pedons
+# # 167 (including copies)
+# zz <- subset(z, !is.na(pedlabsampnum))
+# length(zz)
+# plotSPC(zz[1:15, ])
+# 
+# 
+# # lab copies: which one to pick?
+# lab.dupes <- names(which(table(z$pedlabsampnum) > 1))
+# groupedProfilePlot(subset(z, pedlabsampnum %in% lab.dupes), groups = 'pedlabsampnum', group.name.offset = - 12)
+# groupedProfilePlot(subset(z, pedlabsampnum %in% lab.dupes), groups = 'pedlabsampnum', group.name.offset = - 12, color = 'clay')
 
 
 
 ### quick look at some of the data
 
-previewColors(zz$moist_soil_color, method = 'MDS', pt.cex = 1.5)
+previewColors(x$moist_soil_color, method = 'MDS', pt.cex = 1.5)
 title('Clarksville Soil Colors')
 
 
-x$genhz <- generalize.hz(x$hzname, c('A', 'E', 'Bt', '2Bt', '3Bt'), pat=c('A', 'E', '^Bt', '2B', '3B'), non.matching.code = NA)
-x$genhz <- factor(x$genhz, levels = guessGenHzLevels(x, "genhz")$levels)
+## TODO: check patterns for overlap, no matches in Bt2 group
 
+# patterns c/o Jay
+# apply to all pedons
+x$genhz <- generalize.hz(
+  x = x$hzname, 
+  new = c('A', 'E', 'Bt1', 'Bt2', '2Bt', '3Bt'), 
+  pat = c('A', 'E|BE|Bw', 'Bt|Bt1|Bt2', 'Bt3|Bt4|Bt5|Bt6', '2Bt2|2Bt3|2Bt4|Bt3|Bt4|Bt5|Bt6', '3Bt|2Bt5|2Bt6|2Bt7|2Bt8'), 
+  non.matching.code = NA
+)
+
+x$genhz <- factor(x$genhz, levels = guessGenHzLevels(x, "genhz")$levels)
 table(x$genhz, useNA = 'always')
+
+# quick check on NAs
+tab <- table(x$genhz, x$hzname, useNA = 'always')
+sort(tab[5, ], decreasing = TRUE)
+
+# many Oi, some 2BC
 
 # prepare vectors of Munsell chips + groups (generalized horizon labels)
 m <- paste0(x$m_hue, ' ', x$m_value, '/', x$m_chroma)
@@ -180,3 +194,25 @@ sf <- 1.75
 svglite::svglite(filename = 'colorChart.svg', width = nrow(p) * sf, height = ncol(p) * sf, pointsize = 12)
 print(update(p, asp = 1))
 dev.off()
+
+
+# apply to subset
+z$genhz <- generalize.hz(
+  x = z$hzname, 
+  new = c('A', 'E', 'Bt1', 'Bt2', '2Bt', '3Bt'), 
+  pat = c('A', 'E|BE|Bw', 'Bt|Bt1|Bt2', 'Bt3|Bt4|Bt5|Bt6', '2Bt2|2Bt3|2Bt4|Bt3|Bt4|Bt5|Bt6', '3Bt|2Bt5|2Bt6|2Bt7|2Bt8'), 
+  non.matching.code = NA
+)
+
+z$genhz <- factor(z$genhz, levels = guessGenHzLevels(z, "genhz")$levels)
+table(z$genhz, useNA = 'always')
+
+
+plotSPC(z, color = 'genhz')
+
+
+
+
+
+
+

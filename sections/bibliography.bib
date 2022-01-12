@@ -92,6 +92,46 @@ abstract = {Soil colour is an important soil property. It is frequently used by 
    year = {1998},
 }
 
+@Inbook{Roecker2016,
+author="Roecker, Stephen
+and Skovlin, Jay
+and Beaudette, Dylan
+and Wills, Skye",
+editor="Hartemink, Alfred E.
+and Minasny, Budiman",
+title="Digital Summaries of Pedon Descriptions",
+bookTitle="Digital Soil Morphometrics",
+year="2016",
+publisher="Springer International Publishing",
+pages="267--279",
+abstract="Soil scientists have been describing and analyzing pedons for over a hundred years. In the USA, a small portion of this data has been captured in the National Soil Information System (NASIS). While NASIS serves as a data repository, its analytical capabilities are limited, and the data are underutilized. In order to facilitate the analysis of soil horizon data in NASIS, we have used R to develop R Markdown (Rmd) reports. These Rmd reports are designed to provide numerical and graphical summaries of soil horizon data used for soil survey activities, such as the development of Official Series Descriptions and soil map unit components.",
+isbn="978-3-319-28295-4",
+doi="10.1007/978-3-319-28295-4_17",
+url="https://doi.org/10.1007/978-3-319-28295-4_17"
+}
+
+@Inbook{Beaudette_DSMorph2016,
+author="Beaudette, D. E.
+and Roudier, P.
+and Skovlin, J.",
+editor="Hartemink, Alfred E.
+and Minasny, Budiman",
+title="Probabilistic Representation of Genetic Soil Horizons",
+bookTitle="Digital Soil Morphometrics",
+year="2016",
+publisher="Springer International Publishing",
+pages="281--293",
+abstract="Published soil survey reports typically describe soil series concepts in the form of aggregated information: ranges in soil properties, interpretations, and limitations that are derived from a collection of field-described soil profiles. While aggregated soil properties are readily estimated via standard statistical functions (mean, median, etc.), an aggregated representation of horizonation (e.g., genetic or functional horizon designation and depth) is typically difficult to construct. Variation in horizon designation use among soil scientists and different soil description systems, changes in horizon designation standards over time, variable depths at which horizons occur, and the uncertainties associated with these are all factors that complicate the process of delivering an aggregated representation of horizonation. In this chapter, we propose alternatives to the typical ``representative profile,'' e.g., the selection of a single soil profile to represent a collection. Two possible methods for aggregating a collection of soil profiles into synthetic profiles are presented, describing depth-wise probability functions for each horizon. Both methods rely on an expert-guided description of generalized horizon designation (e.g., a subset of horizon designation labels that convey a reasonable ``morphologic story'') along with associated rules (regular expression patterns) used to correlate field-described to generalized horizon designation. The first method is based on (1-cm interval) slice-wise evaluation of generalized horizon designation; the second is based on a proportional-odds logistic regression model fit to depth-slices. These methods are demonstrated using USDA-NRCS soil survey data (USA).",
+isbn="978-3-319-28295-4",
+doi="10.1007/978-3-319-28295-4_18",
+url="https://doi.org/10.1007/978-3-319-28295-4_18"
+}
+
+
+
+
+
+
 @book{SoilSurveyManual2017,
    author = {Soil Science Division Staff},
    city = {Washington, D.C.},
@@ -317,15 +357,57 @@ year = {1996}
    url = {http://www.R-project.org/}
 }
 
+@ARTICLE{zeileis_colorspace_pkg2020,
+  author = {Zeileis A and Fisher JC and Hornik K and Ihaka R and McWhite CD and Murrell P and Stauffer R and Wilke CO},
+  title = {colorspace: A Toolbox for Manipulating and Assessing Colors and Palettes},
+  journal = {Journal of Statistical Software},
+  year = {2020},
+  volume = {96},
+  pages = {1--49},
+  owner = {dylan},
+  timestamp = {2022.01.12}
+}
 
+
+@Manual{cluster_pkg2021,
+    title = {cluster: Cluster Analysis Basics and Extensions},
+    author = {Martin Maechler and Peter Rousseeuw and Anja Struyf and Mia Hubert and Kurt Hornik},
+    year = {2021},
+    url = {https://CRAN.R-project.org/package=cluster},
+    note = {R package version 2.1.2 --- For new features, see the 'Changelog' file (in the package source)},
+  }
+
+
+
+@Manual{farver_pkg2021,
+    title = {farver: High Performance Colour Space Manipulation},
+    author = {Thomas Lin Pedersen and Berendea Nicolae and Romain François},
+    year = {2021},
+    note = {R package version 2.1.0},
+    url = {https://CRAN.R-project.org/package=farver},
+  }
+
+
+@Manual{data.table_pkg2021,
+    title = {data.table: Extension of `data.frame`},
+    author = {Matt Dowle and Arun Srinivasan},
+    year = {2021},
+    note = {R package version 1.14.2},
+    url = {https://CRAN.R-project.org/package=data.table},
+  }
+
+
+@Manual{compositions_pkg2021,
+    title = {compositions: Compositional Data Analysis},
+    author = {K. Gerald {van den Boogaart} and Raimon Tolosana-Delgado and Matevz Bren},
+    year = {2021},
+    note = {R package version 2.0-2},
+    url = {https://CRAN.R-project.org/package=compositions},
+  }
 
 
 
 %% to sort / remove
-
-
-
-
 
 
 
@@ -448,9 +530,9 @@ author = {D.M. Evans and Alfred E. Hartemink}
 }
 
 @Article{Hartemink2014,
-  Title                    = {Towards digital soil morphometrics },
+  Title                    = {Towards digital soil morphometrics},
   Author                   = {Alfred E. Hartemink and Budiman Minasny},
-  Journal                  = {Geoderma },
+  Journal                  = {Geoderma},
   Year                     = {2014},
   Pages                    = {305--317},
   Volume                   = {230--231},

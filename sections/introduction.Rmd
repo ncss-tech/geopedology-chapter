@@ -29,7 +29,7 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
   * brief history
   * motivation
   * evolution
-  * critical R packages used internally (data.table, farver, colorspace, cluster, ...)
+  * critical R packages used internally (data.table [@data.table_pkg2021], farver [@farver_pkg2021], colorspace [@zeileis_colorspace_pkg2020], cluster [@cluster_pkg2021], compositions [@compositions_pkg2021], ...)
   * current use
   * major TODOs / vision
 

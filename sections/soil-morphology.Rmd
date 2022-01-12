@@ -22,6 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
   * major goals
   * limitation (analysis vs. archival formats)
   * critical data: depths, horizon designations, color, ...
+  * data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016]
 
 ### Sketches
 [profile sketches](sections/sketches.Rmd) (Dylan)

@@ -51,7 +51,7 @@ color measurement, standard observers, mixtures [@Marcus1998]
 
 color spaces [@Rossel_et_al_2006]
 
-Munsell [@Munsell1947], use in soil survey [@Simonson1993]
+Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017]
 
 Fe-oxides [@Scheinost1999], [@Schwertmann1993]
 

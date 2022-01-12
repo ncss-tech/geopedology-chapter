@@ -25,25 +25,34 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 
 ## Introduction
 
+<!-- brief history, naming, related suite of packages -->
 
-  * brief history
-  * motivation
-  * evolution
-  * critical R packages used internally (data.table [@data.table_pkg2021], farver [@farver_pkg2021], colorspace [@zeileis_colorspace_pkg2020], cluster [@cluster_pkg2021], compositions [@compositions_pkg2021], ...)
-  * current use
-  * major TODOs / vision
+<!-- motivation, contributors, anchor papers / presentations -->
 
+[@beaudette2013_AQP]
 
-
-Relevant papers:
-
-[@beaudette2013]
+[@beaudette2013_terrain]
 
 [@Maynard_et_al_2020]
 
 
+<!-- evolution, design, critical R packages -->
+(data.table [@data.table_pkg2021], farver [@farver_pkg2021], colorspace [@zeileis_colorspace_pkg2020], cluster [@cluster_pkg2021], compositions [@compositions_pkg2021], ...)
 
-## Example Data
+<!-- current use: SoilWeb, NRCS daily business, aqp in the wild -->
+[@soilweb2017]
+
+"Widespread loss of intermediate soil horizons in urban landscapes" [@Herrmann2018]
+
+
+<!-- vision and major TODOs -->
+
+
+
+
+
+
+### Example Data
 
 Clarksville pedons and context (Jay)
 

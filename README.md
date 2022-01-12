@@ -46,6 +46,9 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
  - [] everything else
 
 
+# Figures
+0-2 figures per major section heading, max of 8 figures.
+
 # Outline
 
 ## Introduction
@@ -155,7 +158,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
 ## Conclusions
-[500 words](sections/conclusion.Rmd)
+[500 words](sections/conclusion.Rmd) (All
 
 
 

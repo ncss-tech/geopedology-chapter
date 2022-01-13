@@ -250,7 +250,8 @@ plotSPC(x, color = 'neg.sil.width', plot.depth.axis = FALSE, print.id = FALSE, n
 
 
 
-
+## save when happy
+saveRDS(x, file = 'clarksville-pedons-final.rds')
 
 
 

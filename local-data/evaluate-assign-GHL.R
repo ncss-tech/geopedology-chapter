@@ -50,30 +50,81 @@ bwplot(total_frags_pct ~ factor(hzname, levels=hz.designation.by.median.depths),
 
 ## use texture class
 x$texcl <- factor(x$texture_class, levels = SoilTextureLevels())
-
+x$texcl <- factor(x$texcl)
 
 table(x$hzname, x$texcl, useNA = 'always')
 
+# patterns c/o Jay, edited by Dylan
 
-## TODO: check patterns for overlap, no matches in Bt2 group
+# GHL
+n <- c('A', 'E', 'Bt1', 'Bt2', '2Bt', '3Bt')
 
-# patterns c/o Jay
-# apply to all pedons
+# REGEX rules
+p <- c(
+  'A', 
+  'E|BE|Bw', 
+  'Bt|Bt1|Bt2', 
+  '^Bt3|^Bt4|^Bt5|^Bt6', 
+  '2Bt2|2Bt3|2Bt4', 
+  '3Bt|2Bt5|2Bt6|2Bt7|2Bt8|Bt9|2Bt9'
+)
+
 x$genhz <- generalize.hz(
   x = x$hzname, 
-  new = c('A', 'E', 'Bt1', 'Bt2', '2Bt', '3Bt'), 
-  pat = c('A', 'E|BE|Bw', 'Bt|Bt1|Bt2', 'Bt3|Bt4|Bt5|Bt6', '2Bt2|2Bt3|2Bt4|Bt3|Bt4|Bt5|Bt6', '3Bt|2Bt5|2Bt6|2Bt7|2Bt8'), 
+  new = n, 
+  pat = p, 
   non.matching.code = NA
 )
 
-x$genhz <- factor(x$genhz, levels = guessGenHzLevels(x, "genhz")$levels)
-table(x$genhz, useNA = 'always')
+par(mar = c(0, 0, 3, 0))
+plotSPC(x, color = 'genhz', plot.depth.axis = FALSE)
+
+
+tab <- table(x$genhz, x$hzname)
+addmargins(tab)
+
+# convert contingency table -> adj. matrix
+m <- genhzTableToAdjMat(tab)
+# plot using a function from the sharpshootR package
+par(mar=c(1,1,1,1))
+plotSoilRelationGraph(m, graph.mode = 'directed', edge.arrow.size=0.5)
+
+
+# slice profile collection from 0-150 cm
+s <- slice(x, 0:200 ~ genhz + total_frags_pct)
+
+# convert horizon name back to factor, using original levels
+s$genhz <- factor(s$genhz, levels = n)
+
+# plot depth-ranges of generalized horizon slices
+bwplot(hzdept ~ genhz, data=horizons(s), 
+       ylim=c(max(s), -5), ylab='Generalized Horizon Depth (cm)', 
+       varwidth = TRUE,
+       scales=list(y=list(tick.number=10)), asp=1, 
+       panel=function(...) {
+         panel.abline(h=seq(0, max(s), by=20), v=1:length(n),col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       },
+       par.settings = tactile.theme()
+)
+
+bwplot(total_frags_pct ~ genhz, data=horizons(x), 
+       ylab='Generalized Horizon Depth (cm)', 
+       varwidth = TRUE,
+       scales=list(y=list(tick.number=10)), asp=1, 
+       panel=function(...) {
+         panel.abline(h=-1, v=-1, col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       },
+       par.settings = tactile.theme()
+)
 
 
 
 
 
-### quick look at some of the data
+
+### move / organize
 
 previewColors(x$moist_soil_color, method = 'MDS', pt.cex = 1.5)
 title('Clarksville Soil Colors')

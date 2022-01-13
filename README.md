@@ -22,7 +22,7 @@ Update: we have a one month extension.
 
    I think most readers of this book are within the classical methods of soil mapping. I thought it would be nice to show how you can use AQP to study the soil-landscape relations, comparing soil profiles, horizons associations, etc. For most readers this will be the first time they hear about AQP and R, so it should not go into much coding details.
 
-
+  Authors should use citation-style vs. in-line URLs.
 
 # Abstract
 
@@ -48,6 +48,10 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 # Figures
 0-2 figures per major section heading, max of 8 figures.
+
+# Notes
+Consider using [wordcountaddin](https://github.com/benmarwick/wordcountaddin) for checking word-counts within RStudio. Try `wordcountaddin::word_count()` and `wordcountaddin::readability()`.
+
 
 # Outline
 

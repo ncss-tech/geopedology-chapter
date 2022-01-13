@@ -16,6 +16,8 @@ bibliography: bibliography.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Conclusions
+<!-- 500 words -->
+## Conclusions
 
 
+<!-- vision and major TODOs -->

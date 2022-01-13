@@ -162,7 +162,7 @@ Consider using [wordcountaddin](https://github.com/benmarwick/wordcountaddin) fo
 
 
 ## Conclusions
-[500 words](sections/conclusion.Rmd) (All
+[500 words](sections/conclusion.Rmd) (All)
 
 
 

@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Resampling / Aggregation
 
   * slicing - `dice()`
-  * `slab()`, continuous and categorical [@harradine1963]
+  * `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_terrain]
   * `segment()`
   * `L1`, if there is space
 

@@ -27,50 +27,37 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 <!-- 800 words -->
 ## Introduction
 
-<!-- brief history, naming, related suite of packages -->
+<!-- motivation -->
 
 There has never been a time in the history of soil science where data (soil morphology, physical, chemical, mineralogical, etc.) have been so widely available, and, so closely tied to points on the ground (i.e. GPS coordinates) or high-resolution soil survey databases. However, data alone cannot support decisions or practical advice to land managers. The myriad data sources, formats, and conventions (even within a single institution) further complicate the scientist's or soil surveyor's best efforts to synthesize something useful from a mountain of data. While these problems aren't new (50 hand-written soil profile descriptions would have been difficult to reason over before computers), tools that link database APIs, spatial data, and the inherently complex nature of a soil description are now viable thanks to programming environments like R [@R].
 
+<!-- brief history, foundational work and inspiration -->
 
-The Algorithms for Quantitative Pedology (AQP) project is a suite of packages for the R programming language that simplify most facets of soil data analysis. This project began (2006-2008) as a loosely coordinated (direct email correspondence and the *r-help* mailing list) collection of R scripts used to support the management, analysis, and visualization of digital soil morphology records. By 2010 it became clear that an R package (code, manual pages, and example data following strict guidlines) hosted by CRAN would be the best route forward. Since 
-
-
-
-
-<!-- soilDB -->
+The Algorithms for Quantitative Pedology (AQP) project is a suite of packages for the R programming language that simplify most facets of soil data analysis. This project began (2006-2008) as a loosely coordinated (direct email correspondence and the *r-help* mailing list) collection of R scripts used to support the management, analysis, and visualization of digital soil morphology records. By 2010 it became clear that an R package (code, manual pages, and example data following strict guidelines) hosted by CRAN would be the best route forward. 
 
 
+[@Jenny1941Factors]
 
-<!-- sharpshootR -->
-
-
-<!-- motivation, contributors, anchor papers / presentations -->
+[@harradine1963]
 
 [@meyers2011]
 
 [@beaudette2013_AQP]
 
-[@beaudette2013_terrain]
 
-[@Maynard_et_al_2020]
-
-
-<!-- salty slices paper from Spain -->
-
-
-<!-- evolution, design, critical R packages -->
-(data.table [@data.table_pkg2021], farver [@farver_pkg2021], colorspace [@zeileis_colorspace_pkg2020], cluster [@cluster_pkg2021], compositions [@compositions_pkg2021], ...)
 
 <!-- current use: SoilWeb, NRCS daily business, aqp in the wild -->
+
+Since then ...
+
 [@soilweb2017]
 
 "Widespread loss of intermediate soil horizons in urban landscapes" [@Herrmann2018]
 
 
 
-
-
-
+<!-- suite of related packages  -->
+Functionality is split into three main categories (i.e. R packages) to increase modularity and divide administrative tasks: *aqp* (soil-specific data structures, color conversion, pedotransfer functions, etc.), *soilDB* (wrapper and convenience functions for accessing APIs and harmonization of results), and *sharpshootR* (specialized tasks and visualizations designed for use with soil database connections provided by *soilDB* and data structures provided by *aqp*). Like most R packages, the AQP suite of packages depends on other packages for optimized computation [@data.table_pkg2021], color conversion  [@farver_pkg2021; @zeileis_colorspace_pkg2020], numerical classification [@cluster_pkg2021], methods for compositional data (e.g. sand, silt, and clay content) [@soiltexture_pkg2018; @compositions_pkg2021] to name a few. The authors hope that other scientists will find a suitable foundation in *aqp*, *soilDB*, and *sharpshootR*, upon which more specialized tools can be built, documented, and delivered in the form of new R packages.
 
 
 ### Example Data

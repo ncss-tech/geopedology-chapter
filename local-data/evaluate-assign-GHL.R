@@ -1,8 +1,9 @@
 library(aqp)
 library(sharpshootR)
-library(cluster)
+library(igraph)
 library(lattice)
 library(tactile)
+library(cluster)
 
 ## pre-cached/subset data
 x <- readRDS('clarksville-pedons-subset.rds')
@@ -12,13 +13,54 @@ x <- readRDS('clarksville-pedons-subset.rds')
 ## modified GHL assignment work-flow
 tp <- hzTransitionProbabilities(x, 'hzname')
 par(mar=c(1,1,1,1))
-plotSoilRelationGraph(tp, graph.mode = 'directed', edge.arrow.size=0.5, edge.scaling.factor=2, vertex.label.cex=0.75, vertex.label.family='sans')
+g <- plotSoilRelationGraph(tp, graph.mode = 'directed', edge.arrow.size=0.5, edge.scaling.factor=2, vertex.label.cex=0.75, vertex.label.family='sans')
+
+# network-based eval of horizon designation groups
+g <- as_data_frame(g, what = 'vertices')
+
+idx <- match(x$hzname, g$name)
+x$hz.clust <- g$cluster[idx]
+
+# not immediately useful, but a start
+par(mar = c(0, 0, 3, 0))
+plotSPC(x, color = 'hz.clust', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
+
+
+
+
+# texture class as ordered factor
+x$texcl <- factor(x$texture_class, levels = SoilTextureLevels())
+x$texcl <- factor(x$texcl)
 
 
 # compute horizon mid-points
 x$mid <- with(horizons(x), (hzdept + hzdepb) / 2)
 
-# sort horizon designation by group-wise median values
+# color seems important
+x$hurst.redness <- hurst.redness(hue = x$m_hue, value = x$m_value, chroma = x$m_chroma)
+x$hue.pos <- factor(factor(x$m_hue, levels = huePosition(returnHues = TRUE)))
+
+
+par(mar = c(0, 0, 3, 0))
+plotSPC(x, color = 'hurst.redness', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
+
+plotSPC(x, color = 'hue.pos', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
+
+
+## gravel vs cobble
+x$gr.gt.cb <- x$gravel > x$cobbles
+
+x$CB <- grepl('CB', x$texture)
+
+plotSPC(x, color = 'gr.gt.cb', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
+
+plotSPC(x, color = 'CB', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
+
+
+
+
+
+## sort horizon designation by group-wise median values
 hz.designation.by.median.depths <- names(sort(tapply(x$mid, x$hzname, median)))
 
 # plot the distribution of horizon mid-points by designation
@@ -35,13 +77,46 @@ bwplot(mid ~ factor(hzname, levels=hz.designation.by.median.depths),
 
 ## no clay values
 
-## total RF volume
-bwplot(total_frags_pct ~ factor(hzname, levels=hz.designation.by.median.depths), 
+## Hurst RI
+bwplot(factor(hzname, levels=hz.designation.by.median.depths) ~ hurst.redness, 
        data=horizons(x), 
-       ylab='Total Rock Fragment Volume (%)', 
-       scales=list(y=list(tick.number=10)), 
+       xlab='Hurst Redness Index', 
+       scales=list(x=list(tick.number=10)), 
        panel=function(...) {
-         panel.abline(h=seq(0, 100, by=10), v=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
+         panel.abline(v=seq(0, 100, by=10), h=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       }, par.settings = tactile.theme()
+)
+
+
+
+## check out rock fragment volume fractions
+bwplot(factor(hzname, levels=hz.designation.by.median.depths) ~ total_frags_pct, 
+       data=horizons(x), 
+       xlab='Total Rock Fragment Volume (%)', 
+       scales=list(x=list(tick.number=10)), 
+       panel=function(...) {
+         panel.abline(v=seq(0, 100, by=15), h=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       }, par.settings = tactile.theme()
+)
+
+bwplot(factor(hzname, levels=hz.designation.by.median.depths) ~ gravel, 
+       data=horizons(x), 
+       xlab='Gravel Content Volume (%)', 
+       scales=list(x=list(tick.number=10)), 
+       panel=function(...) {
+         panel.abline(v=seq(0, 100, by=15), h=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       }, par.settings = tactile.theme()
+)
+
+bwplot(factor(hzname, levels=hz.designation.by.median.depths) ~ cobbles, 
+       data=horizons(x), 
+       xlab='Cobble Content Volume (%)', 
+       scales=list(x=list(tick.number=10)), 
+       panel=function(...) {
+         panel.abline(v=seq(0, 65, by=15), h=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
          panel.bwplot(...)
        }, par.settings = tactile.theme()
 )
@@ -49,15 +124,13 @@ bwplot(total_frags_pct ~ factor(hzname, levels=hz.designation.by.median.depths),
 
 
 ## use texture class
-x$texcl <- factor(x$texture_class, levels = SoilTextureLevels())
-x$texcl <- factor(x$texcl)
-
 table(x$hzname, x$texcl, useNA = 'always')
 
 # patterns c/o Jay, edited by Dylan
 
-# GHL
-n <- c('A', 'E', 'Bt1', 'Bt2', '2Bt', '3Bt')
+## GHL
+# combining 2Bt3 + 2Bt4
+n <- c('A', 'E', 'Bt1', 'Bt2', '2Bt3', '3Bt4')
 
 # REGEX rules
 p <- c(
@@ -77,7 +150,7 @@ x$genhz <- generalize.hz(
 )
 
 par(mar = c(0, 0, 3, 0))
-plotSPC(x, color = 'genhz', plot.depth.axis = FALSE)
+plotSPC(x, color = 'genhz', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
 
 
 tab <- table(x$genhz, x$hzname)
@@ -108,16 +181,78 @@ bwplot(hzdept ~ genhz, data=horizons(s),
        par.settings = tactile.theme()
 )
 
-bwplot(total_frags_pct ~ genhz, data=horizons(x), 
-       ylab='Generalized Horizon Depth (cm)', 
+bwplot(genhz ~ total_frags_pct, 
+       data=horizons(x), 
        varwidth = TRUE,
-       scales=list(y=list(tick.number=10)), asp=1, 
+       xlab='Total Rock Fragment Volume (%)', 
+       scales=list(x=list(tick.number=10)), 
        panel=function(...) {
-         panel.abline(h=-1, v=-1, col=grey(0.8), lty=3)
+         panel.abline(v=seq(0, 100, by=15), h=1:length(n), col=grey(0.8), lty=3)
          panel.bwplot(...)
-       },
-       par.settings = tactile.theme()
+       }, par.settings = tactile.theme()
 )
+
+bwplot(genhz ~ gravel, 
+       data=horizons(x),
+       varwidth = TRUE,
+       xlab='Gravel Content Volume (%)', 
+       scales=list(x=list(tick.number=10)), 
+       panel=function(...) {
+         panel.abline(v=seq(0, 100, by=15), h=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       }, par.settings = tactile.theme()
+)
+
+bwplot(genhz ~ cobbles, 
+       data=horizons(x), 
+       varwidth = TRUE,
+       xlab='Cobble Content Volume (%)', 
+       scales=list(x=list(tick.number=10)), 
+       panel=function(...) {
+         panel.abline(v=seq(0, 65, by=15), h=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       }, par.settings = tactile.theme()
+)
+
+bwplot(genhz ~ hurst.redness, 
+       data=horizons(x), 
+       varwidth = TRUE,
+       xlab='Hurst Redness Index', 
+       scales=list(x=list(tick.number=10)), 
+       panel=function(...) {
+         panel.abline(v=seq(0, 100, by=10), h=1:length(hz.designation.by.median.depths), col=grey(0.8), lty=3)
+         panel.bwplot(...)
+       }, par.settings = tactile.theme()
+)
+
+
+
+
+## Iterate: there is some confusion between 'Bt2' and '2Bt3'
+
+
+## Silhouette Width for a quick eval
+
+# store the column names of our variables of interest
+vars <- c('total_frags_pct', 'hurst.redness', 'mid')
+# result is a list of several items
+hz.eval <- evalGenHZ(x, 'genhz', vars)
+
+# extract silhouette widths and neighbor
+x$sil.width <- hz.eval$horizons$sil.width
+x$neg.sil.width <- x$sil.width < -0.2
+
+par(mar = c(0, 0, 3, 0))
+plotSPC(x, color = 'sil.width', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
+
+plotSPC(x, color = 'neg.sil.width', plot.depth.axis = FALSE, print.id = FALSE, name.style = 'center-center', width = 0.35)
+
+
+
+
+
+
+
 
 
 

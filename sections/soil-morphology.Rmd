@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE)
   
 
 ### Genetic / Generalized Horizons
- * generalized horizon labels: why / how (Jay)
+ * generalized horizon labels: why / how (Jay) see "functional horizons" in [@Wagenet1991]
  * horizon boundaries
  * regular expressions used to "find" contact etc. (Andrew, Stephen)
  

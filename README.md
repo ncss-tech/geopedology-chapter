@@ -18,11 +18,12 @@ Update: we have a one month extension.
 
 ## Style Notes
 
-   A key objective of this new edition of the book is to provide an update on soil-geomorphic landscape relationships and their link with geodiversity and relevant features of biodiversity. It will not only focus on existing challenges, but also provide insight into the possibility and opportunity of problem solving. 
+    A key objective of this new edition of the book is to provide an update on soil-geomorphic landscape relationships and their link with geodiversity and relevant features of biodiversity. It will not only focus on existing challenges, but also provide insight into the possibility and opportunity of problem solving. 
 
-   I think most readers of this book are within the classical methods of soil mapping. I thought it would be nice to show how you can use AQP to study the soil-landscape relations, comparing soil profiles, horizons associations, etc. For most readers this will be the first time they hear about AQP and R, so it should not go into much coding details.
+    I think most readers of this book are within the classical methods of soil mapping. I thought it would be nice to show how you can use AQP to study the soil-landscape relations, comparing soil profiles, horizons associations, etc. For most readers this will be the first time they hear about AQP and R, so it should not go into much coding details.
 
-  Authors should use citation-style vs. in-line URLs.
+    Authors should use citation-style vs. in-line URLs:
+    Doe J (2000) Title of supplementary material. http://www.privatehomepage.com. Accessed 22 Feb 2000
 
 # Abstract
 

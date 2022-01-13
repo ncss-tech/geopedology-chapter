@@ -25,6 +25,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
   * dendrogram + profiles
 
-original ideas [@Hole1960]
+original ideas [@Hole1960], [@Rayner1966], [@Moore1972], [@Carre2009], [@beaudette2013_AQP]
 
 recent numerical classification paper [@Maynard_et_al_2020]
+
+
+

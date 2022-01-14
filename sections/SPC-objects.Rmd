@@ -1,23 +1,22 @@
 ---
-title: "The SoilProfileCollection Object"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## SPC
+# The SoilProfileCollection Object
 
   * rationale
   * basic design / strategy
   * various back-ends
 
-### Subsetting
+## Subsetting
 
   * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
   
-#### "bracket" extraction methods (`x[i,j,k...]`)
+### "bracket" extraction methods (`x[i,j,k...]`)
 
 <!-- The code block below could be translated to a paragraph. -->
 
@@ -99,12 +98,12 @@ lines(seq(0,3.25,0.25), rep(100, 14), lwd=2,lty=2)
 
   * other methods
 
-### Iteration
+## Iteration
 
   * implicit vectorization
   * `profileApply()` (Andrew)
 
-### Misc.
+## Misc.
 
  * data cleaning, fixing, validity, etc. (Andrew)
  * functions that return SPC objects via soilDB (Dylan, Jay, Stephen)

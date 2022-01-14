@@ -54,6 +54,8 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 # Notes
 Consider using [wordcountaddin](https://github.com/benmarwick/wordcountaddin) for checking word-counts within RStudio. Try `wordcountaddin::word_count()` and `wordcountaddin::readability()`.
 
+Notes on [citations in RMarkdown](https://inbo.github.io/tutorials/tutorials/r_citations_markdown/).
+
 
 # Outline
 

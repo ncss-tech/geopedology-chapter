@@ -1,5 +1,4 @@
 ---
-title: "Soil Morphology"
 output:
   html_document:
     fig_caption: yes
@@ -12,11 +11,11 @@ output:
 bibliography: bibliography.bib
 ---
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Soil Morphology
+# Soil Morphology
 
   * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
   * major goals
@@ -24,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
   * critical data: depths, horizon designations, color, ...
   * data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016]
 
-### Sketches
+## Sketches
 [profile sketches](sections/sketches.Rmd) (Dylan)
 
   * `plotSPC()`
@@ -33,13 +32,13 @@ knitr::opts_chunk$set(echo = TRUE)
   * future work (grid graphics, pattern fill)
   
 
-### Genetic / Generalized Horizons
+## Genetic / Generalized Horizons
  * generalized horizon labels: why / how (Jay) see "functional horizons" in [@Wagenet1991]
  * horizon boundaries
  * regular expressions used to "find" contact etc. (Andrew, Stephen)
  
 
-### Soil Color
+## Soil Color
 
   * Munsell system and other color spaces (Dylan)
   * conversion functions / limitations (Dylan)
@@ -66,12 +65,12 @@ Several color-based metrics of soil development [@Buntley1965; @harden1982], rub
 
 
 
-### Depth
+## Depth
 
  * thickness, soil depth estimation (Stephen)
  * `depthOf()` family of functions (Andrew)
 
-### Misc.
+## Misc.
 
  * misc. visualization methods (via `sharpshootR`) (Jay)
 

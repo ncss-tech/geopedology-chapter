@@ -1,5 +1,4 @@
 ---
-title: "Resampling / Aggregation"
 output:
   html_document:
     fig_caption: yes
@@ -12,16 +11,16 @@ output:
 bibliography: bibliography.bib
 ---
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-## Resampling / Aggregation
+# Resampling / Aggregation
 
   * slicing - `dice()`
   * `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_terrain]
   * `segment()`
   * `L1`, if there is space
 
-### Visualization
+## Visualization

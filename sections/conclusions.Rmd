@@ -1,5 +1,4 @@
 ---
-title: "Conclusions"
 output:
   html_document:
     fig_caption: yes
@@ -12,12 +11,9 @@ output:
 bibliography: bibliography.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 <!-- 500 words -->
-## Conclusions
+# Conclusions
 
 
 <!-- vision and major TODOs -->

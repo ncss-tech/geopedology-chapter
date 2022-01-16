@@ -31,9 +31,9 @@ Over time, functionality was split into three main categories (i.e. R packages) 
 
 
 <!-- current use: SoilWeb, NRCS daily business, aqp in the wild -->
-Since then ...
+Since 2011, the AQP suite of R packages has been extensively updated and documented by USDA-NRCS Staff to support routine operations with the Soil and Plant Science Division. Some examples include aggregation and synthesis of field data to support initial soil survey (new mapping), graphical comparisons and correlation analysis to support soil survey update projects (refinement of existing mapping), and visual presentation of soil survey data to the public via tools like SoilWeb [@soilweb2017]. The *soilDB* package has become of of the most widely-used interfaces to USDA-NRCS data sources, with support for queries that accept (and return) mixtures of spatial and tabular data. Spatial formats defined by the *sf* [@Pebesma2018_sf_pkg] and *raster* [@raster_pkg2021] R packages are used extensively by the *soilDB* package to minimize data conversion or pre-processing steps.
 
-[@soilweb2017]
+
 
 <!-- "Widespread loss of intermediate soil horizons in urban landscapes" [@Herrmann2018] -->
 
@@ -41,12 +41,14 @@ Since then ...
 
 
 
-
+<!-- Clarksville data, context -->
 ## Example Data
 
-Clarksville pedons and context (Jay)
+A curated set of soil morphologic and laboratory characterization data correlated to the Clarksville soil series (Loamy-skeletal, siliceous, semiactive, mesic Typic Paleudults) is used throughout this chapter to demonstrate key functionality and visualization possibilities provided by the AQP suite of R packages. These data represent a very deep (> 150cm), somewhat excessively well drained soil of large extent (Missouri, USA) formed in pedisediments of cherty dolomite or cherty limestone [@kabrick_et_al_2008]. These soils typically occur on ridges and steep side slopes, spanning summit, shoulder, and backslope positions of an idealized 2D hillslope. Mean annual air temperature ranges from 13--15 degrees C, mean annual precipitation ranges from 1150--1250 mm, with most precipitation falling as rain. Native vegetation is mixed forest of black oak (*Q. velutina* Lam.), white oak (*Quercus alba* L.), blackjack oak (*Q. marilandica* Muench.), post oak (*Q. stellata* Wangenh.), shortleaf pine (*Pinus echinata* Mill.), black hickory (*Carya texana* Buckl.), sugar maple (*Acer saccharum* Marshall), and dogwood (*Cornus florida* L.).
 
 
+<!-- consider a figure here of a profile + landscape -->
+<!-- ask Kabrick for one of his favorites -->
 
 
 

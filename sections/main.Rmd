@@ -34,5 +34,15 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 ```{r child = 'resampling-aggregation.Rmd'}
 ```
 
+```{r child = 'numerical-classification.Rmd'}
+```
+
+```{r child = 'spectral-data.Rmd'}
+```
+
+```{r child = 'conclusions.Rmd'}
+```
+
+
 # References
 

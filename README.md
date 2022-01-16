@@ -43,9 +43,13 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 # TODO
  - [x] Jay: assemble Clarksville example data
  - [x] GHL assignment
- - [] Dylan: add relevant citations (and remove unused) in [bibtex DB](sections/bibliography.bib)
+ - [x] Dylan: add relevant citations (and remove unused) in [bibtex DB](sections/bibliography.bib)
  - [] Dylan: find "salty slices" paper from Spain
- - [] everything else
+
+
+ - [] Introduction (Dylan / Jay)
+ - [] SPC Objects (Andrew / Dylan / ???)
+ - [] Soil Morphology
 
 
 # Figures
@@ -67,7 +71,6 @@ Notes on [citations in RMarkdown](https://inbo.github.io/tutorials/tutorials/r_c
   * evolution
   * current use
   * major TODOs / vision
-
 
 ## SoilProfileCollection Object / Methods
 [1,000 words](sections/SPC-objects.Rmd) (Andrew / Dylan / Pierre)
@@ -104,7 +107,6 @@ Notes on [citations in RMarkdown](https://inbo.github.io/tutorials/tutorials/r_c
   * critical data: depths, horizon designations, color, ...
 
 ### Sketches
-[profile sketches](sections/sketches.Rmd) (Dylan)
 
   * `plotSPC()`
   * annotation

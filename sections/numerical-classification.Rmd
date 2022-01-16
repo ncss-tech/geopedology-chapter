@@ -1,5 +1,4 @@
 ---
-title: "Numerical Classification"
 output:
   html_document:
     fig_caption: yes
@@ -12,16 +11,16 @@ output:
 bibliography: bibliography.bib
 ---
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Numerical Classification
+# Numerical Classification
 
 
   * major concepts, cite / rely on two papers for details
 
-### Visualization
+## Visualization
 
   * dendrogram + profiles
 

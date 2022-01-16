@@ -1,5 +1,4 @@
 ---
-title: "Spectral Data"
 output:
   html_document:
     fig_caption: yes
@@ -12,9 +11,7 @@ output:
 bibliography: bibliography.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
+# Spectral Data
 
 Do we have any MIR spectra associated with Clarksville? 

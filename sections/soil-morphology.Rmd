@@ -11,10 +11,7 @@ output:
 bibliography: bibliography.bib
 ---
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
+<!-- 1600 words -->
 # Soil Morphology
 
   * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
@@ -24,7 +21,6 @@ knitr::opts_chunk$set(echo = TRUE)
   * data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016]
 
 ## Sketches
-[profile sketches](sections/sketches.Rmd) (Dylan)
 
   * `plotSPC()`
   * annotation
@@ -55,7 +51,7 @@ Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017
 
 Fe-oxides [@Scheinost1999], [@Schwertmann1993]
 
-soil carbon [@Wills2007], Liles2013
+soil carbon [@Wills2007; @Liles2013]
 
 soil color and catenary relationships [@Brown2004]
 
@@ -73,4 +69,24 @@ Several color-based metrics of soil development [@Buntley1965; @harden1982], rub
 ## Misc.
 
  * misc. visualization methods (via `sharpshootR`) (Jay)
+ 
+ 
+ * `aggregateColorPlot()`
+ * `aspect.plot()`
+ * `colorMixtureVenn()`
+ * `diagnosticPropertyPlot()`
+ * `huePositionPlot()`
+ * `plotProfileDendrogram()`
+ * `plotSoilRelationGraph()`
+ * `plotWB()`
+ * `SoilTaxonomyDendrogram()`
+ * `plotTransect()`
+ * `vizHillslopePosition()` and related
+ * ``
+ 
+ 
+ 
+ 
+ 
+ 
 

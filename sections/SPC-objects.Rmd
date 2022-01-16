@@ -2,9 +2,6 @@
 output: html_document
 ---
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 # The SoilProfileCollection Object
 

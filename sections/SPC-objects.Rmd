@@ -8,6 +8,7 @@ output: html_document
   * rationale
   * basic design / strategy
   * various back-ends
+  * limitation (analysis vs. archival formats)
 
 ## Subsetting
 

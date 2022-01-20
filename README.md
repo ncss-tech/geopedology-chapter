@@ -44,12 +44,12 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
  - [x] Jay: assemble Clarksville example data
  - [x] GHL assignment
  - [x] Dylan: add relevant citations (and remove unused) in [bibtex DB](sections/bibliography.bib)
- - [] Dylan: find "salty slices" paper from Spain
+ - [ ] Dylan: find "salty slices" paper from Spain
 
 
- - [] Introduction (Dylan / Jay)
- - [] SPC Objects (Andrew / Dylan / ???)
- - [] Soil Morphology
+ - [ ] Introduction (Dylan / Jay)
+ - [ ] SPC Objects (Andrew / Dylan / ???)
+ - [ ] Soil Morphology
 
 
 # Figures

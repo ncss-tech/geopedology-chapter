@@ -14,11 +14,50 @@ bibliography: bibliography.bib
 <!-- 1600 words -->
 # Soil Morphology
 
-  * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
-  * major goals
-  * limitation (analysis vs. archival formats)
-  * critical data: depths, horizon designations, color, ...
-  * data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016]
+The field description of a soil profile (genetic horizon depths, boundaries, color, soil texture, rock fragment volume, structure, etc.) is typically the foundation upon which additional sampling, laboratory characterization, or soil survey are based. In aggregate, a complete collection of horizons, associated properties, and landscape context (e.g. catenary position or other geomorphic description) represent an atomic unit of pedologic inquiry: the pedon (*citation*). The AQP family of R packages and the `SoilProfileCollection` datatype were designed specifically to elevate the pedon (and collections of pedons) to a convenient abstraction (an object), enabling a simpler interface to what would otherwise be a complex hierarchy of above and below-ground records. In *aqp*, The more generic term "profile" is used instead of pedon to accommodate incomplete data (missing above-ground information) or otherwise truncated (e.g. 0-25cm) observations. Central to this approach are the specification of profile IDs and horizon depths, above-ground ("site") vs. below-ground ("horizon") attributes, and ideally horizon designation and soil color.
+
+
+  <!-- data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016] -->
+
+## Soil Color
+
+
+### Color Spaces and Conversion
+
+color spaces [@Rossel_et_al_2006]
+
+
+
+  * Munsell system and other color spaces (Dylan)
+  * conversion functions / limitations (Dylan)
+  * contrast (Dylan)
+  * simulated, subtractive mixtures (Dylan)
+  * describing a range in soil color (Dylan)
+
+### Color Contrast
+
+
+
+### Simulated Color Mixtures
+
+
+
+color measurement, standard observers, mixtures [@Marcus1998]
+
+
+
+Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017]
+
+Fe-oxides [@Scheinost1999], [@Schwertmann1993]
+
+soil carbon [@Wills2007; @Liles2013]
+
+soil color and catenary relationships [@Brown2004]
+
+<!-- 2-3 sentences max -->
+Several color-based metrics of soil development [@Buntley1965; @harden1982], rubification [@barron1986; @hurst1997], and melanization [@harden1982; @thompson1996] are implemented in the *aqp* package.
+
+
 
 ## Sketches
 
@@ -34,29 +73,6 @@ bibliography: bibliography.bib
  * regular expressions used to "find" contact etc. (Andrew, Stephen)
  
 
-## Soil Color
-
-  * Munsell system and other color spaces (Dylan)
-  * conversion functions / limitations (Dylan)
-  * contrast (Dylan)
-  * simulated, subtractive mixtures (Dylan)
-  * describing a range in soil color (Dylan)
-
-
-color measurement, standard observers, mixtures [@Marcus1998]
-
-color spaces [@Rossel_et_al_2006]
-
-Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017]
-
-Fe-oxides [@Scheinost1999], [@Schwertmann1993]
-
-soil carbon [@Wills2007; @Liles2013]
-
-soil color and catenary relationships [@Brown2004]
-
-<!-- 2-3 sentences max -->
-Several color-based metrics of soil development [@Buntley1965; @harden1982], rubification [@barron1986; @hurst1997], and melanization [@harden1982; @thompson1996] are implemented in the *aqp* package.
 
 
 

@@ -20,6 +20,10 @@ The field description of a soil profile (genetic horizon depths, boundaries, col
   <!-- data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016] -->
 
 ## Soil Color
+The color of soil material observed during field investigations is one of the most striking and useful properties recorded as part of a soil profile description. Typically recorded in the Munsell system [@Munsell1947; @Simonson1993; @SoilSurveyManual2017] in the form of "hue value/chroma", the three components of this notation provide interpretive suggestions about iron oxides and oxidation state (hue and chroma) [@Schwertmann1993; @Scheinost1999], soil carbon (value) [@Wills2007; @Liles2013], as well as hints about the relative importance of catenary relationships [@Brown2004].
+
+<!-- 2-3 sentences max -->
+Several color-based metrics of soil development [@Buntley1965; @harden1982], rubification [@barron1986; @hurst1997], and melanization [@harden1982; @thompson1996] are implemented in the *aqp* package.
 
 
 ### Color Spaces and Conversion
@@ -27,12 +31,9 @@ The field description of a soil profile (genetic horizon depths, boundaries, col
 color spaces [@Rossel_et_al_2006]
 
 
+Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017]
 
-  * Munsell system and other color spaces (Dylan)
-  * conversion functions / limitations (Dylan)
-  * contrast (Dylan)
-  * simulated, subtractive mixtures (Dylan)
-  * describing a range in soil color (Dylan)
+
 
 ### Color Contrast
 
@@ -40,22 +41,7 @@ color spaces [@Rossel_et_al_2006]
 
 ### Simulated Color Mixtures
 
-
-
 color measurement, standard observers, mixtures [@Marcus1998]
-
-
-
-Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017]
-
-Fe-oxides [@Scheinost1999], [@Schwertmann1993]
-
-soil carbon [@Wills2007; @Liles2013]
-
-soil color and catenary relationships [@Brown2004]
-
-<!-- 2-3 sentences max -->
-Several color-based metrics of soil development [@Buntley1965; @harden1982], rubification [@barron1986; @hurst1997], and melanization [@harden1982; @thompson1996] are implemented in the *aqp* package.
 
 
 
@@ -71,8 +57,7 @@ Several color-based metrics of soil development [@Buntley1965; @harden1982], rub
  * generalized horizon labels: why / how (Jay) see "functional horizons" in [@Wagenet1991]
  * horizon boundaries
  * regular expressions used to "find" contact etc. (Andrew, Stephen)
- 
-
+ * describing a range in soil color (Dylan)
 
 
 

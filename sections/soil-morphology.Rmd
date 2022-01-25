@@ -26,23 +26,66 @@ The color of soil material observed during field investigations is one of the mo
 Several color-based metrics of soil development [@Buntley1965; @harden1982], rubification [@barron1986; @hurst1997], and melanization [@harden1982; @thompson1996] are implemented in the *aqp* package.
 
 
-### Color Spaces and Conversion
+### Color Conversion
+
+The *aqp* package provides several interfaces for conversion between Munsell notation and sRGB or CIELAB color spaces, based on a look-up table developed from the full 
+
+
+<!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf -->
 
 color spaces [@Rossel_et_al_2006]
 
 
 Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017]
 
+`munsell2rgb()`
+
+`rgb2munsell()`
+
+`getClosestMunsellChip('10YR 3.3/5', convertColors = FALSE)`
+
+`PMS2Munsell()`
+
+`huePosition()`
 
 
-### Color Contrast
+<!-- think about included data sets and if we have space here i.e. `soil_minerals` -->
 
+
+### Color Contrast and Variability
+
+`contrastClass()`
+
+`colorContrast()`
+
+`colorContrastPlot()`
+
+`contrastChart()`
+
+
+
+### Color Variability
+
+<!-- describing a range in soil color (Dylan) -->
+
+`aggregateColor()`
+
+`colorQuantiles()`
 
 
 ### Simulated Color Mixtures
 
 color measurement, standard observers, mixtures [@Marcus1998]
 
+
+`mixMunsell()`
+
+`plotColorMixture()`
+
+`colorMixtureVenn()`
+
+
+`data("soil_minerals")`
 
 
 ## Sketches
@@ -57,10 +100,6 @@ color measurement, standard observers, mixtures [@Marcus1998]
  * generalized horizon labels: why / how (Jay) see "functional horizons" in [@Wagenet1991]
  * horizon boundaries
  * regular expressions used to "find" contact etc. (Andrew, Stephen)
- * describing a range in soil color (Dylan)
-
-
-
 
 ## Depth
 
@@ -83,7 +122,7 @@ color measurement, standard observers, mixtures [@Marcus1998]
  * `SoilTaxonomyDendrogram()`
  * `plotTransect()`
  * `vizHillslopePosition()` and related
- * ``
+ * `colorChart()`
  
  
  

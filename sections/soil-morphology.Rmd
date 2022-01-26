@@ -28,27 +28,15 @@ Several color-based metrics of soil development [@Buntley1965; @harden1982], rub
 
 ### Color Conversion
 
-The *aqp* package provides several interfaces for conversion between Munsell notation and sRGB or CIELAB color spaces, based on a look-up table developed from the full 
+The *aqp* package provides several interfaces for conversion between Munsell notation and sRGB or CIELAB color spaces, largely based on the 1943 Munsell renotation table [@centore2012]. Forward conversion from standard Munsell notation (e.g. 10YR 3/4) is performed via look-up table, derived from the renotation data and interpolated to include odd chroma values. The function `munsell2rgb()` performs a direct transformation to sRGB-encoded colors in hexadecimal (#5E4323), sRGB coordinates scaled to the interval of 0--1 ([0.36791, 0.26445, 0.13648]), or CIELAB coordinates ([30.807, 7.357, 24.027]) [@beaudette2013_AQP]. Inverse transformation from sRGB coordinates is performed by the `rgb2munsell()` function; approximated by nearest-neighbor search of the Munsell-sRGB look-up table using the CIE2000 color contrast metric [@farver_pkg2021]. All color space coordinates are referenced to the CIE standard illuminant D65, which is a close approximation to average midday sunlight in the northern hemisphere [@Marcus1998]. sRGB and CIELAB color spaces were selected to address two common uses of soil color: sRGB, due to the its use in most all computer graphics applications, and CIELAB for the convenient alignment of axes and common pigments in the soil environment [@Rossel_et_al_2006; @Liles2013]. 
 
 
-<!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf -->
-Paul Centore's work [@centore2012]
-
-
-color spaces [@Rossel_et_al_2006]
-
-
-Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017]
-
-`munsell2rgb()`
-
-`rgb2munsell()`
-
+<!-- possibly talk about non-standard notation, munsellinterpol package and Paul's work  -->
 `getClosestMunsellChip('10YR 3.3/5', convertColors = FALSE)`
 
+<!-- pantone system ? -->
 `PMS2Munsell()`
 
-`huePosition()`
 
 
 <!-- think about included data sets and if we have space here i.e. `soil_minerals` -->
@@ -78,6 +66,9 @@ Munsell [@Munsell1947], use in soil survey [@Simonson1993; @SoilSurveyManual2017
 ### Simulated Color Mixtures
 
 color measurement, standard observers, mixtures [@Marcus1998]
+
+<!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf -->
+Paul Centore's work [@centore2012]
 
 
 `mixMunsell()`
@@ -125,6 +116,10 @@ color measurement, standard observers, mixtures [@Marcus1998]
  * `plotTransect()`
  * `vizHillslopePosition()` and related
  * `colorChart()`
+ * `huePosition()`
+
+ 
+ 
  
  
  

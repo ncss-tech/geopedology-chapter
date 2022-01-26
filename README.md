@@ -47,9 +47,11 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
  - [ ] Dylan: find "salty slices" paper from Spain
 
 
- - [ ] Introduction (Dylan / Jay)
+ - [x] Introduction (Dylan / Jay)
  - [ ] SPC Objects (Andrew / Dylan / ???)
- - [ ] Soil Morphology
+ - [ ] Soil Morphology (Dylan / ???)
+ - [ ] Resampling / Aggregation
+ - [ ] Numerical Classification
 
 
 # Figures
@@ -65,12 +67,6 @@ Notes on [citations in RMarkdown](https://inbo.github.io/tutorials/tutorials/r_c
 
 ## Introduction
 [800 words](sections/introduction.Rmd) (Dylan / Pierre)
-
-  * brief history
-  * motivation
-  * evolution
-  * current use
-  * major TODOs / vision
 
 ## SoilProfileCollection Object / Methods
 [1,000 words](sections/SPC-objects.Rmd) (Andrew / Dylan / Pierre)
@@ -97,46 +93,8 @@ Notes on [citations in RMarkdown](https://inbo.github.io/tutorials/tutorials/r_c
  * functions that return SPC objects via soilDB (Dylan, Jay, Stephen)
  
 
-
 ## Soil Morphology
-[1,600 words.](sections/soil-morphology.Rmd) (Dylan, ???)
-
-  * aqp + SPC is designed for the modeling / analysis of soil morphology (site+pedon/horizons)
-  * major goals
-  * limitation (analysis vs. archival formats)
-  * critical data: depths, horizon designations, color, ...
-
-### Sketches
-
-  * `plotSPC()`
-  * annotation
-  * other profile plotting functions
-  * future work (grid graphics, pattern fill)
-  
-
-### Genetic / Generalized Horizons
- * generalized horizon labels: why / how (Jay)
- * horizon boundaries
- * regular expressions used to "find" contact etc. (Andrew, Stephen)
- 
-
-### Soil Color
-(Dylan)
-
-  * Munsell system and other color spaces
-  * conversion functions / limitations
-  * contrast
-  * simulated, subtractive mixtures
-  * RIC (?)
-
-### Depth
-
- * thickness, soil depth estimation (Stephen)
- * `depthOf()` family of functions (Andrew)
-
-### Misc.
-
- * misc. visualization methods (via `sharpshootR`) (Jay)
+[2,000 words.](sections/soil-morphology.Rmd) (Dylan, ???)
 
 
 

@@ -32,6 +32,8 @@ The *aqp* package provides several interfaces for conversion between Munsell not
 
 
 <!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf -->
+Paul Centore's work [@centore2012]
+
 
 color spaces [@Rossel_et_al_2006]
 

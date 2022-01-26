@@ -11,7 +11,7 @@ output:
 bibliography: bibliography.bib
 ---
 
-<!-- 1600 words -->
+<!-- 2000 words -->
 # Soil Morphology
 
 The field description of a soil profile (genetic horizon depths, boundaries, color, soil texture, rock fragment volume, structure, etc.) is typically the foundation upon which additional sampling, laboratory characterization, or soil survey are based. In aggregate, a complete collection of horizons, associated properties, and landscape context (e.g. catenary position or other geomorphic description) represent an atomic unit of pedologic inquiry: the pedon (*citation*). The AQP family of R packages and the `SoilProfileCollection` datatype were designed specifically to elevate the pedon (and collections of pedons) to a convenient abstraction (an object), enabling a simpler interface to what would otherwise be a complex hierarchy of above and below-ground records. In *aqp*, The more generic term "profile" is used instead of pedon to accommodate incomplete data (missing above-ground information) or otherwise truncated (e.g. 0-25cm) observations. Central to this approach are the specification of profile IDs and horizon depths, above-ground ("site") vs. below-ground ("horizon") attributes, and ideally horizon designation and soil color.
@@ -32,7 +32,7 @@ The *aqp* package provides several interfaces for conversion between Munsell not
 
 
 <!-- possibly talk about non-standard notation, munsellinterpol package and Paul's work  -->
-`getClosestMunsellChip('10YR 3.3/5', convertColors = FALSE)`
+`getClosestMunsellChip('10.6YR 3.3/5.5', convertColors = FALSE)`
 
 <!-- pantone system ? -->
 `PMS2Munsell()`
@@ -43,8 +43,6 @@ The *aqp* package provides several interfaces for conversion between Munsell not
 
 
 ### Color Contrast and Variability
-
-`contrastClass()`
 
 `colorContrast()`
 

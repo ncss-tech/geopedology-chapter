@@ -43,6 +43,7 @@ The *aqp* package provides several interfaces for conversion between Munsell not
 
 
 ### Color Contrast and Variability
+![](figures/contast-chart.svg)
 
 `colorContrast()`
 

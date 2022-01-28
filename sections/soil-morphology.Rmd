@@ -43,6 +43,13 @@ The *aqp* package provides several interfaces for conversion between Munsell not
 
 
 ### Color Contrast and Variability
+
+<!-- https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/ref/?cid=nrcs142p2_053569 -->
+
+
+![](figures/contrast-class-dE00.svg)
+
+
 ![](figures/contast-chart.svg)
 
 `colorContrast()`

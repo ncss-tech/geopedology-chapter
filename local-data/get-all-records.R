@@ -1,7 +1,7 @@
 library(aqp)
 library(soilDB)
-library(DBI)
-library(RSQLite)
+# library(DBI)
+# library(RSQLite)
 
 ## recent snapshot, requires more work to consolidate properties
 # db <- dbConnect(RSQLite::SQLite(), 'E:/NASIS-KSSL-LDM/LDM/LDM-compact.sqlite')
@@ -20,6 +20,27 @@ library(RSQLite)
 # # close connection
 # dbDisconnect(db)
 # 
+
+
+sql <- "
+SELECT
+pedon_key, pedlabsampnum, pedoniid, upedonid, longitude_decimal_degrees, latitude_decimal_degrees,
+CASE WHEN corr_name IS NULL THEN samp_name ELSE corr_name END AS taxonname
+FROM
+lab_combine_nasis_ncss
+WHERE CASE WHEN corr_name IS NULL THEN samp_name ELSE corr_name END = 'clarksville'
+
+;"
+
+pedons <- SDA_query(sql)
+
+# 171
+nrow(pedons)
+
+## TODO
+# get layer, physical, chemical data
+
+
 
 
 # older snapshot, simpler packaging

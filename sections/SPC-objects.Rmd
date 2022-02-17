@@ -47,27 +47,30 @@ Subsets based on `i`, `j` and `k` indices of the SoilProfileCollection can be co
 
 Here is a visual representation of the concept:
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.width=8, fig.height=7}
 library(aqp)
 # this is an example two-pane figure where a small subset of profiles is shown based on i index
 # then one profile gets "zoomed in on" and the different [ horizon extraction methods are demonstrated
 x <- readRDS("../local-data/clarksville-all-pedons.rds")
-par(mar=c(0,0,0,0), mfrow=c(2,1))
+x <- subset(x, taxonkind == 'series')
+
+par(mar=c(0,0,0,1), mfrow=c(2,1))
 
 # figure of first five profiles
-plotSPC(x[1:5,])
+plotSPC(x[1:5,], cex.names = 0.75)
 
 # figure of horizon subsets within 3rd profile
 .LAST <- NULL
 plotMultipleSPC(list(x[3, ], x[3, 1], x[3, 1:3], x[3, , .LAST]), 
                      args = list(
-                       list(color = "soil_color", print.id = TRUE),
-                       list(color = "soil_color", print.id = FALSE),
-                       list(color = "soil_color", print.id = FALSE),
-                       list(color = "soil_color", print.id = FALSE)
+                       list(color = "soil_color", print.id = TRUE, cex.names = 0.75),
+                       list(color = "soil_color", print.id = FALSE, cex.names = 0.75),
+                       list(color = "soil_color", print.id = FALSE, cex.names = 0.75),
+                       list(color = "soil_color", print.id = FALSE, cex.names = 0.75)
                      ),
                      group.labels = c("\nx[3,]", "\nx[3, 1]",
-                                      "\nx[3, 1:3]", "\nx[3, , .LAST]"))
+                                      "\nx[3, 1:3]", "\nx[3, , .LAST]")
+)
 # TODO: add bbox around 3rd profile and lines to below subsets?
 ```
 
@@ -81,15 +84,13 @@ Often we do not know which indices of profiles or horizons in our collection mee
 
 Partitioning data based on logical expressions of site and horizon level properties is powerful, but in soil science we often want to be able to extract data for specific ranges of depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in aqp. `glom()` returns the subset of horizons in a collection that fall within a specific depth interval `[z1, z2]`. The depth interval could be a point or a range (`z2` optional). The interval could be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not creating a "ragged" SoilProfileCollection. When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
 
-```{r, echo = FALSE}
-library(aqp)
 
-x <- readRDS("../local-data/clarksville-all-pedons.rds")
+```{r, echo = FALSE, fig.width=8, fig.height=5}
 par(mar=c(1,1,1,1), mfrow=c(1,1))
 
 plotMultipleSPC(list(x[3,], glom(x[3,], 50, 100), trunc(x[3,], 50, 100)),
-                args=list(list(max.depth = 250), list(max.depth = 250), list(max.depth = 250)),
-                group.labels=c("x[3,]", "glom(x[3,], 50, 100)", "trunc(x[3,], 50, 100)"))
+                args=list(list(max.depth = 200), list(max.depth = 200), list(max.depth = 200)),
+                group.labels=c("x[3,]", "glom(x[3,], 50, 100)", "trunc(x[3,], 50, 100)"), label.offset = 10, cex.names = 0.75)
 lines(seq(0,3.25,0.25), rep(50, 14), lwd=2,lty=2)
 lines(seq(0,3.25,0.25), rep(100, 14), lwd=2,lty=2)
 ```

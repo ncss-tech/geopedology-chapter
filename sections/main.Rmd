@@ -13,7 +13,17 @@ bibliography: bibliography.bib
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE, 
+  background = '#F7F7F7', 
+  fig.align = 'center', 
+  dev = 'svglite', 
+  fig.ext = ".svg", 
+  tidy = FALSE, 
+  verbose = FALSE
+)
 ```
 
 <!-- ~ 140 words -->

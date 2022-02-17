@@ -1,5 +1,6 @@
 ---
-title: "Title Here"
+title: "Algorithms for Quantitative Pedology"
+author: "D.E. Beaudette, A.G. Brown, J. Skovlin, S.M. Roecker and P.Roudier"
 output:
   html_document:
     fig_caption: yes

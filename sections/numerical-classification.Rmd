@@ -17,12 +17,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Numerical Classification
 
+![](figures/NCSP-figure-Maynard-et-al.png)
+
 
   * major concepts, cite / rely on two papers for details
+  * genhz example
+  * properties example
 
 ## Visualization
 
   * dendrogram + profiles
+  * nMDS of profiles
 
 original ideas [@Hole1960], [@Rayner1966], [@Moore1972], [@Carre2009], [@beaudette2013_AQP]
 

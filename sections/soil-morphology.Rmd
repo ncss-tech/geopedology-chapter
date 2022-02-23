@@ -39,8 +39,6 @@ The *aqp* package provides several interfaces for conversion between Munsell not
 
 
 
-<!-- think about included data sets and if we have space here i.e. `soil_minerals` -->
-
 
 ### Color Contrast and Variability
 
@@ -68,6 +66,8 @@ The *aqp* package provides several interfaces for conversion between Munsell not
 
 `colorQuantiles()`
 
+`colorChart()`
+
 
 ### Simulated Color Mixtures
 
@@ -89,12 +89,9 @@ Paul Centore's work [@centore2012]
 
 ## Genetic / Generalized Horizons
  * generalized horizon labels: why / how (Jay) see "functional horizons" in [@Wagenet1991]
- * horizon boundaries
- * regular expressions used to "find" contact etc. (Andrew, Stephen)
- * thickness, soil depth estimation (Stephen)
  * `depthOf()` family of functions (Andrew)
-
-
+ * thickness, soil depth estimation (Dylan, Andrew)
+ 
 
 ## Sketches
 
@@ -104,6 +101,7 @@ Paul Centore's work [@centore2012]
   * `plotSPC()`
   * annotation
   * other profile plotting functions
+  * horizon boundariesM
   * future work (grid graphics, pattern fill)
   
 
@@ -118,8 +116,6 @@ Paul Centore's work [@centore2012]
  
  * `aggregateColorPlot()`
  * `aspect.plot()`
- * `colorMixtureVenn()`
- * `diagnosticPropertyPlot()`
  * `huePositionPlot()`
  * `plotProfileDendrogram()`
  * `plotSoilRelationGraph()`
@@ -127,8 +123,6 @@ Paul Centore's work [@centore2012]
  * `SoilTaxonomyDendrogram()`
  * `plotTransect()`
  * `vizHillslopePosition()` and related
- * `colorChart()`
- * `huePosition()`
 
  
  

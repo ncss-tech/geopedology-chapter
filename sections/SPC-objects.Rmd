@@ -37,13 +37,13 @@ output: html_document
 <!-- x[1:2, , .LAST]  # last horizon of first two profiles i -->
 <!-- ``` -->
 
-One of the primary approaches to subsetting a SoilProfileCollection uses the "bracket" `[` methods to extract smaller collections from a larger collection based on numeric or logical indices. The syntax is similar to extracting rows and columns from matrix or data.frame objects in base R. 
+One of the primary approaches to subsetting a `SoilProfileCollection` uses the "bracket" `[` methods to extract smaller collections from a larger collection based on numeric or logical indices. The syntax is similar to extracting rows and columns from matrix or data.frame objects in base R. 
 
-If `x` is a SoilProfileCollection then the syntax for the bracket methods is: `x[i,j,k...]`; where `i` is a profile index, `j` is a within-profile horizon index and `k...` represents optional special functions that can operate on the horizon data in the collection to replace the profile-specific `j`-index.
+If `x` is a `SoilProfileCollection` then the syntax for the bracket methods is: `x[i,j,k...]`; where `i` is a profile index, `j` is a within-profile horizon index and `k...` represents optional special functions that can operate on the horizon data in the collection to replace the profile-specific `j`-index.
 
 To obtain the first profile in the collection, you can use the syntax `x[1,]`. For the first horizon in each profile you can use `x[,1]`. To get the last horizon of each profile, you can use `x[,,.LAST]` where `.LAST` is a special "keyword" that can identify the `j`-index of the deepest horizon in each profile. 
 
-Subsets based on `i`, `j` and `k` indices of the SoilProfileCollection can be combined, for instance: `x[1:2, 1:2]` gives the first two horizons of the first two profiles. Also, the `k` index can be combined with the `i` index, for instance `x[1:2, , .LAST]` gives the last horizon of the first two profiles.
+Subsets based on `i`, `j` and `k` indices of the `SoilProfileCollection` can be combined, for instance: `x[1:2, 1:2]` gives the first two horizons of the first two profiles. Also, the `k` index can be combined with the `i` index, for instance `x[1:2, , .LAST]` gives the last horizon of the first two profiles.
 
 Here is a visual representation of the concept:
 
@@ -82,7 +82,7 @@ Often we do not know which indices of profiles or horizons in our collection mee
 
   * `glom()`, `trunc()` and related (Andrew) 
 
-Partitioning data based on logical expressions of site and horizon level properties is powerful, but in soil science we often want to be able to extract data for specific ranges of depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in aqp. `glom()` returns the subset of horizons in a collection that fall within a specific depth interval `[z1, z2]`. The depth interval could be a point or a range (`z2` optional). The interval could be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not creating a "ragged" SoilProfileCollection. When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
+Partitioning data based on logical expressions of site and horizon level properties is powerful, but in soil science we often want to be able to extract data for specific ranges of depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in aqp. `glom()` returns the subset of horizons in a collection that fall within a specific depth interval `[z1, z2]`. The depth interval could be a point or a range (`z2` optional). The interval could be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not creating a "ragged" `SoilProfileCollection.` When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
 
 
 ```{r, echo = FALSE, fig.width=8, fig.height=5}
@@ -102,7 +102,12 @@ lines(seq(0,3.25,0.25), rep(100, 14), lwd=2,lty=2)
   * implicit vectorization
   * `profileApply()` (Andrew)
 
-## Misc.
 
- * data cleaning, fixing, validity, etc. (Andrew)
- * functions that return SPC objects via soilDB (Dylan, Jay, Stephen)
+## Miscellaneous
+The soilDB package for R provides a common interface to many of the National Cooperative Soil Survey databases. Several functions from this package return data as a `SoilProfileCollection` object: `fetchKSSL()` (laboratory characterization data), `fetchOSD()` (basic soil morphology from the Official Series Description), `fetchSDA()` (SSURGO and STATSGO data from Soil Data Access), and `fetchNASIS` (National Soil Information System).
+
+
+<!-- data cleaning, fixing, validity, etc. (Andrew) -->
+
+
+ 

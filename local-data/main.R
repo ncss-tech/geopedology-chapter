@@ -12,4 +12,5 @@ source('prepare-clarksville-KSSL-pedons.R')
 ## evaluate and apply GHL rules
 source('evaluate-assign-GHL.R')
 
+## maybe some MIR, but cutting it close
 

@@ -35,7 +35,7 @@ Non-standard notation of Munsell colors (10.6YR 3.3/5.5), as collected by digita
 
 ### Color Contrast and Variability
 
-Color contrast (perceptual difference between two colors) within a soil sample is an important component of field-described redoximorphic features, concentrations, and mottles [@FieldBookv3]. Soil Survey products and wetland delineation protocols in the United States currently use *contrast classes* (faint, distinct, and prominent) to describe color contrast, based on differences in Munsell hue, value, and chroma [@SSTN2].
+Color contrast (perceptual difference between two colors) within a soil sample is an important component of field-described redoximorphic features, concentrations, and mottles [@FieldBookv3]. Soil Survey products and wetland delineation protocols in the United States currently use *contrast classes* (faint, distinct, and prominent) to describe color contrast, based on differences in Munsell hue, value, and chroma [@SSTN2]. The `colorContrast()` function in *aqp* computes differences in Munsell {hue, value, chroma}, soil color contrast class, and CIE2000
 
 
 
@@ -46,7 +46,7 @@ Color contrast (perceptual difference between two colors) within a soil sample i
 
 ![](figures/contast-chart.svg)
 
-`colorContrast()`
+
 
 <!-- colorContrast('10YR 3/3', '2.5YR 5/6') -->
 

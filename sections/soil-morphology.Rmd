@@ -35,24 +35,28 @@ Non-standard notation of Munsell colors (10.6YR 3.3/5.5), as collected by digita
 
 ### Color Contrast and Variability
 
-Color contrast (perceptual difference between two colors) within a soil sample is an important component of field-described redoximorphic features, concentrations, and mottles [@FieldBookv3]. Soil Survey products and wetland delineation protocols in the United States currently use *contrast classes* (faint, distinct, and prominent) to describe color contrast, based on differences in Munsell hue, value, and chroma [@SSTN2]. The `colorContrast()` function in *aqp* computes differences in Munsell {hue, value, chroma}, soil color contrast class, and CIE2000
+Color contrast (perceptual difference between two colors) within a soil sample is an important component of field-described redoximorphic features, concentrations, and mottles [@FieldBookv3]. Soil Survey products and wetland delineation protocols in the United States currently use *contrast classes* (faint, distinct, and prominent) to describe color contrast, based on differences in Munsell hue, value, and chroma [@SSTN2]. The `colorContrast()` function in *aqp* computes differences in Munsell {hue, value, chroma}, soil color contrast class, and CIE2000 color contrast metric [@Sharma2005] for pairs of colors specified in Munsell notation. The function is fully vectorized meaning that multiple comparisons can be generated without explicit looping.
+
+```{r echo = FALSE}
+cc <- colorContrast(c('10YR 3/3', '7.5YR 6/6', '2.5Y 2/2'), c('10YR 3/4', '5YR 4/6', '5G 4/8'))
+names(cc) <- c('Color 1', 'Color 2', 'dH', 'dV', 'dC', 'dE00', 'CC')
+
+kableExtra::kable_styling(
+  knitr::kable(cc, digits = 1, align = 'c', caption = 'Output includes: change in hue (dH), change in value (dV), change in chroma (dC), CIE2000 color contrast (dE00), and NCSS soil color contrast class (CC).'), 
+  full_width = FALSE
+)
+```
 
 
-
+The `colorContrastPlot()` function...
 
 
 ![](figures/contrast-class-dE00.svg)
 
 
+Color contrast charts `contrastChart()`...
+
 ![](figures/contast-chart.svg)
-
-
-
-<!-- colorContrast('10YR 3/3', '2.5YR 5/6') -->
-
-`colorContrastPlot()`
-
-`contrastChart()`
 
 
 

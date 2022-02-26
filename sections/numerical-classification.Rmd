@@ -1,7 +1,10 @@
 
 ## Numerical Classification
 
-![](figures/NCSP-figure-Maynard-et-al.png)
+
+```{r NCSP-outline-figure, out.width="100%", fig.cap="caption here. Figure c/o Jon Maynard."}
+knitr::include_graphics('figures/NCSP-figure-Maynard-et-al.png')
+```
 
 
   * major concepts, cite / rely on two papers for details

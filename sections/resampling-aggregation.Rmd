@@ -8,3 +8,15 @@
   * `L1`, if there is space
 
 ### Visualization
+
+
+### Soil Color
+
+<!-- describing a range in soil color (Dylan) -->
+
+`aggregateColor()`
+
+`colorQuantiles()`
+
+`colorChart()`
+

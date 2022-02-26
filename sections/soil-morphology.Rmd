@@ -33,16 +33,15 @@ names(cc) <- c('Color 1', 'Color 2', 'dH', 'dV', 'dC', 'dE00', 'CC')
 knitr::kable(cc, digits = 1, align = 'c', caption = 'Output includes: change in hue (dH), change in value (dV), change in chroma (dC), CIE2000 color contrast (dE00), and NCSS soil color contrast class (CC).')
 ```
 
-Tabular color contrast output can be convenient when used as an intermediate step in a more complex workflow, but can be difficult for non-specialists to interpret. A graphical representation of these data are created by the `colorContrastPlot()` function provided by *aqp*. For example, the differences between typical dry and moist soil colors for the Musick soil series are demonstrated using (Figure \@ref(fig:contrast-class-figure))
+Tabular color contrast output can be convenient when used as an intermediate step in a more complex workflow, but can be difficult for non-specialists to interpret. A graphical representation of these data are created by the `colorContrastPlot()` function provided by *aqp*. For example, the differences between typical dry and moist soil colors for the Musick soil series are demonstrated using (Figure \@ref(fig:contrast-class-figure)). While exact replication of Munsell colors isn't possible on un-calibrated displays or printers, the sRGB approximation is sufficient to demonstrate relative differences in hue, value, and chroma.
 
 ```{r contrast-class-figure, fig.cap="caption here"}
 knitr::include_graphics('figures/contrast-class-dE00.svg')
 ```
 
+To further aid with the calculation and interpretation of color contrast, "color contrast charts" can be created with the `contrastChart()` function provided by *aqp*. These charts are based on a source color in Munsell notation (e.g. 7.5YR 4/3) and select pages of Munsell hue. Pair-wise metrics of color contrast are evaluated between all color "chips" and the source color (outlined in red), and arranged in a familiar format with Munsell chroma on the x-axis, value on the y-axis, and pages of hue split across panels. Soil color contrast class and CIE2000 values are printed below each color "chip" (Figure \@ref(fig:contrast-chart-figure)).
 
-Color contrast charts `contrastChart()`... (Figure \@ref(fig:contrast-chart-figure))
-
-```{r contrast-chart-figure, fig.cap="caption here"}
+```{r contrast-chart-figure, fig.cap="Color contrast chart for 7.5YR 4/3, including reference 5YR, 7.5YR, and 10YR hue pages. Soil color contrast classes are abbreviated as F (faint), D (distinct), and P (prominent). Numbers are CIE2000 values."}
 knitr::include_graphics('figures/contast-chart.svg')
 ```
 

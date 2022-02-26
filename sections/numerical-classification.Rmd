@@ -1,21 +1,5 @@
----
-output:
-  html_document:
-    fig_caption: yes
-    number_sections: yes
-    theme: journal
-  pdf_document:
-    fig_caption: yes
-  word_document:
-    fig_caption: yes
-bibliography: bibliography.bib
----
 
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-# Numerical Classification
+## Numerical Classification
 
 ![](figures/NCSP-figure-Maynard-et-al.png)
 
@@ -24,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
   * genhz example
   * properties example
 
-## Visualization
+### Visualization
 
   * dendrogram + profiles
   * nMDS of profiles

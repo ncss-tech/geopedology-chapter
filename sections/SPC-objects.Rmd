@@ -1,20 +1,16 @@
----
-output: html_document
----
 
-
-# The SoilProfileCollection Object
+## The SoilProfileCollection Object
 
   * rationale
   * basic design / strategy
   * various back-ends
   * limitation (analysis vs. archival formats)
 
-## Subsetting
+### Subsetting
 
   * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
   
-### "bracket" extraction methods (`x[i,j,k...]`)
+#### "bracket" extraction methods (`x[i,j,k...]`)
 
 <!-- The code block below could be translated to a paragraph. -->
 
@@ -97,13 +93,13 @@ lines(seq(0,3.25,0.25), rep(100, 14), lwd=2,lty=2)
 
   * other methods
 
-## Iteration
+### Iteration
 
   * implicit vectorization
   * `profileApply()` (Andrew)
 
 
-## Miscellaneous
+### Miscellaneous
 The soilDB package for R provides a common interface to many of the National Cooperative Soil Survey databases. Several functions from this package return data as a `SoilProfileCollection` object: `fetchKSSL()` (laboratory characterization data), `fetchOSD()` (basic soil morphology from the Official Series Description), `fetchSDA()` (SSURGO and STATSGO data from Soil Data Access), and `fetchNASIS` (National Soil Information System).
 
 

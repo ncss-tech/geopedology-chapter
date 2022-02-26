@@ -1,17 +1,4 @@
----
-output:
-  html_document:
-    fig_caption: yes
-    number_sections: yes
-    theme: journal
-  pdf_document:
-    fig_caption: yes
-  word_document:
-    fig_caption: yes
-bibliography: bibliography.bib
----
 
-
-# Spectral Data
+## Spectral Data
 
 Do we have any MIR spectra associated with Clarksville? Nope, not even for siblings of the same subgroup. We have some for more recently sampled pedons. Maybe we can use CECIL or something like that.

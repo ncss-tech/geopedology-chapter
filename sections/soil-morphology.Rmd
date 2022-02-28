@@ -21,7 +21,7 @@ Non-standard notation of Munsell colors (e.g. 10.6YR 3.3/5.5), as collected by d
 
 
 
-#### Color Contrast and Variability
+#### Color Contrast
 
 Color contrast (perceptual difference between two colors) within a soil sample is an important component of field-described redoximorphic features, concentrations, and mottles [@FieldBookv3]. Soil Survey products and wetland delineation protocols adopted by the National Cooperative Soil Survey (NCSS) currently use *contrast classes* (faint, distinct, and prominent) to describe color contrast, based on differences in Munsell hue, value, and chroma [@SSTN2]. The `colorContrast()` function in *aqp* computes differences in Munsell {hue, value, chroma}, soil color contrast class, and the CIE2000 color contrast metric [@Sharma2005] for pairs of colors specified in Munsell notation. The function is fully vectorized meaning that multiple comparisons can be generated without explicit looping (Table \@ref(tab:color-contrast-table)).
 
@@ -49,6 +49,8 @@ knitr::include_graphics('figures/contast-chart.svg')
 
 #### Simulated Color Mixtures
 
+
+
 color measurement, standard observers, mixtures [@Marcus1998]
 
 <!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf -->
@@ -66,6 +68,8 @@ Paul Centore's work [@centore2012]
 
 
 ### Genetic / Generalized Horizons
+
+
  * generalized horizon labels: why / how (Jay) see "functional horizons" in [@Wagenet1991]
  * `depthOf()` family of functions (Andrew)
  * thickness, soil depth estimation (Dylan, Andrew)
@@ -76,7 +80,11 @@ NOTE: add citations to previous pubs where GHL concepts were introduced.....Beau
 
 The application of GHL to soil profile collections within the AQP package is driving by Regular Expression (REGEX) pattern matching.  REGEX provides a powerful means of controling and applying alpha-numeric string matching of horizonation sequences to 'collect' numerous varied horizon designation schema's into one unified horizonation concept. 
 
-Figure: Here a series of GHL have been applied to soils of the Clarksville soil series from the Ozark Highlands, Missouri.
+
+```{r sketch-demo-figure, fig.cap="Here a series of GHL have been applied to soils of the Clarksville soil series from the Ozark Highlands, Missouri."}
+knitr::include_graphics('figures/sketch-demo.svg')
+```
+
 
 Features unique to the Clarksville soil series are argillic diagnostic horizons and parent material discontinuities as horizons transition along boundaries between cherty dolomite colluvium over dolomite residuum. GHL can be used to identify these common features in a set of soils once applied.
  
@@ -85,10 +93,10 @@ Features unique to the Clarksville soil series are argillic diagnostic horizons 
 
 <!-- possible figure, highlighting several aspects of plotSPC -->
 
-
-```{r sketch-demo-figure, fig.cap="caption here"}
-knitr::include_graphics('figures/sketch-demo.svg')
+```{r catena-sketches, fig.cap="caption here"}
+knitr::include_graphics('figures/cross-section.svg')
 ```
+
 
 
 

@@ -69,31 +69,34 @@ Paul Centore's work [@centore2012]
 
 ### Genetic / Generalized Horizons
 
-
  * generalized horizon labels: why / how (Jay) see "functional horizons" in [@Wagenet1991]
  * `depthOf()` family of functions (Andrew)
  * thickness, soil depth estimation (Dylan, Andrew)
 
-Soil scientists use a common language of horizon designation nomenclature to describe and articulate the differences they observe in soil horizons within a soil pedon.  These basic notations and the act of 'naming' horizons distill a great deal of information in the form of master horizons, characteristic subscripts, horizon sequences and parent material discontinuities.  Along with this great wealth of information, which helps a soil scientist convey a mental concept of the soil properties and sequence of horizons comes some complexity and variability in how horizon designations are applied.  Experienced soil scientists will generally apply horizonation similarly to the features they observe and identify in the process of describing a soil profile due to the rigid guidelines and definitions of usage.  Building on these similarities of horizon usage is a concept called, Generalized Horizon Labels (GHL) which seeks to unify a similar yet diverse set of soil profile horizonations for the purpose of aggregation, analysis, and summary operations.  The process of applying GHL to a collection of soil profiles is a series of micro-correlations made by a soil scientist to determine which horizons have similar soil morphology and properties to be grouped together for aggregation across similar horizons within the collection.  The aggregations into GHL provide a way to convey functional horizons for collections of soil profiles, such summary concepts can be extended to pedotransfer functions [@Wagenet1991].
+Soil scientists use a common language of horizon designation nomenclature to describe and articulate the differences they observe in soil horizons within a soil pedon.  These basic notations and the act of 'naming' genetic horizons distills important information in the form of master horizons, characteristic subscripts, horizon and pedogenic sequences and parent material discontinuities.  Horizon designations convey a mental concept of the soil properties while allowing complexity and variability in how horizon designations are applied.  Experienced soil scientists will generally apply horizon nomenclature similarly to the features they observe and identify in the process of describing a soil profile due to the rigid guidelines and definitions of their application.  Building on these similarities of horizon usage is a concept called, Generalized Horizon Labels (GHL) which seeks to unify a similar yet diverse set of soil profile horizonations for the purpose of aggregation, analysis, and summary operations[@Beaudette2015; @Roecker2015].  The process of applying GHL to a collection of soil profiles is a series of micro-correlations made by a soil scientist to determine which horizons have similar soil morphology and properties to be grouped together for aggregation across horizons within a soil profile collection.  The aggregations into GHL provide a way to convey functional horizons for collections of soil profiles, such summary concepts can be extended to pedotransfer functions [@Wagenet1991].
 
-NOTE: add citations to previous pubs where GHL concepts were introduced.....Beaudette et al & Roecker et al.
+The application of GHL to soil profile collections within the AQP package is driven by Regular Expression (REGEX) pattern matching.  REGEX provides a powerful means of controlling and applying alpha-numeric string matching of horizonation sequences to 'collect' numerous varied horizon designation sequences into a set of unified horizon designations. A user developed set of REGEX rules are matched to an identified vector of horizonation by the `generalize.hz()` function in the AQP package.  
 
-The application of GHL to soil profile collections within the AQP package is driving by Regular Expression (REGEX) pattern matching.  REGEX provides a powerful means of controling and applying alpha-numeric string matching of horizonation sequences to 'collect' numerous varied horizon designation schema's into one unified horizonation concept. 
+<!-- ISSUE with profile 8 in figure below, horizonation jumps from Bt1 to Bt3??? Profile 9 has Bt2 and Bt3, but no Bt1??? Need to make sure we look these over carefully!!! -->
 
-
-```{r sketch-demo-figure, fig.cap="Here a series of GHL have been applied to soils of the Clarksville soil series from the Ozark Highlands, Missouri."}
+```{r sketch-demo-figure, fig.cap="Here a series of GHL have been applied to a collection of soil profiles of the Clarksville soil series from the Ozark Highlands, Missouri.  Horizon labels within each soil profile show the original horizon designations while colors indicate the GHL each horizon was mapped to using a set of REGEX rules."}
 knitr::include_graphics('figures/sketch-demo.svg')
 ```
 
 
-Features unique to the Clarksville soil series are argillic diagnostic horizons and parent material discontinuities as horizons transition along boundaries between cherty dolomite colluvium over dolomite residuum. GHL can be used to identify these common features in a set of soils once applied.
+Features unique to the Clarksville soil series are argillic diagnostic horizons and parent material discontinuities as horizons transition along boundaries between cherty dolomite slope alluvium and colluvium over dolomite residuum. GHL can be used to identify these common features in a set of soils once applied.
+
+The `depthOf()` family of functions utilize REGEX pattern matching to specific horizon designation to calculate the depth of occurrence of that horizon designation within a collection of profiles.  Given a set of Clarksville soil series profiles a `minDepthOf()` and `maxDepthOf()` provide additional utility to find either the top (shallowest) or bottom (deepest) depth to a matching horizon pattern ('Bt' in example shown in figure ?).  Once derived for a set of profiles they can be ordered according to the depth to the specified feature.  These functions provide convenience handling for missing values or when target patterns are not found within a profile.  Results are returned as a numeric vector for single profiles or a  `data.frame` of results with profile ID, horizon ID, top or bottome depths, horizon designation and pattern provided.
+
+<!-- TODO: sort figure above with use of depthOf() to top of 'Bt' to highlight use in ordering profiles and these operations. Include explanation in the figure caption. -->
  
 
 ### Sketches
 
 <!-- possible figure, highlighting several aspects of plotSPC -->
 
-```{r catena-sketches, fig.cap="caption here"}
+
+```{r catena-sketches, fig.cap="Illustration of the catena concepts for soil components from two adjacent mapunits within the Ozark Highlands.  Soil components (retrieved via `fetchSDA()` within map unit 2vxq8 occur on summit and shoulder hillslope profile positions while components in map unit 2vxq9 occur on backslope, footslope and toeslope positions.  USDA soil texture classes used as colors to fill the soil profiles show the variation of textures within the catena.  Munsell soil colors retrieved via `fetchOSD()` are shown in the narrower companion profiles for each component."}
 knitr::include_graphics('figures/cross-section.svg')
 ```
 

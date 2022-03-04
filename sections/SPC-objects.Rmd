@@ -6,6 +6,64 @@
   * various back-ends
   * limitation (analysis vs. archival formats)
 
+The `SoilProfileCollection` (SPC) is a data structure and set of related "bookkeeping" methods for hierarchical soil morphologic data. The basic idea is abstraction of variables into two main tiers ("site" and "horizon") and several related groups (including "spatial", "diagnostics", "restrictions"). The collection provides a means of storing metadata about groups of related soil observations and facilitating operations on data using R syntax.
+
+Of primary importance are the horizon data, or the layers that comprise the profiles in the collection. The SoilProfileCollection is "horizon data forward," in that you start with a table of layers: each with an upper and lower boundary and from a particular soil profile observation.
+
+Where `object` is an R data.frame (or data.frame-like object such as `tibble` or `data.table`) containing at a minimum the columns `profile_id` (unique profile ID), `top_depth` (horizon upper boundary) and `bottom_depth` (horizon lower boundary) along with any other additional data describing the layers that were observed by layer in the profile. For instance:
+
+```{r echo = FALSE}
+object <- data.frame(
+  profile_id = c("1", "1", "1"),
+  top_depth = c(0, 10, 48),
+  bottom_depth = c(10, 48, 122),
+  hzname = c("A", "Bt", "BC"),
+  clay = c(25, 42, 37),
+  phfield = c(5.5, 5.4, 5.1)
+)
+object
+```
+
+In R the symbol `~` separates the left and right hand sides of a formula. Commonly `~` is used in formulas to mean "modeled as". In the case of the `SoilProfileCollection` we are "modeling" the geometry and order of layers in each unique profile using the upper and lower boundaries.
+
+We specify the three key parameters to "promote" this data.frame to SoilProfileCollection with the aqp command `depths()`:
+
+```
+library(aqp)
+
+depths(object) <- profile_id ~ top_depth + bottom_depth
+```
+
+Which creates a SoilProfileCollection called `object`. Performing this operation assures that the horizons and profiles are sorted first by ID and then by top depth. 
+
+```{r echo = FALSE}
+library(aqp)
+depths(object) <- profile_id ~ top_depth + bottom_depth
+object
+```
+
+Additional site and horizon data can be added or extracted one by one using the `$` or `[[` methods. If you are creating a new variable, the SoilProfileCollection will check whether the length of the vector matches either the number of "sites" or the number of "horizons". 
+
+```{r, eval = FALSE}
+object$top_depth  # extract data
+object[["clay"]]
+
+site(object)$label <- "New Site Label" # add new data
+horizons(object)$sand <- c(22, 14, 11)
+```
+
+If you have many columns to add to site or horizon data, you may be better off using the "join" syntax.
+
+In this case, the value on the right hand side of the assignment operator `<-` is a data.frame that contains at least one column name and value in common with the target table, which is specified on the left hand side using `site(object)` or `horizons(object)`. 
+
+```{r}
+# add two columns to the site and horizon data using left join.
+site(object) <- data.frame(profile_id = 1, treatment = LETTERS[1], field = 2)
+horizons(object) <- data.frame(hzID = 2, hz_note = "Note for Horizon #2", note_author = "AGB")
+```
+
+The right hand side table is then merged into the data slots of `object`. Join fields that aren't matched will be filled with `NA`. If ID values are present in the right hand side that don't exist in the left, or the join would duplicate existing rows in the collection, the merge will stop with an error.
+
 ### Subsetting
 
   * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
@@ -70,7 +128,7 @@ plotMultipleSPC(list(x[3, ], x[3, 1], x[3, 1:3], x[3, , .LAST]),
 # TODO: add bbox around 3rd profile and lines to below subsets?
 ```
 
-The representation of horizons position with the `j`-index can be extended to develop other "horizon spatial predicates" such as `hzAbove()`, `hzBelow()` and `hzOffset()`. The former two take logical expressions to match horizons, and return the part of the collection adjacent to the match (above or below respectively). `hzOffset()` allows arbitrary horizon indices and offsets to be calculated. This type of logic is further helpful for inspecting and fixing horizon geometry for errors or inconsistencies.
+The representation of horizon position with the `j`-index can be extended to develop other "horizon spatial predicates" such as `hzAbove()`, `hzBelow()` and `hzOffset()`. The former two take logical expressions to match horizons, and return the part of the collection adjacent to the match (above or below respectively). `hzOffset()` allows arbitrary horizon indices and offsets to be calculated. This type of logic is further helpful for inspecting and fixing horizon geometry for errors or inconsistencies.
 
   * `subset()` and NSE (Andrew)
 
@@ -78,8 +136,9 @@ Often we do not know which indices of profiles or horizons in our collection mee
 
   * `glom()`, `trunc()` and related (Andrew) 
 
-Partitioning data based on logical expressions of site and horizon level properties is powerful, but in soil science we often want to be able to extract data for specific ranges of depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in aqp. `glom()` returns the subset of horizons in a collection that fall within a specific depth interval `[z1, z2]`. The depth interval could be a point or a range (`z2` optional). The interval could be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not creating a "ragged" `SoilProfileCollection.` When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
+Partitioning data based on logical expressions of site and horizon level properties is powerful, but in soil science we often want to be able to extract data for specific ranges of depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in aqp. `glom()` returns the subset of horizons in a collection that fall within a specific depth interval `[z1, z2]`. The depth interval could be a point or a range (`z2` optional). 
 
+The interval `[z1, z2]` can be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not--creating a "ragged" `SoilProfileCollection`. When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
 
 ```{r, echo = FALSE, fig.width=8, fig.height=5}
 par(mar=c(1,1,1,1), mfrow=c(1,1))
@@ -95,15 +154,22 @@ lines(seq(0,3.25,0.25), rep(100, 14), lwd=2,lty=2)
 
 ### Iteration
 
-  * implicit vectorization
-  * `profileApply()` (Andrew)
+aqp provides utilities for iterating (looping) over the profiles in a SoilProfileCollection. Following the precedent of the base R `*apply()` functions, `profileApply()` will apply a function to each element of a SoilProfileCollection. 
 
+The results of running the function on each profile are usually a single value per profile or horizon, with default `simplify=TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a data.frame with `frameify = TRUE` to automatically create a data.frame with the results, or even a list containing more complex objects (such as SoilProfileCollections that can then be recombined with `aqp::combine()`).
 
-### Miscellaneous
+### Sources of Soil Profile Colelctions
+
 The soilDB package for R provides a common interface to many of the National Cooperative Soil Survey databases. Several functions from this package return data as a `SoilProfileCollection` object: `fetchKSSL()` (laboratory characterization data), `fetchOSD()` (basic soil morphology from the Official Series Description), `fetchSDA()` (SSURGO and STATSGO data from Soil Data Access), and `fetchNASIS` (National Soil Information System).
 
+### Data Quality and Repairs
+
+aqp provides several methods for identifying problematic profile geometry and (possibly) "fixing" it. Most soil databases and methods for storing soils information do not have front end validations that entirely prevent entry of data with "illogical" content. Some analyses rely on having only one record of data per depth*profile combination such as those involving depth-weighted averages, or rely on having a "complete" set of records in all profiles over a particular interval.
+
+`checkHzDepthLogic()` inspects a `SoilProfileCollection` object looking for four common errors in horizon depths: bottom depth shallower than top depth, equal top and bottom depth, missing (`NA`) top or bottom depth, and gap or overlap between adjacent horizons. With `byhz = TRUE` you can perform the first three of the above logic checks on individual horizons. 
+
+`repairMissingHzDepths()` uses assumptions about horizon order based on horizon top depth. This can be used to fill in some missing (bottom) horizon depths. This function will set missing bottom depths of a horizon to the next deepest (adjacent) top depth. Also, it adds a constant vertical offset to the top depth of bottom-most horizons missing bottom depth.
 
 <!-- data cleaning, fixing, validity, etc. (Andrew) -->
-
 
  

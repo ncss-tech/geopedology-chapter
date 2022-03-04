@@ -158,7 +158,7 @@ aqp provides utilities for iterating (looping) over the profiles in a SoilProfil
 
 The results of running the function on each profile are usually a single value per profile or horizon, with default `simplify=TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a data.frame with `frameify = TRUE` to automatically create a data.frame with the results, or even a list containing more complex objects (such as SoilProfileCollections that can then be recombined with `aqp::combine()`).
 
-### Sources of Soil Profile Colelctions
+### Sources of `SoilProfileCollection` Objects
 
 The soilDB package for R provides a common interface to many of the National Cooperative Soil Survey databases. Several functions from this package return data as a `SoilProfileCollection` object: `fetchKSSL()` (laboratory characterization data), `fetchOSD()` (basic soil morphology from the Official Series Description), `fetchSDA()` (SSURGO and STATSGO data from Soil Data Access), and `fetchNASIS` (National Soil Information System).
 

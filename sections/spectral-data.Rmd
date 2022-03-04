@@ -12,15 +12,15 @@ library(soilDB)
 # res <- try(fetchLDM("Typic Paleudults",
 #                     dsn  = "E:/Geodata/soils/ncss_labdatasqlite/ncss_labdata.sqlite",
 #                     what = 'samp_taxsubgrp',
-#                     tables = c("lab_chemical_properties","lab_mir")))
+#                     tables = c("lab_physical_properties",
+#                                "lab_chemical_properties",
+#                                "lab_mir")))
 # 
 # # first profile with MIR data
 # res1 <- subset(res, !is.na(res$smp_id))
-# res2 <- subset(res1, res$samp_name == "Pikeville")[1,]
+# res2 <- subset(res1, res1$samp_name == "Pikeville")[1,]
 # ressub <- subsetHz(res2, as.logical(diff(c(0, factor(res2$labsampnum)))))
-# 
 # checkHzDepthLogic(ressub)
-# 
 # saveRDS(ressub, file = "../local-data/typic_paleudults-mir-SPC.rds")
 ressub <- readRDS("../local-data/typic_paleudults-mir-SPC.rds")
 

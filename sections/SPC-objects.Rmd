@@ -168,7 +168,10 @@ aqp provides several methods for identifying problematic profile geometry and (p
 
 `checkHzDepthLogic()` inspects a `SoilProfileCollection` object looking for four common errors in horizon depths: bottom depth shallower than top depth, equal top and bottom depth, missing (`NA`) top or bottom depth, and gap or overlap between adjacent horizons. With `byhz = TRUE` you can perform the first three of the above logic checks on individual horizons. 
 
-`repairMissingHzDepths()` uses assumptions about horizon order based on horizon top depth. This can be used to fill in some missing (bottom) horizon depths. This function will set missing bottom depths of a horizon to the next deepest (adjacent) top depth. Also, it adds a constant vertical offset to the top depth of bottom-most horizons missing bottom depth.
+`repairMissingHzDepths()` uses assumptions about horizon order based on horizon top depth. This can be used to fill in some missing (bottom) horizon depths. This function will set missing bottom depths of a horizon to the next deepest (adjacent) top depth. Also, it adds a constant vertical offset to the top depth of bottom-most horizons missing bottom depth. 
+
+`fillHzGaps()` attempts to find "gaps" in the horizon records of a `SoilProfileCollection` object and fill with placeholder horizons (profile ID, horizon ID, to/bottom depths, all else NA). This function also allows you to fill profiles to a static top and bottom depth: for instance for lab data that includes an unsampled O horizons or variable depth to bedrock/bottom depth of bedrock. 
+
 
 <!-- data cleaning, fixing, validity, etc. (Andrew) -->
 

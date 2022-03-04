@@ -14,6 +14,7 @@ knitr::include_graphics('figures/NCSP-figure-Maynard-et-al.png')
 ### Visualization
 
   * dendrogram + profiles
+  * sharpshootR / soil taxonomy dendrogram figure
   * nMDS of profiles
 
 original ideas [@Hole1960], [@Rayner1966], [@Moore1972], [@Carre2009], [@beaudette2013_AQP]

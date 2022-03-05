@@ -15,24 +15,24 @@ p <- SpatialPoints(cbind(-91.0777740, 37.1502151), proj4string = CRS('+proj=long
 # transform to planar coordinate system for buffering
 p.aea <- spTransform(p, CRS('+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs'))
 # create 1000 meter buffer
-p.aea <- gBuffer(p.aea, width = 2000)
+p.aea <- gBuffer(p.aea, width = 1500)
 # transform back to WGS84 GCS
 p.buff <- spTransform(p.aea, CRS('+proj=longlat +datum=WGS84'))
 # convert to sf object
 p.buff.sf <- extent(st_as_sf(p.buff))
-plot(p.buff.sf)
+#plot(p.buff.sf)
 # convert bbox to polygon
 p.bbox <- bb_poly(p.buff)
 
 # request spatial intersection features
 p.mu.polys <- SDA_spatialQuery(p.bbox, what = 'mupolygon', geomIntersection = TRUE)
-plot(p.mu.polys)
+#plot(p.mu.polys)
 
 # fetch mu comp data all the mapunits within the buffered area around KSSL point specified
-sql_in <- format_SQL_in_statement(unique(p.mu.polys$mukey[1]))
+sql_in <- format_SQL_in_statement(unique(p.mu.polys$mukey))
 
 ## DEB: maybe set duplicates = TRUE to keep mukey
-component_data <- fetchSDA(WHERE = paste("mukey IN", sql_in, sep=""))
+component_data <- fetchSDA(WHERE = paste("mukey IN", sql_in, sep=""), duplicates = TRUE)
 
 
 ### CONFIG: SOIL SURVEY AREA
@@ -40,7 +40,7 @@ soil_survey_area <- "MO203"
 
 ### CONFIG: TAXONOMIC SUBGROUP (or other grouping)
 # NOTE: that these arguments are customization without changing source data
-mapunit_level <- "nationalmusym"
+mapunit_level <- "mukey"
 group_level <- "pmkind"              
 taxonomic_level <- "taxorder"
 majors_only <- TRUE
@@ -49,8 +49,8 @@ majors_only <- TRUE
 # get spatial data (based on nmusyms in component data)
 # NOTE: not the same results returned by fetchSDA_spatial and SDA_spatialQuery
 #spatial_data <- st_as_sf(SDA_spatialQuery(component_data[[mapunit_level]], by.col = "nmusym"))
-spatial_data <- st_as_sf(fetchSDA_spatial(component_data[[mapunit_level]], by.col = "nmusym")) # takes a while
-#spatial_data <- st_as_sf(SDA_spatialQuery(p.bbox, what = 'mupolygon', geomIntersection = TRUE)) 
+#spatial_data <- st_as_sf(fetchSDA_spatial(component_data[[mapunit_level]], by.col = "nmusym")) # takes a while
+spatial_data <- st_as_sf(SDA_spatialQuery(p.bbox, what = 'mupolygon', geomIntersection = TRUE)) 
 #SDA_spatialQuery would be faster but doesn't bring in the same columns?  nationalmusym for example
 #spatial_data$mukey <- as.character(spatial_data$mukey)
 
@@ -128,6 +128,7 @@ display_extent <- get_poly_from_SPC(major_component_data, spatial_data,
 dom_group <- spc2dominant_condition(major_component_data, condition_field = group_level)
 
 # set order for dominant condition - order by occurrence or by area extent
+## TODO: get these to go into levels below.....manual pasted in right now....
 dput(dimnames(sort(table(dom_group[[group_level]]), decreasing = FALSE)))
 # lev <- paste(dimnames(sort(table(dom_group[[group_level]]), decreasing = FALSE)), sep=', ')
 # lev <- gsub('\"', '"', lev)
@@ -149,15 +150,22 @@ dput(dimnames(sort(table(dom_group[[group_level]]), decreasing = FALSE)))
 #                                                                         "gravelly alluvium", 
 #                                                                         "slope alluvium over residuum weathered from dolomite"))
 # pmkind levels
-dom_group[[group_level]] <- factor(dom_group[[group_level]], levels = c("Loess over Slope alluvium", 
+#dom_group[[group_level]] <- factor(dom_group[[group_level]], levels = levels(factor(dom_group[[group_level]])))
+dom_group[[group_level]] <- factor(dom_group[[group_level]], levels = c("Loess over Pedisediment", 
+                                                                        "Loess over Residuum",
+                                                                        "Loess over Slope alluvium",
+                                                                        "Loess over Slope alluvium over Residuum",
+                                                                        "Residuum",
                                                                         "Slope alluvium",
-                                                                        "Alluvium", 
-                                                                        "Slope alluvium over pedisediment over residuum",
+                                                                        "Slope alluvium over Pedisediment over Residuum",
+                                                                        "Alluvium",
                                                                         "Slope alluvium over Residuum"))
-#
+
+## TODO: need furthe control over the levels and the ability to correlate pmkind groups for simplified categorical legend
+
+
 # pmorigin levels
 #dom_group[[group_level]] <- factor(dom_group[[group_level]], levels = c("Sandstone", "Chert", "Cherty limestone", "Dolomite"))
-
 
 # calculate those matching user input
 dom_group_match <- filter(dom_group, across({{ group_level }}) == taxonomic_level)
@@ -190,25 +198,35 @@ display_extent_all <- merge(display_extent_all, dom_group)
 # clip the mupolygons to the SSA boundary
 mu_extent <- st_intersection(display_extent_all, p.bbox)
 
+# add these points to tmap for Lab data sites sampled in the area of of the hillslope catena sketch figure mapunits
+p86 <- SpatialPoints(cbind(-91.0777740, 37.1502151), proj4string = CRS('+proj=longlat +datum=WGS84'))
+p85 <- SpatialPoints(cbind(-91.0783463, 37.1496849), proj4string = CRS('+proj=longlat +datum=WGS84'))
+p84 <- SpatialPoints(cbind(-91.0787048, 37.1487923), proj4string = CRS('+proj=longlat +datum=WGS84'))
 
 # create graphic with tmap
 library(tmap)
-tm_shape(mu_extent) + tm_fill(title = 'Parent Materials', col = group_level, palette="Oranges", legend.reverse = FALSE, alpha= 0.95) + 
-  tm_shape(p.bbox) + tm_borders(col = "black", lwd=2) + 
-  tm_layout(main.title = "Dominant Parent Materials \nOzark Highlands", main.title.size = 1.25, main.title.position = "center", legend.title.size = 1, title.snap.to.legend = TRUE, legend.bg.color = "white", legend.outside.position = "top")
+tmap_options(check.and.fix = TRUE) + 
+tm_shape(mu_extent) + tm_fill(title = 'Parent material groups', col = group_level, palette="Oranges", legend.reverse = FALSE, alpha= 0.95) + 
+tm_polygons(p.mu.polys) + tm_fill(col = "black", lwd=1) +
+tm_shape(p.bbox) + tm_borders(col = "black", lwd=2) + 
+tm_layout(main.title = "Parent Materials of the Ozark Highlands", main.title.size = 1.25, main.title.position = "center", legend.title.size = 1, title.snap.to.legend = TRUE, legend.bg.color = "white", legend.outside.position = "top") +
+tm_shape(p86) +
+tm_dots(size=0.3, col="blue", alpha = 0.7) +
+tm_shape(p85) +
+  tm_dots(size=0.3, col="blue", alpha = 0.7) +
+tm_shape(p84) +
+  tm_dots(size=0.3, col="blue", alpha = 0.7)
 
-# TODO: overlay on hillshade?
+
+# TODO: overlay on hillshade? Maybe not necessary but can adjust transparency with tm_fill(alpha....)
 # get DEM of the bbox area
 x <- get_elev_raster(p.bbox, z = 14, src = "aws", clip = "locations")
 hs <- raster::hillShade(slope = raster::terrain(x, "slope"), 
                        aspect = raster::terrain(x, "aspect"))
 
-#+ tm_raster(hs, palette = "gray")  # not working
 
-# TODO: add these points to tmap for Lab data sites
-p86 <- SpatialPoints(cbind(-91.0777740, 37.1502151), proj4string = CRS('+proj=longlat +datum=WGS84'))
-p85 <- SpatialPoints(cbind(-91.0783463, 37.1496849), proj4string = CRS('+proj=longlat +datum=WGS84'))
-p84 <- SpatialPoints(cbind(-91.0787048, 37.1487923), proj4string = CRS('+proj=longlat +datum=WGS84'))
+
+
 
 
 

@@ -23,3 +23,5 @@ recent numerical classification paper [@Maynard_et_al_2020]
 
 
 
+* `SoilTaxonomyDendrogram()`
+

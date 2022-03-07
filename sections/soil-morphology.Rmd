@@ -96,6 +96,9 @@ The `depthOf()` family of functions utilize REGEX pattern matching to specific h
 <!-- possible figure, highlighting several aspects of plotSPC -->
 
 
+<!-- https://casoilresource.lawr.ucdavis.edu/soil_web/list_components.php?mukey=2501629 -->
+
+
 ```{r catena-sketches, fig.cap="Illustration of the catena concepts for soil components from two adjacent mapunits within the Ozark Highlands.  Soil components (retrieved via `fetchSDA()` within map unit 2vxq8 occur on summit and shoulder hillslope profile positions while components in map unit 2vxq9 occur on backslope, footslope and toeslope positions.  USDA soil texture classes used as colors to fill the soil profiles show the variation of textures within the catena.  Munsell soil colors retrieved via `fetchOSD()` are shown in the narrower companion profiles for each component."}
 knitr::include_graphics('figures/cross-section.svg')
 ```
@@ -111,26 +114,26 @@ knitr::include_graphics('figures/cross-section.svg')
   
 
 
-<!-- https://casoilresource.lawr.ucdavis.edu/soil_web/list_components.php?mukey=2501629 -->
 
 
-### Misc.
+
+<!-- other ideas -->
 
 <!-- data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016] -->
 
 
- * misc. visualization methods (via `sharpshootR`) (Jay)
+ <!-- * misc. visualization methods (via `sharpshootR`) (Jay) -->
  
  
- * `aggregateColorPlot()`
- * `aspect.plot()`
- * `huePositionPlot()`
- * `plotProfileDendrogram()`
- * `plotSoilRelationGraph()`
- * `plotWB()`
- * `SoilTaxonomyDendrogram()`
- * `plotTransect()`
- * `vizHillslopePosition()` and related
+ <!-- * `aggregateColorPlot()` -->
+ <!-- * `aspect.plot()` -->
+ <!-- * `huePositionPlot()` -->
+ <!-- * `plotProfileDendrogram()` -->
+ <!-- * `plotSoilRelationGraph()` -->
+ <!-- * `plotWB()` -->
+ 
+ <!-- * `plotTransect()` -->
+ <!-- * `vizHillslopePosition()` and related -->
 
  
  

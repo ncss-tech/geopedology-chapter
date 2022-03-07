@@ -3,6 +3,7 @@ library(lattice)
 library(soilDB)
 library(png)
 library(grid)
+library(svglite)
 
 p <- contrastChart(m = '7.5YR 4/3', hues = c('5YR', '7.5YR', '10YR'))
 p <- update(p, scales = list(cex = 1))
@@ -55,10 +56,10 @@ x$hzname
 
 
 ##
+## plotSPC() example, using SSURGO + OSD
 ##
 
-library(aqp)
-library(soilDB)
+## TODO: save source data to .rds for later use / revision: cokey is not stable
 
 # pull in the component data for two adjacent mapunits to build a combined catena concept
 # ridgeline mapunit encompassing summit/shoulder positions 

@@ -49,7 +49,7 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
  - [x] Introduction (Dylan / Jay)
  - [ ] SPC Objects (Andrew / Dylan / ???)
- - [ ] Soil Morphology (Dylan / ???)
+ - [ ] Soil Morphology (Dylan / Jay)
  - [ ] Resampling / Aggregation
  - [ ] Numerical Classification
 

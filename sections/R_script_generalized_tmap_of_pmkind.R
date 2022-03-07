@@ -204,18 +204,32 @@ p85 <- SpatialPoints(cbind(-91.0783463, 37.1496849), proj4string = CRS('+proj=lo
 p84 <- SpatialPoints(cbind(-91.0787048, 37.1487923), proj4string = CRS('+proj=longlat +datum=WGS84'))
 
 # create graphic with tmap
-library(tmap)
 tmap_options(check.and.fix = TRUE) + 
 tm_shape(mu_extent) + tm_fill(title = 'Parent material groups', col = group_level, palette="Oranges", legend.reverse = FALSE, alpha= 0.95) + 
 tm_polygons(p.mu.polys) + tm_fill(col = "black", lwd=1) +
 tm_shape(p.bbox) + tm_borders(col = "black", lwd=2) + 
-tm_layout(main.title = "Parent Materials of the Ozark Highlands", main.title.size = 1.25, main.title.position = "center", legend.title.size = 1, title.snap.to.legend = TRUE, legend.bg.color = "white", legend.outside.position = "top") +
+tm_layout(main.title = "", main.title.size = 1.25, main.title.position = "center", legend.title.size = 1, title.snap.to.legend = TRUE, legend.bg.color = "white", legend.outside.position = "top", legend.outside = TRUE) +
 tm_shape(p86) +
-tm_dots(size=0.3, col="blue", alpha = 0.7) +
+tm_dots(size=0.1, col="blue", alpha = 0.7) +
 tm_shape(p85) +
-  tm_dots(size=0.3, col="blue", alpha = 0.7) +
+  tm_dots(size=0.1, col="blue", alpha = 0.7) +
 tm_shape(p84) +
-  tm_dots(size=0.3, col="blue", alpha = 0.7)
+  tm_dots(size=0.1, col="blue", alpha = 0.7)
+
+# mapview output of the same
+tmap_options(check.and.fix = TRUE) + 
+  tm_shape(mu_extent) + tm_fill(title = 'Parent material groups', col = group_level, palette="Oranges", legend.reverse = FALSE, alpha= 0.35) + 
+  tm_polygons(p.mu.polys, id="") + tm_fill(col = "black", lwd=1) +
+  tm_shape(p.bbox) + tm_borders(col = "black", lwd=2) + 
+  tm_layout(main.title = "", main.title.size = 1.25, main.title.position = "center", legend.title.size = 1, title.snap.to.legend = TRUE, legend.bg.color = "white", legend.outside.position = "top", legend.outside = TRUE) + 
+  tmap_mode("view") + tm_basemap(c("Esri.WorldImagery", "OpenTopoMap", "Esri.WorldTopoMap",  "OpenStreetMap")) +
+  tm_shape(p86) +
+  tm_dots(size=0.1, col="blue", alpha = 0.7) +
+  tm_shape(p85) +
+  tm_dots(size=0.1, col="blue", alpha = 0.7) +
+  tm_shape(p84) +
+  tm_dots(size=0.1, col="blue", alpha = 0.7)
+
 
 
 # TODO: overlay on hillshade? Maybe not necessary but can adjust transparency with tm_fill(alpha....)

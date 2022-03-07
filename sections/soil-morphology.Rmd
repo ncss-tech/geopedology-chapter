@@ -1,5 +1,5 @@
 
-<!-- 2000 words -->
+<!-- ~2000 words -->
 ## Soil Morphology
 
 The field description of a soil profile (genetic horizon depths, boundaries, color, soil texture, rock fragment volume, structure, etc.) is typically the foundation upon which additional sampling, laboratory characterization, or soil survey are based. In aggregate, a complete collection of horizons, associated properties, and landscape context (e.g. catenary position or other geomorphic description) represent an atomic unit of pedologic inquiry: the pedon [@SoilSurveyManual2017]. The AQP family of R packages and the `SoilProfileCollection` datatype were designed specifically to elevate the pedon (and collections of pedons) to a convenient abstraction (an object), enabling a simpler interface to what would otherwise be a complex hierarchy of above and below-ground records. In *aqp*, The more generic term "profile" is used instead of pedon to accommodate incomplete data (missing above-ground information) or otherwise truncated (e.g. 0-25cm) observations. Central to this approach are the specification of profile IDs and horizon depths, above-ground ("site") vs. below-ground ("horizon") attributes, and ideally horizon designation and soil color.
@@ -79,7 +79,7 @@ The application of GHL to soil profile collections within the AQP package is dri
 
 <!-- ISSUE with profile 8 in figure below, horizonation jumps from Bt1 to Bt3??? Profile 9 has Bt2 and Bt3, but no Bt1??? Need to make sure we look these over carefully!!! -->
 
-```{r sketch-demo-figure, fig.cap="Here a series of GHL have been applied to a collection of soil profiles of the Clarksville soil series from the Ozark Highlands, Missouri.  Horizon labels within each soil profile show the original horizon designations while colors indicate the GHL each horizon was mapped to using a set of REGEX rules."}
+```{r GHL-figure, fig.cap="Here a series of GHL have been applied to a collection of soil profiles of the Clarksville soil series from the Ozark Highlands, Missouri.  Horizon labels within each soil profile show the original horizon designations while colors indicate the GHL each horizon was mapped to using a set of REGEX rules."}
 knitr::include_graphics('figures/sketch-demo.svg')
 ```
 
@@ -91,15 +91,11 @@ The `depthOf()` family of functions utilize REGEX pattern matching to specific h
 <!-- TODO: sort figure above with use of depthOf() to top of 'Bt' to highlight use in ordering profiles and these operations. Include explanation in the figure caption. -->
  
 
-### Sketches
+### Soil Profile Sketches
 
-<!-- possible figure, highlighting several aspects of plotSPC -->
+Conceptual sketches of soil profiles that illustrate variation in morphology (e.g. horizon depths, horizon designations, color, texture, etc.) in relation to transect or catenary position are a pedologic staple. Either hand-drawn in field notes or carefully produced as part of a final soil survey manuscript, these sketches represent an important vehicle for communicating observation and context to technical and non-technical audiences alike. A data-driven approach to creating soil profile sketches was one the of the original motivations for the *aqp* R package [@beaudette2013_AQP]. Since that time
 
-
-<!-- https://casoilresource.lawr.ucdavis.edu/soil_web/list_components.php?mukey=2501629 -->
-
-
-```{r catena-sketches, fig.cap="Illustration of the catena concepts for soil components from two adjacent mapunits within the Ozark Highlands.  Soil components (retrieved via `fetchSDA()` within map unit 2vxq8 occur on summit and shoulder hillslope profile positions while components in map unit 2vxq9 occur on backslope, footslope and toeslope positions.  USDA soil texture classes used as colors to fill the soil profiles show the variation of textures within the catena.  Munsell soil colors retrieved via `fetchOSD()` are shown in the narrower companion profiles for each component."}
+```{r catena-sketch-figure, fig.cap="Illustration of the catena concepts for soil components from two adjacent mapunits within the Ozark Highlands.  Soil components (retrieved via `fetchSDA()` within map unit 2vxq8 occur on summit and shoulder hillslope profile positions while components in map unit 2vxq9 occur on backslope, footslope and toeslope positions.  USDA soil texture classes used as colors to fill the soil profiles show the variation of textures within the catena.  Munsell soil colors retrieved via `fetchOSD()` are shown in the narrower companion profiles for each component."}
 knitr::include_graphics('figures/cross-section.svg')
 ```
 

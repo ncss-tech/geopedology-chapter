@@ -11,6 +11,9 @@ library(dendextend)
 ## pre-cached/subset data
 x <- readRDS('clarksville-pedons-final.rds')
 
+# clean-up: remove profiles with gaps in logical horizon sequence
+x <- x[-c(13:14), ]
+
 x <- x[1:20, ]
 
 x$hzd <- hzDistinctnessCodeToOffset(x$bounddistinct)
@@ -28,7 +31,7 @@ plotSPC(x, color = 'genhz', col.label = 'Generalized Horizon Label', hz.distinct
 
 # depth to first 3Bt4 genhz
 # 0cm if missing
-z <- depthOf(x, pattern = '3Bt4', hzdesgn = 'genhz', no.contact.assigned = 0, top = TRUE, FUN = min)
+z <- depthOf(x, pattern = '2Bt', hzdesgn = 'genhz', no.contact.assigned = 0, top = TRUE, FUN = min)
 
 idx <- order(z$hzdept)
 

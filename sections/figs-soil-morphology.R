@@ -4,6 +4,8 @@ library(soilDB)
 library(png)
 library(grid)
 library(svglite)
+library(stringi)
+
 
 p <- contrastChart(m = '7.5YR 4/3', hues = c('5YR', '7.5YR', '10YR'))
 p <- update(p, scales = list(cex = 1))
@@ -76,46 +78,20 @@ d <- fetchSDA(WHERE = "mukey IN(2501629, 2501617)")
 
 ## remove copy of Taterhill in 2vxq8
 d <- subset(d, !(compname == 'Taterhill' & nationalmusym == '2vxq8'))
-
-
-osds <- fetchOSD(d$compname)
-osds <- trunc(osds, 0, 200)
-
 length(d)
 
-# trimmed down but still busy
+## trimmed down but still busy
 d$profile_label <- paste(d$compname, d$hillslopeprof, sep=" - ")
 
 
-# remove annotation for O horizons
+## remove annotation for O horizons
 horizons(d)$.newname <- d$hzname
 d$.newname[grep('O', d$hzname)] <- ''
 
-
-# simplify pmkind
+## simplify pmkind
 d$pmkind <- gsub(pattern = ' over ', replacement = '\n', d$pmkind)
 
-# note: 12 profiles
-
-# par(mar = c(0, 0, 3, 0))
-# plotSPC(d, name = '.newname', label = 'profile_label', color='silttotal_r', cex.id = 0.66, cex.names = 0.66, name.style = 'center-center', width = 0.25, hz.depths = TRUE, id.style='side', fixLabelCollisions = TRUE, hz.depths.offset = 0.05, plot.depth.axis = FALSE)
-# 
-# # generate idealized hillslope profile
-# .yshift <- c(0, 0, 1, 2, 4, 8, 15, 22, 30, 35, 40, 43) * 5
-# 
-# # smooth hillslope cross-section
-# .xland <- 1:length(.yshift)
-# .yland <- .yshift - 30
-# 
-# # smooth via interpolation
-# .landSurface <- splinefun(.xland, .yland)
-# .s <- seq(0.5, length(d) + 0.5, by = 0.1)
-# .sy <- .landSurface(.s)
-# 
-# # note, depth-logic is inverted
-# plot(.s, -.sy, type = 'l', axes = FALSE)
-# 
-
+## fine earth texture classes
 d$fine_earth_texture_cl <- ssc_to_texcl(sand = d$sandtotal_r, clay = d$claytotal_r)
 
 # convert texture class to names
@@ -124,6 +100,41 @@ d$fine_earth_texture_cl <- factor(
          levels = SoilTextureLevels(which = 'codes'), 
          labels = SoilTextureLevels(which = 'names'))
 )
+
+## get matching OSDs
+osds <- fetchOSD(d$compname)
+osds <- trunc(osds, 0, 200)
+
+# encode hz bndy distinctness
+osds$hzd <- hzDistinctnessCodeToOffset(osds$distinctness)
+
+# check
+# plotSPC(osds, hz.distinctness.offset = 'hzd')
+
+
+# generate idealized hillslope profile
+.yshift <- c(0, 0, 1, 2, 4, 8, 15, 22, 30, 35, 40, 43) * 5
+
+# smooth hillslope cross-section
+.xland <- 1:length(.yshift)
+.yland <- .yshift - 30
+
+# smooth via interpolation
+.landSurface <- splinefun(.xland, .yland)
+.s <- seq(0.5, length(d) + 0.5, by = 0.1)
+.sy <- .landSurface(.s)
+
+## note, depth-logic is inverted
+plot(.s, -.sy, type = 'l', axes = FALSE)
+ 
+## mu labels
+is <- format_SQL_in_statement(unique(d$nationalmusym))
+mu <- SDA_query(sprintf("SELECT DISTINCT nationalmusym, muname, mukind FROM mapunit WHERE nationalmusym IN %s;", is))
+
+# condense the national musym + map unit names
+muname.chunks <- stri_split_fixed(mu$muname, pattern = ', ', simplify = TRUE)
+mu$txt <- sprintf("%s\n%s, %s", muname.chunks[, 1], muname.chunks[, 2], muname.chunks[, 3])
+mu$txt <- sprintf("%s: %s", mu$nationalmusym, mu$txt)
 
 
 # soil texture colors
@@ -135,6 +146,7 @@ tf <- tempfile()
 download.file('https://casoilresource.lawr.ucdavis.edu/soil-properties/images/soil-texture-legend-crop-small.png', destfile = tf, mode = 'wb')
 texture.tri.img <- readPNG(tf)
 
+# plot order
 o <- order(as.numeric(d$hillslopeprof), decreasing = TRUE)
 
 # however, this will complicate a manual specification of the landform surface
@@ -150,16 +162,15 @@ set.seed(101001)
 plotSPC(d, name = '.newname', label = 'compname', color='fine_earth_texture_cl', cex.id = 0.75, cex.names = 0.66, name.style = 'center-center', width = 0.2, hz.depths = TRUE, id.style='top', fixLabelCollisions = TRUE, hz.depths.offset = 0.05, plot.depth.axis = FALSE, y.offset = .yshift[idx], plot.order = o, col.label = 'Soil Texture of Fine Earth Fraction (<2mm)', show.legend = FALSE, col.palette = cols)
 
 
-# add smoothed, idealized land surface
+## add smoothed, idealized land surface
 lines(x = .s, y = .sy, lwd = 3)
 
-# # demonstrate full y-range within figure
-# axis(side = 4, line = -2, las = 1)
+## add title
+mtext(text = 'Ozark Highlands Catena Concepts', side = 3, at = 12, line = -1, font = 2, adj = 1, cex = 1.5)
 
-# add title
-mtext(text = 'Ozark Highlands Catena Concepts \n Two Adjacent Mapunits', side = 3, at = 10.5, line = -6, font = 2)
-
-# table(d$compname)
+## annotate map units
+mtext(text = mu$txt[1], side = 3, at = 8.5, line = -5.5, font = 1, cex = 1, adj = 0)
+mtext(text = mu$txt[2], side = 3, at = 8.5, line = -8, font = 1, cex = 1, adj = 0)
 
 
 ## add pmkind
@@ -183,7 +194,7 @@ for(i in 1:length(d$compname)) {
   osd.idx <- which(series.i == toupper(d$compname))
   
   for(j in osd.idx) {
-    plotSPC(osd.i, name = NA, print.id = FALSE, add = TRUE, x.idx.offset = match(j, o) - 1.35, width = 0.1, y.offset = .yshift[idx][j], plot.depth.axis = FALSE)
+    plotSPC(osd.i, name = NA, print.id = FALSE, add = TRUE, x.idx.offset = match(j, o) - 1.4, width = 0.15, y.offset = .yshift[idx][j], plot.depth.axis = FALSE, hz.distinctness.offset = 'hzd')
   }
   
   

@@ -205,6 +205,15 @@ for(i in 1:length(d$compname)) {
 grid.raster(texture.tri.img, x = 0.18, y = 0.22, width = 0.23)
 
 
+## annotate OSD
+text(x = 6, y = 315, label = 'Official Series\nDescription', cex = 1, pos = 1)
+arrows(x0 = 6, y0 = 315, x1 = 6.4, y1 = 280, length = 0.1, lwd = 1.5)
+
+## annotate component
+text(x = 4.5, y = 265, label = 'Soil Survey', cex = 1, pos = 1)
+arrows(x0 = 4.5, y0 = 265, x1 = 5.75, y1 = 230, length = 0.1, lwd = 1.5)
+
+
 dev.off()
 
 

@@ -194,7 +194,7 @@ for(i in 1:length(d$compname)) {
   osd.idx <- which(series.i == toupper(d$compname))
   
   for(j in osd.idx) {
-    plotSPC(osd.i, name = NA, print.id = FALSE, add = TRUE, x.idx.offset = match(j, o) - 1.4, width = 0.15, y.offset = .yshift[idx][j], plot.depth.axis = FALSE, hz.distinctness.offset = 'hzd')
+    plotSPC(osd.i, name = NA, print.id = FALSE, add = TRUE, x.idx.offset = match(j, o) - 1.39, width = 0.14, y.offset = .yshift[idx][j], plot.depth.axis = FALSE, hz.distinctness.offset = 'hzd')
   }
   
   

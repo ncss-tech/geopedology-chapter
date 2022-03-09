@@ -48,12 +48,14 @@ The Algorithms for Quantitative Pedology (AQP) project is a suite of packages fo
 ```{r child = 'numerical-classification.Rmd'}
 ```
 
-<!-- maybe not enough material for this section, without something unique  -->
-```{r child = 'spectral-data.Rmd'}
-```
+<!-- <!-- maybe not enough material for this section, without something unique  --> -->
+<!-- ```{r child = 'spectral-data.Rmd'} -->
+<!-- ``` -->
 
 <!-- maybe water balance  -->
 <!-- http://ncss-tech.github.io/AQP/sharpshootR/monthly-WB.html -->
+```{r child = 'water-balance.Rmd'}
+```
 
 ```{r child = 'conclusions.Rmd'}
 ```

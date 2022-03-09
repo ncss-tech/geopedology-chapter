@@ -1,16 +1,16 @@
 
 ## The SoilProfileCollection Object
 
-  * rationale
-  * basic design / strategy
-  * various back-ends
-  * limitation (analysis vs. archival formats)
+  <!-- * rationale -->
+  <!-- * basic design / strategy -->
+  <!-- * various back-ends -->
+  <!-- * limitation (analysis vs. archival formats) -->
 
-The `SoilProfileCollection` (SPC) is a data structure and set of related "bookkeeping" methods for hierarchical soil morphologic data. The basic idea is abstraction of variables into two main tiers ("site" and "horizon") and several related groups (including "spatial", "diagnostics", "restrictions"). The collection provides a means of storing metadata about groups of related soil observations and facilitating operations on data using R syntax.
+The `SoilProfileCollection` (SPC) is a data structure designed to coordinate linkages between elements within the typically complex (hierarchical) site description, soil morphologic description, and optionally laboratory data. Methods (data structure-specific functions) operating on the SPC include special constraints to ensure linkages aren't broken during routing operations such as editing, sub-setting, or combining collections. The first level of abstraction involves two main tiers: "site" for above-ground or those properties that are specific to a single soil profile description (e.g. surface slope), and "horizon" for below-ground or those properties that are specific to a single genetic soil horizon or layer. An additional level of abstraction is used to store spatial data (coordinates and coordinate reference system) and depth-intervals information such as diagnostic horizons. The SPC also provides a means of storing user-defined metadata such as units of measure, column containing horizon designation, data source, and data citation to name a few.
 
-Of primary importance are the horizon data, or the layers that comprise the profiles in the collection. The SoilProfileCollection is "horizon data forward," in that you start with a table of layers: each with an upper and lower boundary and from a particular soil profile observation.
+Of primary importance are the horizon data, or the layers that comprise the profiles in the collection. The `SoilProfileCollection` is "horizon data forward," in that you start with a table of horizons: each with an upper and lower boundary and from a particular soil profile observation.
 
-A SoilProfileCollection is created by providing a minimal amount of information regarding the soil horizons.  Promotion of an R data.frame (or data.frame-like object such as `tibble` or `data.table`) to a SoilProfileCollection object uses `depths()` and requires the following columns: `profile_id` (a unique profile ID), `top_depth` (horizon upper boundary) and `bottom_depth` (horizon lower boundary) along with any additional layer data associated with the horizons in the profile.  Special notation is used to specify these three key parameters so that the `depths()` method know which variables to use such that `depths() <- profile_id ~ top_depth + bottom_depth`.
+A `SoilProfileCollection` is created by providing a minimal amount of information regarding the soil horizons.  Promotion of an R data.frame (or data.frame-like object such as `tibble` or `data.table`) to a `SoilProfileCollection` object uses `depths()` and requires the following columns: `profile_id` (a unique profile ID), `top_depth` (horizon upper boundary) and `bottom_depth` (horizon lower boundary) along with any additional layer data associated with the horizons in the profile.  Special notation is used to specify these three key parameters so that the `depths()` method know which variables to use such that `depths() <- profile_id ~ top_depth + bottom_depth`.
 
 <!-- ```{r echo = FALSE}
  object <- data.frame(
@@ -25,7 +25,7 @@ object
 ``` -->
 
 In R, the symbol `~` separates the left and right hand sides of a formula. Commonly `~` is used in formulas to mean "modeled as". In the case of the `SoilProfileCollection` we are "modeling" the geometry and order of layers in each unique profile using the upper and lower boundaries.  Performing this operation assures that the horizons and profiles are sorted first by ID and then by top depth. 
-Additional site and horizon data can be added or extracted one by one using the `$` or `[[` methods. If you are creating a new variable, the SoilProfileCollection will check whether the length of the vector matches either the number of "sites" or the number of "horizons". 
+Additional site and horizon data can be added or extracted one by one using the `$` or `[[` methods. If you are creating a new variable, the `SoilProfileCollection` will check whether the length of the vector matches either the number of "sites" or the number of "horizons". 
 
 <!-- We specify the three key parameters to "promote" this data.frame to SoilProfileCollection with the aqp command `depths()`: -->
 
@@ -144,14 +144,36 @@ Partitioning data based on logical expressions of site and horizon level propert
 
 The interval `[z1, z2]` can be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not--creating a "ragged" `SoilProfileCollection`. When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
 
-```{r, echo = FALSE, fig.width=8, fig.height=5}
-par(mar=c(1,1,1,1), mfrow=c(1,1))
+```{r, echo = FALSE, fig.width=8, fig.height=4.5}
+par(mar=c(0,0,1,1), mfrow=c(1,1))
 
-plotMultipleSPC(list(x[3,], glom(x[3,], 50, 100), trunc(x[3,], 50, 100)),
-                args=list(list(max.depth = 200), list(max.depth = 200), list(max.depth = 200)),
-                group.labels=c("x[3,]", "glom(x[3,], 50, 100)", "trunc(x[3,], 50, 100)"), label.offset = 10, cex.names = 0.75)
-lines(seq(0,3.25,0.25), rep(50, 14), lwd=2,lty=2)
-lines(seq(0,3.25,0.25), rep(100, 14), lwd=2,lty=2)
+.top <- 35
+.bottom <- 85
+
+.s <- list(x[3,], glom(x[3,], .top, .bottom), trunc(x[3,], .top, .bottom))
+
+.a <- list(
+  list(max.depth = 200, cex.names = 0.75), 
+  list(max.depth = 200, cex.names = 0.75), 
+  list(max.depth = 200, cex.names = 0.75)
+)
+
+.labs <- c(
+  "x[3,]", 
+  sprintf("glom(x[3,], %s, %s)", .top, .bottom), 
+  sprintf("trunc(x[3,], %s, %s)", .top, .bottom)
+)
+
+plotMultipleSPC(
+  .s,
+  args = .a,
+  group.labels = .labs, 
+  label.offset = 10, label.cex = 1
+)
+
+segments(x0 = 0.5, y0 = .top, x1 = 3.5, y1 = .top, lwd = 2, lty = 2)
+segments(x0 = 0.5, y0 = .bottom, x1 = 3.5, y1 = .bottom, lwd = 2, lty = 2)
+
 ```
 
   * other methods

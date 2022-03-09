@@ -53,7 +53,8 @@ knitr::include_graphics('figures/contast-chart.svg')
 
 <!-- color measurement, standard observers, mixtures [@Marcus1998] -->
 
-<!-- <!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf --> -->
+<!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf --> 
+
 <!-- Paul Centore's work [@centore2012] -->
 
 

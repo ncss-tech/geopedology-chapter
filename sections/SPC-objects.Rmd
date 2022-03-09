@@ -132,6 +132,7 @@ x$hzname[grep('O', x$hzname)] <- NA
 par(mar=c(0,0,0,0), mfrow=c(1,2))
 
 # figure of first five profiles
+set.seed(101010)
 plotSPC(x, cex.names = 0.7, label = 'newID', max.depth = 225, width = 0.25, default.color = .col, plot.depth.axis = FALSE, name.style = 'center-center', hz.depths = TRUE, fixLabelCollisions = TRUE, hz.depths.offset = 0.05, font.id = 1)
 
 # label subfigure

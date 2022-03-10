@@ -27,39 +27,35 @@ knitr::include_graphics('figures/SPC-example-1.svg')
 
 The representation of horizon position with the `j`-index can be extended to develop other "horizon spatial predicates" such as `hzAbove()`, `hzBelow()` and `hzOffset()`. The former two take logical expressions to match horizons, and return the part of the collection adjacent to the match (above or below respectively). `hzOffset()` allows arbitrary horizon indices and offsets to be calculated. This type of logic is further helpful for inspecting and fixing horizon geometry for errors or inconsistencies.
 
-Often we do not know which indices of profiles or horizons in our collection meet criteria of interest. We can use the aqp functions `subset()` and `subsetHz()` to use logical expressions in terms of the site or horizon variables to specify the constraints. These expressions make use of site or horizon-level variables in the collection. `subset()` returns whole profiles; if criteria were specified for horizon data then only some of the horizons of those profiles may meet criteria. `subsetHz()` requires horizon-level expressions and returns only the portion of horizons within profiles that meet criteria.
+Often we do not know which indices of profiles or horizons in our collection meet criteria of interest. We can use the **aqp** functions `subset()` and `subsetHz()` to use logical expressions in terms of the site or horizon variables to specify the constraints. These expressions make use of site or horizon-level variables in the collection. `subset()` returns whole profiles; if criteria were specified for horizon data then only some of the horizons of those profiles may meet criteria. `subsetHz()` requires horizon-level expressions and returns only the portion of horizons within profiles that meet criteria.
 
 
-
-Figure \@ref(fig:SPC-subsetting-figure-2)
-
-```{r SPC-subsetting-figure-2, fig.cap="XXX"}
+```{r SPC-subsetting-figure-2, fig.cap="A demonstration of slecting horizons that overlap with a depth interval via `glom()` and truncation to that interval via `trunc()`."}
 knitr::include_graphics('figures/SPC-example-2.svg')
 ```
 
-Partitioning data based on logical expressions of site and horizon level properties is powerful, but in soil science we often want to be able to extract data for specific ranges of depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in aqp. `glom()` returns the subset of horizons in a collection that fall within a specific depth interval `[z1, z2]`. The depth interval could be a point or a range (`z2` optional). 
+Partitioning soil profile collections on logical expressions of site and horizon level properties is powerful, but soil scientists often need to extract data within or overlapping specific depths. Two methods: `glom(x, z1, z2, ...)` and `trunc(x, z1, z2, ...)` facilitate this in **aqp**. `glom()` returns the subset of horizons in a collection that overlap with a specific depth interval `[z1, z2]`. The depth interval could be a point (only `z1` specified) or a range (`z1` and `z2` specified) (Figure \@ref(fig:SPC-subsetting-figure-2)).
 
-The interval `[z1, z2]` can be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not--creating a "ragged" `SoilProfileCollection`. When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
+The interval `[z1, z2]` can be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not--creating a "ragged" `SoilProfileCollection` (Figure \@ref(fig:SPC-subsetting-figure-2)). When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
 
 
-
+<!-- split and combine methods ...  -->
 
 
 ### Iteration
 
-aqp provides utilities for iterating (looping) over the profiles in a `SoilProfileCollection.` Following the precedent of the base R `*apply()` functions, `profileApply()` will apply a function to each element of a `SoilProfileCollection.` 
+The **aqp** package provides methods for iterating (looping) over the profiles in a `SoilProfileCollection` object. Following the precedent of the base **R** `*apply()` functions, `profileApply()` will apply a function to each element (e.g. single profile) of a `SoilProfileCollection` object. 
 
-The results of running the function on each profile are usually a single value per profile or horizon, with default `simplify=TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a data.frame with `frameify = TRUE` to automatically create a data.frame with the results, or even a list containing more complex objects (such as `SoilProfileCollections` that can then be recombined with `aqp::combine()`).
+The results of running the function on each profile are usually a single value per profile or horizon, with the argument default of `simplify = TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a `data.frame` with the argument `frameify = TRUE` to automatically create a `data.frame` with the results. Results that cannot be flattened to a vector or `data.frame` are returned as a `list`--for example, a function returning `SoilProfileCollection` objects.
 
 
 ### Data Quality and Repairs
 
-aqp provides several methods for identifying problematic profile geometry and (possibly) "fixing" it. Most soil databases and methods for storing soils information do not have front end validations that entirely prevent entry of data with "illogical" content. Some analyses rely on having only one record of data per depth*profile combination such as those involving depth-weighted averages, or rely on having a "complete" set of records in all profiles over a particular interval.
+The **aqp** package provides several methods for identifying problematic profile geometry and (possibly) "fixing" it. Most soil databases and methods for storing soils information do not have front end validations that prevent entry of data with "illogical" content. Some analyses rely on having only one record of data per depth/profile combination such as those involving depth-weighted averages, or rely on having a "complete" set of records in all profiles over a particular interval.
 
-`checkHzDepthLogic()` inspects a `SoilProfileCollection` object looking for four common errors in horizon depths: bottom depth shallower than top depth, equal top and bottom depth, missing (`NA`) top or bottom depth, and gap or overlap between adjacent horizons. With `byhz = TRUE` you can perform the first three of the above logic checks on individual horizons. 
+`checkHzDepthLogic()` inspects a `SoilProfileCollection` object looking for four common errors in horizon depths: bottom depth shallower than top depth, equal top and bottom depth, missing (`NA`) top or bottom depth, and gap or overlap between adjacent horizons. With `byhz = TRUE` it is possible to perform the first three of the above logic checks on individual horizons. 
 
 `repairMissingHzDepths()` uses assumptions about horizon order based on horizon top depth. This can be used to fill in some missing (bottom) horizon depths. This function will set missing bottom depths of a horizon to the next deepest (adjacent) top depth. Also, it adds a constant vertical offset to the top depth of bottom-most horizons missing bottom depth. 
 
-`fillHzGaps()` attempts to find "gaps" in the horizon records of a `SoilProfileCollection` object and fill with placeholder horizons (profile ID, horizon ID, to/bottom depths, all else NA). This function also allows you to fill profiles to a static top and bottom depth: for instance for lab data that includes an unsampled O horizons or variable depth to bedrock/bottom depth of bedrock. 
-
+`fillHzGaps()` attempts to find "gaps" in the horizon records of a `SoilProfileCollection` object and fill with placeholder horizons (profile ID, horizon ID, to/bottom depths, all else NA). This function also allows you to fill profiles to a static top and bottom depth: for instance for lab data that includes unsampled O horizons or variable depth to bedrock/bottom depth of bedrock. 
 

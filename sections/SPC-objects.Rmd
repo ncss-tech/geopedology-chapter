@@ -12,18 +12,6 @@ Of primary importance are the horizon data, or the layers that comprise the prof
 
 A `SoilProfileCollection` is created through "promotion" of an **R** `data.frame` (or `data.frame`-like object such as `tibble` or `data.table`) with the `depths()` function. This process requires the following parameters: `profile_id` (the name of a column containing unique profile IDs), `top_depth` (the name of a column containing horizon upper depths) and `bottom_depth` (the name of a column containing horizon lower depths) along with any additional horizon data associated with the horizons in the profile. For example, the promotion of a `data.frame` called `x` to `SoilProfileCollection` would like something like: `depths(x) <- profile_id ~ top_depth + bottom_depth`.
 
-<!-- ```{r echo = FALSE}
- object <- data.frame(
-   profile_id = c("1", "1", "1"),
-   top_depth = c(0, 10, 48),
-   bottom_depth = c(10, 48, 122),
-   hzname = c("A", "Bt", "BC"),
-   clay = c(25, 42, 37),
-   phfield = c(5.5, 5.4, 5.1)
- )
-object
-``` -->
-
 In **R**, the symbol `~` separates the left and right hand sides of a formula. Commonly `~` is used in formulas to mean "modeled as". In the case of the `SoilProfileCollection` we are "modeling" the geometry and ordering of horizons within each unique profile using the upper and lower depths. Performing this operation automatically sorts horizon data first by profile ID and then by horizons top depth. 
 
 Additional site and horizon data can be added or extracted one by one using the `$` or `[[` methods. If you are creating a new variable, the `SoilProfileCollection` will check whether the length of the vector matches either the number of "sites" or the number of "horizons". 
@@ -44,38 +32,19 @@ In this case, the value on the right hand side of the assignment operator `<-` i
 
 The right hand side table is then merged into the data slots of `object`. Join fields that aren't matched will be filled with `NA`. If ID values are present in the right hand side that don't exist in the left, or the join would duplicate existing rows in the collection, the merge will stop with an error.
 
+[@SPC_intro]
+
+
 ### Subsetting
 
-  * `[`-methods, `.FIRST` style keywords, spatial predicates (Andrew)
   
 #### "bracket" extraction methods (`x[i,j,k...]`)
 
-<!-- The code block below could be translated to a paragraph. -->
-
-<!-- ```{r, eval = FALSE} -->
-<!-- # i-index is for profiles -->
-<!-- x[1,]      # first profile  -->
-
-<!-- # j-index is for horizons -->
-<!-- x[,1]      # first horizon (of each profile)  -->
-
-<!-- # k-index is for "special" functions of horizons (.FIRST/.LAST/.HZID),  -->
-<!-- x[,,.LAST]   # last horizon (of each profile)  -->
-
-<!-- # indices can be combined -->
-
-<!-- # i and j -->
-<!-- x[1:2, 1:2]      # first two horizons of first two profiles  -->
-
-<!-- # i and k (k overrides j) -->
-<!-- x[1:2, , .LAST]  # last horizon of first two profiles i -->
-<!-- ``` -->
-
 One of the primary approaches to subsetting a `SoilProfileCollection` uses the "bracket" `[` methods to extract smaller collections from a larger collection based on numeric or logical indices. The syntax is similar to extracting rows and columns from matrix or data.frame objects in base R. 
 
-If `x` is a `SoilProfileCollection` then the syntax for the bracket methods is: `x[i,j,k...]`; where `i` is a profile index, `j` is a within-profile horizon index and `k...` represents optional special functions that can operate on the horizon data in the collection to replace the profile-specific `j`-index.
+If `x` is a `SoilProfileCollection` then the syntax for the bracket methods is: `x[i, j, k...]`; where `i` is a profile index, `j` is a within-profile horizon index and `k...` represents optional special functions that can operate on the horizon data in the collection to replace the profile-specific `j`-index.
 
-To obtain the first profile in the collection, you can use the syntax `x[1,]`. For the first horizon in each profile you can use `x[,1]`. To get the last horizon of each profile, you can use `x[,,.LAST]` where `.LAST` is a special "keyword" that can identify the `j`-index of the deepest horizon in each profile. 
+To obtain the first profile in the collection, you can use the syntax `x[1, ]`. For the first horizon in each profile you can use `x[, 1]`. To get the last horizon of each profile, you can use `x[, , .LAST]` where `.LAST` is a special "keyword" that can identify the `j`-index of the deepest horizon in each profile. 
 
 Subsets based on `i`, `j` and `k` indices of the `SoilProfileCollection` can be combined, for instance: `x[1:2, 1:2]` gives the first two horizons of the first two profiles. Also, the `k` index can be combined with the `i` index, for instance `x[1:2, , .LAST]` gives the last horizon of the first two profiles.
 
@@ -135,7 +104,7 @@ idx <- 5
 
 # labels
 .labs <- c(
-  sprintf("x[%s,]", idx), 
+  sprintf("x[%s, ]", idx), 
   sprintf("x[%s, 1]", idx), 
   sprintf("x[%s, 3:6]", idx), 
   sprintf("x[%s, , .FIRST]", idx),
@@ -188,9 +157,9 @@ idx <- 5
 .a <- list(.arg1)[rep(1, times = 3)]
 
 .labs <- c(
-  sprintf("x[%s,]", idx), 
-  sprintf("glom(x[%s,], %s, %s)", idx, .top, .bottom), 
-  sprintf("trunc(x[%s,], %s, %s)", idx, .top, .bottom)
+  sprintf("x[%s, ]", idx), 
+  sprintf("glom(x[%s, ], %s, %s)", idx, .top, .bottom), 
+  sprintf("trunc(x[%s, ], %s, %s)", idx, .top, .bottom)
 )
 
 plotMultipleSPC(
@@ -206,13 +175,12 @@ segments(x0 = 0.66, y0 = .top, x1 = 3.33, y1 = .top, lwd = 2, lty = 2)
 segments(x0 = 0.66, y0 = .bottom, x1 = 3.33, y1 = .bottom, lwd = 2, lty = 2)
 ```
 
-  * other methods
 
 ### Iteration
 
-aqp provides utilities for iterating (looping) over the profiles in a SoilProfileCollection. Following the precedent of the base R `*apply()` functions, `profileApply()` will apply a function to each element of a SoilProfileCollection. 
+aqp provides utilities for iterating (looping) over the profiles in a `SoilProfileCollection.` Following the precedent of the base R `*apply()` functions, `profileApply()` will apply a function to each element of a `SoilProfileCollection.` 
 
-The results of running the function on each profile are usually a single value per profile or horizon, with default `simplify=TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a data.frame with `frameify = TRUE` to automatically create a data.frame with the results, or even a list containing more complex objects (such as SoilProfileCollections that can then be recombined with `aqp::combine()`).
+The results of running the function on each profile are usually a single value per profile or horizon, with default `simplify=TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a data.frame with `frameify = TRUE` to automatically create a data.frame with the results, or even a list containing more complex objects (such as `SoilProfileCollections` that can then be recombined with `aqp::combine()`).
 
 ### Sources of `SoilProfileCollection` Objects
 
@@ -229,6 +197,3 @@ aqp provides several methods for identifying problematic profile geometry and (p
 `fillHzGaps()` attempts to find "gaps" in the horizon records of a `SoilProfileCollection` object and fill with placeholder horizons (profile ID, horizon ID, to/bottom depths, all else NA). This function also allows you to fill profiles to a static top and bottom depth: for instance for lab data that includes an unsampled O horizons or variable depth to bedrock/bottom depth of bedrock. 
 
 
-<!-- data cleaning, fixing, validity, etc. (Andrew) -->
-
- 

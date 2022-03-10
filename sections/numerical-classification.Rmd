@@ -6,9 +6,19 @@
 knitr::include_graphics('figures/NCSP-figure-Maynard-et-al.png')
 ```
 
-
+<!--
 ```{r genhz-dend-figure, out.width="100%", fig.cap="XXX"}
 knitr::include_graphics('figures/genhz-dendrogram.svg')
+```
+-->
+
+```{r OSD-ST-dend-figure, out.width="100%", fig.cap="XXX"}
+knitr::include_graphics('figures/OSD-ST-dendrogram.svg')
+```
+
+
+```{r OSD-ST-color-figure, out.width="100%", fig.cap="XXX"}
+knitr::include_graphics('figures/OSD-soil-color-dendrogram.svg')
 ```
 
 

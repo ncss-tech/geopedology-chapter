@@ -8,9 +8,9 @@
 
 The `SoilProfileCollection` (SPC) is a data structure designed to coordinate linkages between elements within the typically complex (hierarchical) site description, soil morphologic description, and optionally laboratory data. Methods (data structure-specific functions) operating on the SPC include special constraints to ensure linkages aren't broken during routing operations such as editing, sub-setting, or combining collections. The first level of abstraction involves two main tiers: "site" for above-ground or those properties that are specific to a single soil profile description (e.g. surface slope), and "horizon" for below-ground or those properties that are specific to a single genetic soil horizon or layer. An additional level of abstraction is used to store spatial data (coordinates and coordinate reference system) and depth-intervals information such as diagnostic horizons. The SPC also provides a means of storing user-defined metadata such as units of measure, column containing horizon designation, data source, and data citation to name a few.
 
-Of primary importance are the horizon data, or the layers that comprise the profiles in the collection. The `SoilProfileCollection` is "horizon data forward," in that you start with a table of horizons: each with an upper and lower boundary and from a particular soil profile observation.
+Of primary importance are the horizon data, or the layers that comprise the profiles in the collection. The `SoilProfileCollection` is "horizon data forward," in that you start with a table of horizon data: each record must have an upper and lower boundary, a unique ID linking to a single soil profile observation, and any other observed or measured properties. There are no set limits on the number of horizons per profile, or profiles per collection, but, available memory will dictate practical limitations. Horizon depths should be specified as integers (typically centimeters) and should not overlap.
 
-A `SoilProfileCollection` is created by providing a minimal amount of information regarding the soil horizons.  Promotion of an R data.frame (or data.frame-like object such as `tibble` or `data.table`) to a `SoilProfileCollection` object uses `depths()` and requires the following columns: `profile_id` (a unique profile ID), `top_depth` (horizon upper boundary) and `bottom_depth` (horizon lower boundary) along with any additional layer data associated with the horizons in the profile.  Special notation is used to specify these three key parameters so that the `depths()` method know which variables to use such that `depths() <- profile_id ~ top_depth + bottom_depth`.
+A `SoilProfileCollection` is created through "promotion" of an **R** `data.frame` (or `data.frame`-like object such as `tibble` or `data.table`) with the `depths()` function. This process requires the following parameters: `profile_id` (the name of a column containing unique profile IDs), `top_depth` (the name of a column containing horizon upper depths) and `bottom_depth` (the name of a column containing horizon lower depths) along with any additional horizon data associated with the horizons in the profile. For example, the promotion of a `data.frame` called `x` to `SoilProfileCollection` would like something like: `depths(x) <- profile_id ~ top_depth + bottom_depth`.
 
 <!-- ```{r echo = FALSE}
  object <- data.frame(
@@ -24,34 +24,10 @@ A `SoilProfileCollection` is created by providing a minimal amount of informatio
 object
 ``` -->
 
-In R, the symbol `~` separates the left and right hand sides of a formula. Commonly `~` is used in formulas to mean "modeled as". In the case of the `SoilProfileCollection` we are "modeling" the geometry and order of layers in each unique profile using the upper and lower boundaries.  Performing this operation assures that the horizons and profiles are sorted first by ID and then by top depth. 
+In **R**, the symbol `~` separates the left and right hand sides of a formula. Commonly `~` is used in formulas to mean "modeled as". In the case of the `SoilProfileCollection` we are "modeling" the geometry and ordering of horizons within each unique profile using the upper and lower depths. Performing this operation automatically sorts horizon data first by profile ID and then by horizons top depth. 
+
 Additional site and horizon data can be added or extracted one by one using the `$` or `[[` methods. If you are creating a new variable, the `SoilProfileCollection` will check whether the length of the vector matches either the number of "sites" or the number of "horizons". 
 
-<!-- We specify the three key parameters to "promote" this data.frame to SoilProfileCollection with the aqp command `depths()`: -->
-
-
-<!-- ``` -->
-<!-- library(aqp) -->
-
-<!-- depths(object) <- profile_id ~ top_depth + bottom_depth -->
-<!-- ``` -->
-
-<!-- Which creates a SoilProfileCollection called `object`. -->
-
-<!-- ```{r echo = FALSE} -->
-<!-- library(aqp) -->
-<!-- depths(object) <- profile_id ~ top_depth + bottom_depth -->
-<!-- object -->
-<!-- ``` -->
-
-
-<!-- ```{r, eval = FALSE} -->
-<!-- object$top_depth  # extract data -->
-<!-- object[["clay"]] -->
-
-<!-- site(object)$label <- "New Site Label" # add new data -->
-<!-- horizons(object)$sand <- c(22, 14, 11) -->
-<!-- ``` -->
 
 
 If you have many columns to add to site or horizon data, you may be better off using the "join" syntax.

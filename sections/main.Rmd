@@ -27,6 +27,15 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r echo = FALSE, eval = FALSE}
+# re-make all figures
+source('figs-SPC.R')
+source('figs-soil-morphology.R')
+source('figs-sketches-num-taxonomy.R')
+
+```
+
+
 <!-- ~ 140 words -->
 ## Abstract
 

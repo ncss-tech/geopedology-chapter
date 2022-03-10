@@ -7,6 +7,12 @@ knitr::include_graphics('figures/NCSP-figure-Maynard-et-al.png')
 ```
 
 
+```{r genhz-dend-figure, out.width="100%", fig.cap="XXX"}
+knitr::include_graphics('figures/genhz-dendrogram.svg')
+```
+
+
+
   * major concepts, cite / rely on two papers for details
   * genhz example
   * properties example

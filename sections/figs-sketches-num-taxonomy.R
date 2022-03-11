@@ -98,6 +98,9 @@ s <- c(
   c("Lee", "LOWASSIE", "CEDARGAP")
 )
 
+## use Clarksville + couple of pals, other colorful soils
+s <- c("Clarksville", "Lee", "Lowassie", "Zook", "Leon", "Musick", "Tristan")
+
 x <- fetchOSD(s)
 x$hzd <- hzDistinctnessCodeToOffset(x$distinctness)
 
@@ -108,6 +111,8 @@ SoilTaxonomyDendrogram(x, cex.taxon.labels = 0.75, width = 0.33, name.style = 'c
 
 dev.off()
 
+
+## this won't work so well with soils of drastically different depths
 
 ## OSD color via d(L,A,B)
 

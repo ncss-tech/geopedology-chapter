@@ -8,6 +8,8 @@
   * prepareDailyClimateData()
   * AWC inputs and integration with ROSETTA
   
-As a state factor in understanding soil formation, climate and the interactions and timing of moisture and temperature, have long held a pivotal role in describing site dynamics at local and regional scales.  High quality and widely accessible gridded climate data has increased the use soil water balance models as a valuable tool for exploring the nuances of climate at a given point on the landscape.   
+As a state factor in understanding soil formation, climate and the interactions and timing of moisture and temperature, have long held a pivotal role in describing site dynamics at local and regional scales.  
 
-The `sharpshootR` package provides methods (via dependencies on the `hyrdomad` package) for calculating water balance variable of precipitation, potential evapotranspiration, actual evapotranspiration, water deficit and water surplus on a monthly (`monthlyWB()`) and daily (`dailyWB()`) time steps.  
+High quality and widely accessible gridded climate data has increased the use soil water balance models as a valuable tool for exploring the nuances of climate at a given point on the landscape.   
+
+The `sharpshootR` package provides methods (via dependencies on the `elevatr`, `daymetr`, `Evapotranspiration`, and `hyrdomad` packages) for calculating water balance variables of precipitation, potential evapotranspiration, actual evapotranspiration, water deficit and water surplus on a monthly `monthlyWB()` and daily `dailyWB()` time steps.  

@@ -13,6 +13,7 @@ library(dplyr)
 library(plyr)
 library(ggplot2)
 library(ggspatial)
+library(RColorBrewer)
 
 # parameters
 yr <- 2018
@@ -109,6 +110,6 @@ points(x=rep(lsp$x0[1], times=length(sensor.depths)), y=sensor.depths, pch=15, c
 text(x=rep(lsp$x0[1], times=length(sensor.depths)), y=sensor.depths, labels = sensor.depths, cex=0.75, pos=1)
 
 # add second profile with filled with genhz colors that correspond to the sensor colors
-plotSPC(ss[2], name='genhz', label='', id.style='top', color='genhz', cex.names=0.75, width=0.05, x.idx.offset=-0.65, axis.line.offset=-15, space=2, scaling.factor = 1, relative.pos = 2, max.depth = 200, show.legend = FALSE, add = TRUE)
+plotSPC(ss[2], name='genhz', print.id = FALSE, id.style='top', color='genhz', cex.names=0.75, width=0.05, x.idx.offset=-0.65, axis.line.offset=-15, space=2, scaling.factor = 1, relative.pos = 2, max.depth = 200, show.legend = FALSE, add = TRUE)
 
 # TODO: not sure how to get these two figures side by side

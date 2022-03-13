@@ -101,15 +101,15 @@ ss <- aqp::combine(s, s.ghl)
 
 # plot profile of lab data horizons with sensors next to genhz profile 
 par(mar=c(0,0,3,1))
-plotSPC(ss[1], name='hzn_desgn', label='pedon_id', id.style='top', cex.names=0.75, width=0.05, x.idx.offset=0.15, axis.line.offset=-2, space=2, scaling.factor = 1, max.depth = 200, show.legend = FALSE)
+plotSPC(ss[1], name='hzn_desgn', label='pedon_id', id.style='top', cex.names=0.75, width=0.05, x.idx.offset=0.15, axis.line.offset=-2, space=2, scaling.factor = 1, max.depth = 200, show.legend = FALSE, plot.depth.axis = FALSE )
 title(paste('Sensor Depths - Site ', unique(x$Site), sep=" "), line=0.5, cex.main=1.5)
 
 # over plot the sensor depths on the previous plot
 lsp <- get("last_spc_plot", envir = aqp.env)
 points(x=rep(lsp$x0[1], times=length(sensor.depths)), y=sensor.depths, pch=15, cex=1.5, col=rev(brewer.pal(10, 'Spectral'))[c(1,1,4,7,10)])
-text(x=rep(lsp$x0[1], times=length(sensor.depths)), y=sensor.depths, labels = sensor.depths, cex=0.75, pos=1)
+text(x=rep(lsp$x0[1], times=length(sensor.depths)), y=sensor.depths, labels = sensor.depths, cex=0.75, pos=4)
 
 # add second profile with filled with genhz colors that correspond to the sensor colors
-plotSPC(ss[2], name='genhz', print.id = FALSE, id.style='top', color='genhz', cex.names=0.75, width=0.05, x.idx.offset=-0.65, axis.line.offset=-15, space=2, scaling.factor = 1, relative.pos = 2, max.depth = 200, show.legend = FALSE, add = TRUE)
+plotSPC(ss[2], name='genhz', print.id = FALSE, id.style='top', color='genhz', cex.names=0.75, width=0.05, x.idx.offset=-0.65, axis.line.offset=-5, space=2, scaling.factor = 1, relative.pos = 2, max.depth = 200, show.legend = FALSE, add = TRUE)
 
 # TODO: not sure how to get these two figures side by side

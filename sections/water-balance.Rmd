@@ -17,3 +17,6 @@ The *soilDB* package provides query access to the station data in the Soil Clima
 
 
 
+[@Thornthwaite1948]
+
+[@Arkley_Ulrich1962]

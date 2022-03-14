@@ -1,13 +1,14 @@
 
 <!-- ~ 800 words -->
-## Numerical Classification
+## Numerical Classification of Soils
 
-Since the 1960's (likely corresponding with increased availability of computing hardware) there has been considerable interest in the development of numerical alternatives to traditional soil classification systems such as Soil Taxonomy [@SoilTaxonomy1999] and World Reference Base [@Chesworth2008]. 
-
-
+Since the 1960's (likely corresponding with increased availability of computing hardware) there has been considerable interest in the development of numerical alternatives to traditional soil classification systems such as Soil Taxonomy [@SoilTaxonomy1999] and World Reference Base [@Chesworth2008]. A "numerical taxonomy" [@Sneath1973] of soil horizons or collections of horizons (i.e. soil profiles or aggregation thereof) relies on a deliberate selection of characteristics (soil properties), distance metric (e.g. Euclidean), and criteria used to identify clusters (e.g. hierarchical vs. partitioning methods) [@Arkley1976]. Selection of characteristics is complex; a limited set of soil properties cannot universally describe differences between individuals, and the use of all measurable properties is unfeasible--a selection must be made prior to analysis [@Sarkar1966; @Arkley1971]. Furthermore, a generalized approach to the numerical classification of soil profiles (as a whole) is complicated by the hierarchical nature of linked, site and horizon-level properties, sampling style (depth-intervals vs. genetic horizons), and subtle differences in horizon designation (through time, regionally, and even among co-workers). Despite the many challenges, there have been many successful applications of numerical taxonomy to soil science and soil classification [@Hole1960; @Rayner1966; @Moore1972; @Dale1989; @Carre2009].
 
 
-A generalized, quantitative metric of similarity between soil profiles is complicated by the hierarchical nature of linked, site and horizon-level properties, sampling style (depth-intervals vs. genetic horizons), and subtle differences in horizon designation (through time, regionally, and even among co-workers). 
+
+```{r NCSP-outline-figure, out.width="100%", fig.cap="caption here. Figure c/o Jon Maynard."}
+knitr::include_graphics('figures/NCSP-figure-Maynard-et-al.png')
+```
 
 
 
@@ -17,19 +18,14 @@ Our objective was to develop a set of data structures (classes) and associated a
 Pair-wise dissimilarities (between soil profiles) are evaluated along regular depth-slices using Gower's distance metric [@Gower1971], using any combination of continuous, categorical, or boolean attributes. Total pair-wise dissimilarity is computed by taking the sum of slice-wise dissimilarities, to a user-defined depth. Variation in profile depth is accounted for by assigning maximum slice-wise dissimilarity to comparisons between soil (e.g. Bt horizon) and non-soil (e.g. R horizon). The resulting dissimilarity matrix can be used to assist with topics ranging from initial mapping ("similar/dissimilar" soils), comparisons below family-level Soil Taxonomy, soil series correlation, map unit harmonization, and correlation between different taxonomic systems.
 
 
-numerical taxonomy book: [@Sneath1973] 
-
-[@Hole1960], [@Sarkar1966], [@Rayner1966], [@Moore1972], [@Carre2009], 
 
 
 
-[@Arkley1976] [@Arkley1971]
 
 
 
-```{r NCSP-outline-figure, out.width="100%", fig.cap="caption here. Figure c/o Jon Maynard."}
-knitr::include_graphics('figures/NCSP-figure-Maynard-et-al.png')
-```
+
+
 
 <!--
 ```{r genhz-dend-figure, out.width="100%", fig.cap="XXX"}

@@ -3,7 +3,7 @@
 
 The number of your chapter is 11. Please, note that this number should head the titles, subtitles, tables, and figures, as indicated in the manuscript guidelines that we attach herewith.
  
-Kindly note that the manuscript should have a length of no more than 15 typeset pages. The main text should not exceed 6,000 words (excluding Abstract, References, and figure and table captions). The abstract should have 250 words maximum. Some overlap with the Abstract is acceptable.
+Kindly note that the manuscript should have a length of no more than 15 typeset pages. The main text should not exceed **6,000 words** (excluding Abstract, References, and figure and table captions). The abstract should have 250 words maximum. Some overlap with the Abstract is acceptable.
  
 There are no specific requirements for the main body of the text. You can organize it in a way that best suits the theme of the chapter.
  

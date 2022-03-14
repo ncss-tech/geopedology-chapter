@@ -1,13 +1,19 @@
 
-
+<!-- ~ 800 words -->
 ## Resampling / Aggregation
 
+
+
+
   * slicing - `dice()`
-  * `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_terrain]
+  * `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_AQP], [@beaudette2013_terrain]
   * `segment()`
   * `L1`, if there is space
 
 ### Visualization
+
+
+
 
 
 ### Soil Color

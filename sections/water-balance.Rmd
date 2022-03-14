@@ -14,6 +14,6 @@ The `sharpshootR` package provides methods (via dependencies on the *elevatr*, *
 
 The *soilDB* package provides query access to the station data in the NRCS Soil Climate Analysis Network (SCAN).  These stations are instrumented to provide above and below ground climate sensor networks that measure soil temperature, soil moisture, air temperature and precipitation metrics.  Most stations have associated laboratory data in the Kellog Soil Survey Laboratory (KSSL) system.  The data in figure?? is assembled through separate calls to `fetchSCAN()` for the SCAN climate station data and `fetchKSSL()` which gathers the laboratory sampled soil information for the instrumented soil at the SCAN station. 
 
-```{r water-balance-figure, fig.cap="Annual water balance for 2018........"}
+<!--```{r water-balance-figure, fig.cap="Annual water balance for 2018........"}
 knitr::include_graphics('figures/water-balance.svg')
-```
+```-->

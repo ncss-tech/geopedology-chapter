@@ -1,23 +1,12 @@
----
-output:
-  html_document:
-    fig_caption: yes
-    number_sections: yes
-    theme: journal
-  pdf_document:
-    fig_caption: yes
-  word_document:
-    fig_caption: yes
-bibliography: bibliography.bib
----
 
 
 <!-- 500 words -->
 # Conclusions
 
-    * vision and major TODOs
-    
-'
+<!-- vision and major TODOs -->
+<!-- functionality not described here -->
+
+
 *Geopedology*....can/should we use this for the first time here!!  see if we can briefly work it into another section so this is not the first use of it.
 
 Complex data structures and increasing volumes of available data demand progress in methods that allow iterative aggregation, summary and graphical expression of soil data. The *aqp* suite of packages works to provide examples and routines that meet these challenges with an an emphasis on generalized methods that can be applied to common data structures that are designed for analytical efficiency.  This collection of tools leverages the flexibility and extensibility of the R programming environment and enables logical checks of data, profile sketches, color conversion, aggregation, numerical classification and synthesis across various sources of soil survey data.   

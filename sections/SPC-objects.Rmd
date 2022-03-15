@@ -59,7 +59,11 @@ The results of running the function on each profile are usually a single value p
 
 <!-- figure showing slice/slab/MPS if we can -->
 
+<!-- Dylan will do this -->
+
 `dice()` and  `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_AQP], [@beaudette2013_terrain] [@Beaudette_DSMorph2016]
+
+<!-- Pierre will do this -->
 
 `spc2mpspline()` interface to *mpspline2* TODO: add key citations (Pierre please add)
 

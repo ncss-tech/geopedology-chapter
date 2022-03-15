@@ -1,5 +1,7 @@
 
-## The SoilProfileCollection Object
+<!-- think about a less-jargony title -->
+
+## Representing Collections of Soil Profiles in R
 
 The `SoilProfileCollection` (SPC) is a data structure designed to coordinate linkages between elements within the typically complex (hierarchical) site description, soil morphologic description, and optionally laboratory data. Methods (data structure-specific functions) operating on the SPC include special constraints to ensure linkages aren't broken during routing operations such as editing, sub-setting, or combining collections. The first level of abstraction involves two main tiers: "site" for above-ground or those properties that are specific to a single soil profile description (e.g. surface slope), and "horizon" for below-ground or those properties that are specific to a single genetic soil horizon or layer. An additional level of abstraction is used to store spatial data (coordinates and coordinate reference system) and depth-intervals information such as diagnostic horizons. The SPC provides a means of storing user-defined metadata such as units of measure, column containing horizon designation, data source, and data citation to name a few. It is worth mentioning that the `SoilProfileCollection` object was designed with data analysis in mind; as compared to other (more complex) data structures used for archival purposes, such as those used within the USDA-NRCS National Soil Information System (NASIS).
 
@@ -42,15 +44,24 @@ The interval `[z1, z2]` can be constant across the collection or unique to each 
 <!-- split and combine methods ...  -->
 
 
+<!-- condense this into 1-2 sentences -->
+
 ### Iteration
 
 The *aqp* package provides methods for iterating (looping) over the profiles in a `SoilProfileCollection` object. Following the precedent of the base *R* `*apply()` functions, `profileApply()` will apply a function to each element (e.g. single profile) of a `SoilProfileCollection` object. 
 
 The results of running the function on each profile are usually a single value per profile or horizon, with the argument default of `simplify = TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a `data.frame` with the argument `frameify = TRUE` to automatically create a `data.frame` with the results. Results that cannot be flattened to a vector or `data.frame` are returned as a `list` -- for example, a function returning `SoilProfileCollection` objects.
 
-### Slicing and Aggregation over Slices
+
+<!-- c/o Pierre: this is really important / unique, we have to discuss it here -->
+
+### Change in Support
+
+<!-- figure showing slice/slab/MPS if we can -->
 
 `dice()` and  `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_AQP], [@beaudette2013_terrain] [@Beaudette_DSMorph2016]
+
+`spc2mpspline()` interface to *mpspline2* TODO: add key citations (Pierre please add)
 
 
 ### Data Quality and Repairs

@@ -47,14 +47,14 @@ par(mar = c(0, 0, 3, 0))
 plotSPC(x, color = 'genhz', col.label = 'Generalized Horizon Label', hz.distinctness.offset = 'hzd', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -4.5, max.depth = 175, n.depth.ticks = 8, plot.order = idx)
 
 
-# use distance matric + div. clustering to order sketches 
-d <- profile_compare(x, vars = c('genhz', 'genhz'),  max_d = 175, k = 0, rescale.result = TRUE)
-
-# divisive hierarchical clustering
-h <- as.hclust(diana(d))
-
-# attempt sorting dendrogram by depth to genhz
-h <- dendextend::rotate(h, order = idx)
+# # use distance matric + div. clustering to order sketches 
+# d <- profile_compare(x, vars = c('genhz', 'genhz'),  max_d = 175, k = 0, rescale.result = TRUE)
+# 
+# # divisive hierarchical clustering
+# h <- as.hclust(diana(d))
+# 
+# # attempt sorting dendrogram by depth to genhz
+# h <- dendextend::rotate(h, order = idx)
 
 
 ## GHL figure
@@ -63,7 +63,7 @@ svglite::svglite(filename = 'figures/sketch-demo.svg', width = 10, height = 5)
 
 par(mar = c(0, 0, 3, 0))
 
-plotSPC(x, color = 'genhz', col.label = 'Generalized Horizon Label', hz.distinctness.offset = 'hzd', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -4.5, max.depth = 175, n.depth.ticks = 8, plot.order = h$order, y.offset = -15)
+plotSPC(x, color = 'genhz', col.label = 'Generalized Horizon Label', hz.distinctness.offset = 'hzd', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -4.5, max.depth = 175, n.depth.ticks = 8, plot.order = idx, y.offset = -15)
 
 dev.off()
 

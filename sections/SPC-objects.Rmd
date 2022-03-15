@@ -48,6 +48,10 @@ The *aqp* package provides methods for iterating (looping) over the profiles in 
 
 The results of running the function on each profile are usually a single value per profile or horizon, with the argument default of `simplify = TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a `data.frame` with the argument `frameify = TRUE` to automatically create a `data.frame` with the results. Results that cannot be flattened to a vector or `data.frame` are returned as a `list` -- for example, a function returning `SoilProfileCollection` objects.
 
+### Slicing and Aggregation over Slices
+
+`dice()` and  `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_AQP], [@beaudette2013_terrain] [@Beaudette_DSMorph2016]
+
 
 ### Data Quality and Repairs
 

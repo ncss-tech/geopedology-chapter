@@ -1,6 +1,6 @@
 ---
 title: "Algorithms for Quantitative Pedology"
-author: "D.E. Beaudette, J. Skovlin, A.G. Brown, S.M. Roecker and P.Roudier"
+author: "D.E. Beaudette, J. Skovlin, A.G. Brown, S.M. Roecker and P. Roudier"
 output:
   bookdown::html_document2:
     fig_caption: yes

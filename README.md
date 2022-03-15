@@ -48,10 +48,10 @@ Jay and I are thinking about the [CLARSKVILLE](https://casoilresource.lawr.ucdav
 
 
  - [x] Introduction (Dylan / Jay)
- - [ ] SPC Objects (Andrew / Dylan / ???)
- - [ ] Soil Morphology (Dylan / Jay)
- - [ ] Resampling / Aggregation
- - [ ] Numerical Classification
+ - [x] SPC Objects (Andrew / Dylan)
+ - [x] Soil Morphology (Dylan / Jay)
+ - [x] Numerical Classification
+ - [ ] Water Balance
 
 
 # Figures

@@ -11,7 +11,8 @@ Of primary importance are the horizon data, or the layers that comprise the prof
 
 A `SoilProfileCollection` is created through "promotion" of an *R* `data.frame` (or `data.frame`-like object such as `tibble` or `data.table`) with the `depths()` function. This process requires the following parameters: `profile_id` (the name of a column containing unique profile IDs), `top_depth` (the name of a column containing horizon upper depths) and `bottom_depth` (the name of a column containing horizon lower depths) along with any additional horizon data associated with the horizons in the profile. For example, the promotion of a `data.frame` called `x` to `SoilProfileCollection` would follow: `depths(x) <- profile_id ~ top_depth + bottom_depth`.
 
-In the *R* language, the symbol `~` separates the left and right hand sides of a formula. Commonly `~` is used in formulas to mean "modeled as". In the case of the `SoilProfileCollection` we are "modelling" the geometry and ordering of horizons within each unique profile using the upper and lower depths. Performing this operation automatically sorts horizon data first by profile ID and then by horizons top depth. 
+<!-- sorry Pierre we are using US-EN conventions everywhere else... -->
+In the *R* language, the symbol `~` separates the left and right hand sides of a formula. Commonly `~` is used in formulas to mean "modeled as". In the case of the `SoilProfileCollection` we are "modeling" the geometry and ordering of horizons within each unique profile using the upper and lower depths. Performing this operation automatically sorts horizon data first by profile ID and then by horizons top depth. 
 
 The `site() <-` method is used to move site-level data from horizon-level records (necessary when starting with a mixture of horizon and replicated site data in the same table), or to merge a new table of site-level data via common ID and left join (missing records in the new table are filled with `NA`). In a similar manner, the `horizons() <-` method is used to merge a new table of horizon-level data into the `SoilProfileCollection` object via common ID (unique to specific horizons) and left join. Additional site and horizon data can be created or extracted one by one using the `$` or `[[` methods. If you are creating a new variable, the `SoilProfileCollection` will check whether the length of the vector matches either the number of "sites" or the number of "horizons". Extracting horizon or site-level data as plain `data.frame` objects is performed with the `horizons()` and `site()` functions. A detailed explanation of the `SoilProfileCollection` object and associated methods for manipulation of these objects is presented in the "Introduction to SoilProfileCollection Objects" tutorial [@SPC_intro].
 
@@ -58,13 +59,18 @@ The interval `[z1, z2]` can be constant across the collection or unique to each 
 
 <!-- Dylan will do this -->
 
-`dice()` and  `slab()`, continuous and categorical [@harradine1963], [@beaudette2013_AQP], [@beaudette2013_terrain] [@Beaudette_DSMorph2016]
+Soil data are typically collected by genetic horizon (e.g. A, Bt, C, etc.), regular depths (e.g. every 10cm), or composite samples representing depth intervals (e.g. 0-25cm). Shifting between these conventions represents a "change in support" **(citation)** that can take two main forms: down-scaling genetic horizon to sequence of regular depth-slices, and, aggregation of multiple depth-slices or genetic horizons to a more general depth interval. In *aqp*, down-scaling is referred to as "slicing" and implemented in the `dice()` function. Aggregation to depth-intervals within a single profile, or over a collection of profiles, is performed with the `slab()` function. 
+
+[@harradine1963], [@beaudette2013_AQP], [@beaudette2013_terrain] [@Beaudette_DSMorph2016]
+
 
 <!-- Pierre will do this -->
+**TODO: add key citations (Pierre please add)**
 
-`spc2mpspline()` interface to *mpspline2* [@mpspline2_pkg2020] 
+Down-scaling and aggregation of horizon data can be performed with constrained interpolation (e.g. preservation of mass) is performed with the `spc2mpspline()` function...
 
-TODO: add key citations (Pierre please add)
+`spc2mpspline()` interface to *mpspline2* [@mpspline2_pkg2020]...
+
 
 
 ### Data Quality and Repairs

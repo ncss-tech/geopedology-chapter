@@ -113,3 +113,5 @@ text(x=rep(lsp$x0[1], times=length(sensor.depths)), y=sensor.depths, labels = se
 plotSPC(ss[2], name='genhz', print.id = FALSE, id.style='top', color='genhz', cex.names=0.75, width=0.05, x.idx.offset=-0.65, axis.line.offset=-5, space=2, scaling.factor = 1, relative.pos = 2, max.depth = 200, show.legend = FALSE, add = TRUE)
 
 # TODO: not sure how to get these two figures side by side
+# combine precip, utilization from dailyWB over sensor soil moisture
+xyplot(c(P, U, -(value)) ~ Date | factor(Site), groups=factor(depth), data=d, as.table=TRUE, type=c('l','g'), scales=list(alternating=3, x=list(at=date.axis, format="%b"), y=list(relation='free', rot=0)), ylim = c(-50, 60), ylab='', main='Soil Moisture at sensor depths (cm)')

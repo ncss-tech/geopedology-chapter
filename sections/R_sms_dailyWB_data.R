@@ -1,19 +1,11 @@
 library(sharpshootR)
 library(hydromad)
-library(sf)
-library(sp)
-library(curl)
 library(soilDB)
 library(aqp)
-library(sf)
 library(sp)
 library(rgeos)
-library(raster)
-library(dplyr)
-library(plyr)
-library(ggplot2)
-library(ggspatial)
 library(RColorBrewer)
+library(reshape2)
 
 # parameters
 yr <- 2018
@@ -31,9 +23,6 @@ idx <- grep('-', x$SMS$sensor.id)
 x <- x$SMS[-idx, ]
 nrow(x)
 
-#x$doy <- strftime(x$SMS$date, format = "%j")
-
-head(x$SMS)
 
 # get KSSL data - soil sampled here is Scholten series
 s <- fetchKSSL(pedon_id = 'S2012MO067001')
@@ -52,14 +41,14 @@ d.jr <- dailyWB_SSURGO(
   cokeys = NULL,
   start = yr,
   end = yr,
-  modelDepth = 100,
+  modelDepth = 50,
   MS.style = "default",
-  a.ss = 0.1,
+  a.ss = 0.01,
   S_0 = 0.5,
   bufferRadiusMeters = 1
 )
 
-# dailyWB returns data for Scholten and Poyner components
+# dailyWB returns data for Scholten and Poynor components
 idx <- which(d.jr$compname == 'Scholten')
 d.jr <- d.jr[idx, ]
 nrow(d.jr)
@@ -69,11 +58,17 @@ names(d.jr) <- c("Date", "P", "E", "U", "S", "ET", "VWC", "compname", "sat",
 "fc", "pwp", "state", "month", "year", "week", "doy")
 
 # assemble joined data - primary set of sms sensors and daily water balance for the same year
-d <- join(x, d.jr, by='Date', type='inner')
+d <- merge(x, d.jr, by = 'Date', all.x = TRUE, all.y = FALSE, sort = FALSE)
 nrow(d)
 
+
+# assign a label field
+#d$depth <- 'soil moisture'
+sensor.depths <- unique(d$depth)
+
+
 # slice the KSSL data associated with the sensor depths
-s1 <- aqp::slice(s, sensor.depths ~ .)
+s1 <- dice(s, sensor.depths ~ ., SPC = TRUE)
 
 # combine sensors of interest
 #g <- make.groups('soil moisture'=d)
@@ -81,9 +76,6 @@ s1 <- aqp::slice(s, sensor.depths ~ .)
 # generate a better axis for dates
 date.axis <- seq.Date(as.Date(min(d$Date)), as.Date(max(d$Date)), by='1 months')
 
-# assign a label field
-#d$depth <- 'soil moisture'
-sensor.depths <- unique(d$depth)
 
 #xyplot(value ~ Date | factor(Site), groups=factor(depth), data=d, as.table=TRUE, type=c('l','g'), auto.key=list(columns=length(sensor.depths), lines=TRUE, points=FALSE), strip=strip.custom(bg=grey(0.80)), scales=list(alternating=3, x=list(at=date.axis, format="%b\n%Y"), y=list(relation='free', rot=0)), ylab='', main='Soil Moisture at sensor depths (cm)')
 
@@ -97,7 +89,7 @@ update(p, par.settings =
                       
 # combine original profile and genhz profile - need to trick profile_id here
 profile_id(s.ghl) <- 59535
-ss <- aqp::combine(s, s.ghl)
+ss <- combine(s, s.ghl)
 
 # plot profile of lab data horizons with sensors next to genhz profile 
 par(mar=c(0,0,3,1))
@@ -115,3 +107,62 @@ plotSPC(ss[2], name='genhz', print.id = FALSE, id.style='top', color='genhz', ce
 # TODO: not sure how to get these two figures side by side
 # combine precip, utilization from dailyWB over sensor soil moisture
 xyplot(c(P, U, -(value)) ~ Date | factor(Site), groups=factor(depth), data=d, as.table=TRUE, type=c('l','g'), scales=list(alternating=3, x=list(at=date.axis, format="%b"), y=list(relation='free', rot=0)), ylim = c(-50, 60), ylab='', main='Soil Moisture at sensor depths (cm)')
+
+
+## DEB: tinkering
+
+# rescale measured VWC to 0,1
+d$value <- d$value / 100
+
+
+# does modeled VWC track measured?
+xyplot(value - VWC ~ Date | factor(depth), data = d, as.table = TRUE)
+
+
+xyplot(
+  value ~ Date | factor(depth), 
+  data=d, 
+  as.table = TRUE,
+  type=c('l','g'), 
+  scales=list(alternating=3, x = list(at = date.axis, format = "%b", rot = 90)), 
+  ylab='Volumetric Water Content (cm/cm)', 
+  xlab = '',
+  main='Soil Moisture at sensor depths (cm)',
+  strip = strip.custom(bg = grey(0.85)),
+  panel = function(...) {
+    panel.xyplot(...)
+    
+    .wbdata <- d[d$depth == 5, ]
+    panel.lines(x = .wbdata$Date, y = .wbdata$VWC, col = 'black')
+  }
+)
+
+xyplot(value ~ Date | factor(Site), groups=factor(depth), data=d, as.table=TRUE, type=c('l','g'), scales=list(alternating=3, x=list(at=date.axis, format="%b"), y=list(relation='free', rot=0)), ylab='', main='Soil Moisture at sensor depths (cm)')
+
+plot(value ~ Date, data = d, subset = depth == 5, type = 'l', las = 1, ylab = 'Volumetric Water Content (cm/cm)')
+lines(VWC ~ Date, data = d, col = 2, subset = depth == 5)
+
+xyplot(P ~ Date, data = d, type = 'h', ylab = 'Precipitation')
+xyplot(U ~ Date, data = d, type = 'h', ylab = 'Precipitation')
+
+
+## not a good idea ... 
+
+# here is a crazy idea, take mean measured VWC
+d.sub <- subset(d, subset = depth < 50)
+d.l <- split(d.sub, d.sub$Date)
+d.l <- lapply(d.l, function(i) {
+  data.frame(Date = i$Date[1], value = mean(i$value), VWC = i$VWC[1], P = i$P[1], U = i$U[1])
+})
+
+d.agg <- do.call('rbind', d.l)
+
+d.long <- melt(d.agg, id.vars = 'Date', measure.vars = c('value', 'VWC', 'P', 'U'))
+
+
+
+xyplot(value ~ Date, groups = variable, subset = variable %in% c('value', 'VWC'), data = d.long, type = 'l', ylab = 'Volumetric Water Content (cm/cm)')
+
+xyplot(value ~ Date, groups = variable, subset = variable %in% c('P', 'U'), data = d.long, type = 'l', ylab = 'PPT | U (mm)')
+
+

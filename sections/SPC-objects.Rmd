@@ -51,37 +51,6 @@ The interval `[z1, z2]` can be constant across the collection or unique to each 
 <!-- The results of running the function on each profile are usually a single value per profile or horizon, with the argument default of `simplify = TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a `data.frame` with the argument `frameify = TRUE` to automatically create a `data.frame` with the results. Results that cannot be flattened to a vector or `data.frame` are returned as a `list` -- for example, a function returning `SoilProfileCollection` objects. -->
 
 
-<!-- c/o Pierre: this is really important / unique, we have to discuss it here -->
-
-### Change in Support
-
-<!-- figure showing slice/slab/MPS if we can -->
-
-<!-- Dylan will do this -->
-
-Soil data are typically collected by genetic horizon (e.g. A, Bt, C, etc.), regular depths (e.g. every 10cm), or composite samples representing depth intervals (e.g. 0-25cm). Shifting between these conventions represents a "change in support" **(citation)** that can take two main forms: down-scaling genetic horizon to sequence of regular depth-slices, and, aggregation of multiple depth-slices or genetic horizons to a more general depth interval. In *aqp*, down-scaling is referred to as "slicing" and implemented in the `dice()` function. Aggregation to depth-intervals within a single profile, or over a collection of profiles, is performed with the `slab()` function [@beaudette2013_AQP]. It is possible to summarize an entire collection of soil profiles by "slicing" horizon data (continuous or categorical) into 1cm-thick depth intervals and then aggregating via `slab()` over those depth intervals. Continuous values are reduced to select percentiles (or any user-defined function) per slice [@beaudette2013_terrain], and categorical values are reduced to proportions [@Beaudette_DSMorph2016].
-
-
-<!-- adapted from 2015 DSMorph ideas / figure -->
-<!-- not sure if this is going to work here -->
-```{r slice-slab-GHL-figure, fig.cap="..."}
-knitr::include_graphics('figures/slice-slab-GHL-example.svg')
-```
-
-<!-- try to work-in [@harradine1963] -->
-
-
-
-
-<!-- Pierre will do this -->
-**TODO: add key citations (Pierre)**
-
-Down-scaling and aggregation of horizon data can be performed with constrained interpolation (e.g. preservation of mass) is performed with the `spc2mpspline()` function...
-
-`spc2mpspline()` interface to *mpspline2* [@mpspline2_pkg2020]...
-
-
-
 ### Data Quality and Repairs
 
 The *aqp* package provides several methods for identifying problematic profile geometry and (possibly) "fixing" it. Most soil databases and methods for storing soils information do not have front end validations that prevent entry of data with "illogical" content. Some analyses rely on having only one record of data per depth/profile combination such as those involving depth-weighted averages, or rely on having a "complete" set of records in all profiles over a particular interval.

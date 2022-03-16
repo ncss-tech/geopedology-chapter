@@ -8,7 +8,7 @@ library(stringi)
 
 
 p <- contrastChart(m = '7.5YR 4/3', hues = c('5YR', '7.5YR', '10YR'))
-p <- update(p, scales = list(cex = 1))
+p <- update(p, scales = list(cex = 1), par.settings = list(fontsize = list(text = 14)))
 
 
 svglite::svglite(filename = 'figures/contast-chart.svg', width = 15, height = 6.8)

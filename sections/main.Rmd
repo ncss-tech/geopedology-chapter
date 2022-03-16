@@ -33,6 +33,9 @@ source('figs-SPC.R')
 source('figs-soil-morphology.R')
 source('figs-sketches-num-taxonomy.R')
 
+
+# convert figures to PNG for final export to Word
+source('convert-figs-to-PNG.R')
 ```
 
 

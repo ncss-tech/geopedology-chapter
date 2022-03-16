@@ -83,9 +83,9 @@ dev.off()
 
 ## figure 2
 
-svglite(filename = 'figures/SPC-example-2.svg', width = 8, height = 4.5)
+svglite(filename = 'figures/SPC-example-2.svg', width = 7, height = 4)
 
-par(mar=c(0,0,0,1), mfrow=c(1,1))
+par(mar=c(0,0,0,1))
 
 .top <- 35
 .bottom <- 95
@@ -113,7 +113,7 @@ plotMultipleSPC(
   .s,
   args = .a,
   group.labels = .labs, 
-  axis.line.offset = -3,
+  axis.line.offset = -2.1,
   label.offset = 10, 
   label.cex = 1
 )

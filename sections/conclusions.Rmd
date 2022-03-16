@@ -1,7 +1,7 @@
 
 
 <!-- 500 words -->
-# Conclusions
+# Discussion and Conclusions
 
 <!-- vision and major TODOs -->
 <!-- functionality not described here -->

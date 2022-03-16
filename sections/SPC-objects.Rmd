@@ -44,16 +44,11 @@ Partitioning soil profile collections on logical expressions of site and horizon
 The interval `[z1, z2]` can be constant across the collection or unique to each profile. By default the whole horizon is returned unmodified whether it falls fully within the range or not -- creating a "ragged" `SoilProfileCollection` (Figure \@ref(fig:SPC-subsetting-figure-2)). When `glom(truncate=TRUE)` or `trunc()` the upper and lower boundaries of the resulting horizons will be cut to the interval specified and the profiles will generally have consistent upper and lower boundaries assuming there are no missing data in the interval.
 
 
-<!-- split and combine methods ...  -->
+<!-- ### Iteration -->
 
+<!-- The *aqp* package provides methods for iterating (looping) over the profiles in a `SoilProfileCollection` object. Following the precedent of the base *R* `*apply()` functions, `profileApply()` will apply a function to each element (e.g. single profile) of a `SoilProfileCollection` object.  -->
 
-<!-- condense this into 1-2 sentences -->
-
-### Iteration
-
-The *aqp* package provides methods for iterating (looping) over the profiles in a `SoilProfileCollection` object. Following the precedent of the base *R* `*apply()` functions, `profileApply()` will apply a function to each element (e.g. single profile) of a `SoilProfileCollection` object. 
-
-The results of running the function on each profile are usually a single value per profile or horizon, with the argument default of `simplify = TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a `data.frame` with the argument `frameify = TRUE` to automatically create a `data.frame` with the results. Results that cannot be flattened to a vector or `data.frame` are returned as a `list` -- for example, a function returning `SoilProfileCollection` objects.
+<!-- The results of running the function on each profile are usually a single value per profile or horizon, with the argument default of `simplify = TRUE` converting them back to simplest vector representation. Alternately, the result can be one or more rows of a `data.frame` with the argument `frameify = TRUE` to automatically create a `data.frame` with the results. Results that cannot be flattened to a vector or `data.frame` are returned as a `list` -- for example, a function returning `SoilProfileCollection` objects. -->
 
 
 <!-- c/o Pierre: this is really important / unique, we have to discuss it here -->
@@ -68,7 +63,9 @@ The results of running the function on each profile are usually a single value p
 
 <!-- Pierre will do this -->
 
-`spc2mpspline()` interface to *mpspline2* TODO: add key citations (Pierre please add)
+`spc2mpspline()` interface to *mpspline2* [@mpspline2_pkg2020] 
+
+TODO: add key citations (Pierre please add)
 
 
 ### Data Quality and Repairs

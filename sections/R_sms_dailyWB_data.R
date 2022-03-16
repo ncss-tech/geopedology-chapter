@@ -195,10 +195,21 @@ p.top <- xyplot(
   xlab = '',
   main='',
   panel = function(...) {
-    panel.xyplot(...)
+    
+    # guides
     panel.abline(v = date.axis, lty = 3, col = grey(0.5))
     panel.abline(h = seq(0, 50, by = 10), lty = 3, col = grey(0.5))
-    panel.lines(x = d.sub$Date, y = d.sub$U, col = 'black', type = 'h', lwd = 2, lend = 1)
+    
+    # main figure
+    panel.xyplot(...)
+    
+    # modeled data
+    # filter out noise ~ 1 mm surplus
+    .wbdata <- d.sub[which(d.sub$U > 1), ]
+    panel.lines(x = .wbdata$Date, y = .wbdata$U, col = 'black', type = 'h', lwd = 2, lend = 1)
+    
+    # ... point symbols don't work well here
+    # panel.points(x = .wbdata$Date, y = .wbdata$U, col = 'black', pch = '-', cex = 3, lwd = 3)
   }
 )
 
@@ -214,9 +225,14 @@ p.bottom <- xyplot(
   xlab = '',
   main='',
   panel = function(...) {
-    panel.xyplot(...)
+    # guides
     panel.abline(v = date.axis, lty = 3, col = grey(0.5))
     panel.abline(h = seq(0.05, 0.45, by = 0.1), lty = 3, col = grey(0.5))
+    
+    # main figure
+    panel.xyplot(...)
+    
+    # modeled data
     panel.lines(x = d.sub$Date, y = d.sub$VWC, col = 'black')
   }
 )

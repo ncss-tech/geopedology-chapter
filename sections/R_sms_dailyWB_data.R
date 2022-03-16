@@ -7,6 +7,11 @@ library(rgeos)
 library(RColorBrewer)
 library(reshape2)
 
+library(latticeExtra)
+library(tactile)
+
+library(svglite)
+
 # parameters
 yr <- 2018
 
@@ -109,9 +114,10 @@ plotSPC(ss[2], name='genhz', print.id = FALSE, id.style='top', color='genhz', ce
 xyplot(c(P, U, -(value)) ~ Date | factor(Site), groups=factor(depth), data=d, as.table=TRUE, type=c('l','g'), scales=list(alternating=3, x=list(at=date.axis, format="%b"), y=list(relation='free', rot=0)), ylim = c(-50, 60), ylab='', main='Soil Moisture at sensor depths (cm)')
 
 
+
 ## DEB: tinkering
 
-# rescale measured VWC to 0,1
+# re-scale measured VWC to 0,1
 d$value <- d$value / 100
 
 
@@ -146,23 +152,140 @@ xyplot(P ~ Date, data = d, type = 'h', ylab = 'Precipitation')
 xyplot(U ~ Date, data = d, type = 'h', ylab = 'Precipitation')
 
 
-## not a good idea ... 
-
-# here is a crazy idea, take mean measured VWC
-d.sub <- subset(d, subset = depth < 50)
-d.l <- split(d.sub, d.sub$Date)
-d.l <- lapply(d.l, function(i) {
-  data.frame(Date = i$Date[1], value = mean(i$value), VWC = i$VWC[1], P = i$P[1], U = i$U[1])
-})
-
-d.agg <- do.call('rbind', d.l)
-
-d.long <- melt(d.agg, id.vars = 'Date', measure.vars = c('value', 'VWC', 'P', 'U'))
+## attempt at a composite figure
+## PPT | U
+## -------
+## measured | modeled VWC
+d.sub <- subset(d, subset = depth == 5)
 
 
+# start of each month
+date.axis <- seq.Date(as.Date(min(d$Date)), as.Date(max(d$Date)), by='1 months')
 
-xyplot(value ~ Date, groups = variable, subset = variable %in% c('value', 'VWC'), data = d.long, type = 'l', ylab = 'Volumetric Water Content (cm/cm)')
+# shift to approximately center of months (+14 days)
+date.axis <- date.axis + 14
 
-xyplot(value ~ Date, groups = variable, subset = variable %in% c('P', 'U'), data = d.long, type = 'l', ylab = 'PPT | U (mm)')
+# tighter x-axis limits
+.xlim <- c(min(date.axis) - 19, max(date.axis) + 22)
+
+## TODO: figure out how to add a key to both panels...
+
+key.ppt <- list(
+  x = 0.7, y = 0.96,
+  text = list(c("Precipitation", "Modeled Surplus")),
+  lines = list(col = c("royalblue", "black"), lwd = c(5, 2)),
+  cex = 0.85
+)
+
+key.vwc <- list(
+  x = 0.78, y = 0.99,
+  text = list(c("Measured", "Modeled")),
+  lines = list(col = c("royalblue", "black"), lwd = c(2, 2)),
+  cex = 0.9
+)
+
+p.top <- xyplot(
+  P ~ Date, 
+  data = d.sub, 
+  type = 'h', 
+  scales = list(alternating=1, x = list(at = date.axis, format = "%d %b\n%Y", rot = 0), y = list(tick.number = 8, rot = 0)), 
+  col = 'royalblue', lwd = 5, lend = 1, 
+  ylab='Precipitation | Surplus (mm)', 
+  # key = key.ppt,
+  xlab = '',
+  main='',
+  panel = function(...) {
+    panel.xyplot(...)
+    panel.abline(v = date.axis, lty = 3, col = grey(0.5))
+    panel.abline(h = seq(0, 50, by = 10), lty = 3, col = grey(0.5))
+    panel.lines(x = d.sub$Date, y = d.sub$U, col = 'black', type = 'h', lwd = 2, lend = 1)
+  }
+)
+
+
+p.bottom <- xyplot(
+  value ~ Date, 
+  data = d.sub, 
+  type = 'l', 
+  scales = list(alternating=1, x = list(at = date.axis, format = "%d %b\n%Y", rot = 0), y = list(tick.number = 8, rot = 0)), 
+  lwd = 2, col = 'royalblue',
+  ylab='Volumetric Water Content (cm/cm)', 
+  # key = key.vwc,
+  xlab = '',
+  main='',
+  panel = function(...) {
+    panel.xyplot(...)
+    panel.abline(v = date.axis, lty = 3, col = grey(0.5))
+    panel.abline(h = seq(0.05, 0.45, by = 0.1), lty = 3, col = grey(0.5))
+    panel.lines(x = d.sub$Date, y = d.sub$VWC, col = 'black')
+  }
+)
+
+
+# stack into rows, equal space
+p <- c(p.bottom, p.top, x.same = TRUE, y.same = FALSE, layout = c(1, 2))
+
+# final adjustments
+p <- update(
+  p, 
+  ylab = c('Volumetric Water Content (cm/cm)', 'Precipitation | Surplus (mm)'),
+  main = 'Measured vs. Modeled Conditions ... SCAN Site ... 5cm Sensor Depth',
+  xlim = .xlim,
+  key = key.vwc,
+  par.settings = tactile.theme(par.ylab.text = list(cex = 0.8))
+)
+
+
+svglite(filename = 'figures/WB-SCAN-synthesis.svg', width = 8, height = 6)
+print(p)
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 
+# 
+# ## not a good idea ... 
+# 
+# # here is a crazy idea, take mean measured VWC
+# d.sub <- subset(d, subset = depth < 50)
+# d.l <- split(d.sub, d.sub$Date)
+# d.l <- lapply(d.l, function(i) {
+#   data.frame(Date = i$Date[1], value = mean(i$value), VWC = i$VWC[1], P = i$P[1], U = i$U[1])
+# })
+# 
+# d.agg <- do.call('rbind', d.l)
+# 
+# d.long <- melt(d.agg, id.vars = 'Date', measure.vars = c('value', 'VWC', 'P', 'U'))
+# 
+# 
+# 
+# xyplot(value ~ Date, groups = variable, subset = variable %in% c('value', 'VWC'), data = d.long, type = 'l', ylab = 'Volumetric Water Content (cm/cm)')
+# 
+# xyplot(value ~ Date, groups = variable, subset = variable %in% c('P', 'U'), data = d.long, type = 'l', ylab = 'PPT | U (mm)')
 
 

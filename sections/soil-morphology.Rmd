@@ -68,7 +68,7 @@ knitr::include_graphics('figures/contast-chart.svg')
 
 Conceptual sketches of soil profiles that illustrate variation in morphology (e.g. horizon depths, horizon designations, color, texture, etc.) in relation to transect or catenary position are a pedologic staple. Either hand-drawn in field notes or carefully produced as part of a final soil survey manuscript, these sketches represent an important vehicle for communicating observation and context to technical and non-technical audiences alike. A data-driven approach to creating soil profile sketches was one the of the original motivations for the *aqp* R package [@beaudette2013_AQP]. Since 2010, the profile sketch authoring tools in *aqp* have progressed from basic layout of filled rectangles (profiles and horizons) to thematic coloring of horizons based on properties or classes, encoding of horizon boundary information, and handling of label collision to name a few examples.
 
-```{r catena-sketch-figure, fig.cap="Illustration of an idealized hillslope catena for soil components from two adjacent mapunits within the Ozark Highlands."}
+```{r catena-sketch-figure, fig.cap="Illustration of an idealized hillslope catena for soil components from two adjacent mapunits within the Ozark Highlands.  SSURGO map unit soil components are approximately placed within a geomorphic hillslope context....."}
 knitr::include_graphics('figures/cross-section.svg')
 ```
 
@@ -76,7 +76,7 @@ The `plotSPC()` function (*aqp* package) is the primary tool for creating soil p
 
 
 
-### Genetic / Generalized Horizons
+### Functional Horizon Aggregation
 
 Soil scientists use a common language of horizon designation nomenclature to describe and articulate the observed differences in soil horizons within a soil profile. These basic notations and the act of 'naming' genetic horizons distills important information in the form of master horizons, characteristic subscripts, horizon and pedogenic sequences and parent material discontinuities.  Horizon designations convey a mental concept of the soil properties while allowing complexity and variability in how horizon designations are applied. Experienced soil scientists will generally apply horizon nomenclature similarly to the features they observe and identify in the process of describing a soil profile due to the rigid guidelines and definitions of their application.  Building on these similarities of horizon usage is a concept called, Generalized Horizon Labels (GHL) which seeks to unify a similar yet diverse set of soil profile horizonations for the purpose of aggregation, analysis, and summary operations[@Beaudette_DSMorph2016; @Roecker2016]. The process of applying GHL to a collection of soil profiles involves a series of micro-correlations made by a soil scientist to determine which horizons have similar soil morphology and properties to be grouped together for aggregation across horizons within a `SoilProfileCollection`. The aggregations into GHL provide a way to convey functional horizons for collections of soil profiles, such summary concepts can be extended to pedotransfer functions [@Wagenet1991].
 

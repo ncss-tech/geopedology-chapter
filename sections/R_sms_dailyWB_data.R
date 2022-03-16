@@ -252,7 +252,7 @@ p <- update(
 )
 
 
-svglite(filename = 'figures/WB-SCAN-synthesis.svg', width = 8, height = 6)
+svglite(filename = 'figures/WB-SCAN-synthesis.svg', width = 8, height = 5.5)
 print(p)
 dev.off()
 

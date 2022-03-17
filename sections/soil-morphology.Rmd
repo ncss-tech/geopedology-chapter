@@ -78,23 +78,12 @@ The `depthOf()` family of functions utilize REGEX pattern matching to specific h
 ### Change of Support
 
 
-Soil data are typically collected either by genetic horizon (e.g. A, Bt, C [varying depths]), at regular depths (e.g. every 10cm), or from composite samples representing depth intervals (e.g. 0-25cm).  The structure of these depth intervals may be identical throughout the collection, but often vary from one profile to the next. To facilitate analysis throughout the profile collection, they may need to be modified and/or harmonized. A simple down-scaling of horizons (without interpolation) into a regular sequence of thinner depth slices, referred to as "slicing", is implemented in the `dice()` function (Figure \@ref(fig:slice-slab-GHL-figure)A). The `segment()` function offers another approach to restructuring horizon depths, using horizon-thickness weighted mean values for conversion to fixed depth intervals (e.g. 0-25cm). This is is a common step in the thematic mapping of soil property data. A more complex change of horizon depths can be achieved using constrained interpolation. This method, popular for applications such as digital soil mapping and requiring harmonized horizon depths, was proposed by @bishop1999modelling, and uses mass-preserving splines. In *aqp*, this type of down-scaling is performed with the `spc2mpspline()` function--a convenient interface to the *mpspline2* package [@mpspline2_pkg2020] suitable for `SoilProfileCollection` objects.
+Soil data are typically collected either by genetic horizon (e.g. A, Bt, C [varying depths]), at regular depths (e.g. every 10cm), or from composite samples representing depth intervals (e.g. 0-25cm).  The structure of these depth intervals may be identical throughout the collection, but often vary from one profile to the next. To facilitate analysis throughout the profile collection, they may need to be modified and/or harmonized (i.e. change of support). A simple down-scaling of horizons (without interpolation) into a regular sequence of thinner depth slices, referred to as "slicing", is implemented in the `dice()` function (Figure \@ref(fig:slice-slab-GHL-figure)A). The `segment()` function offers another approach to restructuring horizon depths, using horizon-thickness weighted mean values for conversion to fixed depth intervals (e.g. 0-25cm). This is is a common step in the thematic mapping of soil property data. A more complex change of horizon depths can be achieved using constrained interpolation. This method, popular for applications such as digital soil mapping and requiring harmonized horizon depths, was proposed by @bishop1999modelling, and uses mass-preserving splines. In *aqp*, this type of down-scaling is performed with the `spc2mpspline()` function--a convenient interface to the *mpspline2* package [@mpspline2_pkg2020] suitable for `SoilProfileCollection` objects.
 
 <!-- adapted from 2015 DSMorph ideas / figure -->
-```{r slice-slab-GHL-figure, fig.cap="Change of support demonstration using 25 pedons correlatd to the Clarksville soil series. Generalized horizon labels (GHL) have been resampled to 1cm slices (A) via `dice()`, aggregated across slices to GHL proportions (B) via `slab()`, and modeled via proportional-odds logistic regression (C)."}
+```{r slice-slab-GHL-figure, fig.cap="Change of support demonstration using 25 pedons correlated to the Clarksville soil series. Generalized horizon labels (GHL) have been resampled to 1cm slices (A) via `dice()`, aggregated across slices to GHL proportions (B) via `slab()`, and modeled via proportional-odds logistic regression (C)."}
 knitr::include_graphics('figures/slice-slab-GHL-both.svg')
 ```
 
-Finally, another justification for changing horizon depth support is to generate statistical summaries of a soil profile collection. Aggregation of horizon-level properties over a collection of profiles is performed with the `slab()` function [@beaudette2013_AQP]. It summarizes an entire collection of soil profiles by "slicing" horizon data (continuous or categorical) into 1cm-thick depth intervals, then aggregating over those depth intervals (Figure \@ref(fig:slice-slab-GHL-figure)). Continuous values are reduced to select percentiles (or any user-defined function) per slice [@beaudette2013_terrain], and categorical values are reduced to proportions. [@Beaudette_DSMorph2016].
-
-
-<!-- try to work-in [@harradine1963] -->
-
-
- 
- 
- 
- 
- 
- 
+A change of support operation performed over all profiles in a collection results in a statistical summary of that collection. The `slab()` function performs this kind of operation by "slicing" horizon data (continuous or categorical) into 1cm-thick depth intervals (Figure \@ref(fig:slice-slab-GHL-figure)A), then aggregating over those depth intervals [@harradine1963; @beaudette2013_AQP]. Continuous values are reduced to select percentiles (or any user-defined function) per slice, and categorical values are reduced to proportions (Figure \@ref(fig:slice-slab-GHL-figure)B) [@beaudette2013_terrain]. Alternatively, sliced categorical data such as generalize horizon labels (GHL) can be aggregated using statistical models for ordinal data--such as the proportional-odds logistic regression model (Figure \@ref(fig:slice-slab-GHL-figure)C) [@Beaudette_DSMorph2016].
 

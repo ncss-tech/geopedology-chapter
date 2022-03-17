@@ -48,7 +48,7 @@ knitr::include_graphics('figures/contast-chart.svg')
 
 Conceptual sketches of soil profiles that illustrate variation in morphology (e.g. horizon depths, horizon designations, color, texture, etc.) in relation to transect or catenary position are a pedologic staple. Either hand-drawn in field notes or carefully produced as part of a final soil survey manuscript, these sketches represent an important vehicle for communicating observation and context to technical and non-technical audiences alike. A data-driven approach to creating soil profile sketches was one the of the original motivations for the *aqp* R package [@beaudette2013_AQP]. Since 2010, the profile sketch authoring tools in *aqp* have progressed from basic layout of filled rectangles (profiles and horizons) to thematic coloring of horizons based on properties or classes, encoding of horizon boundary information, and handling of label collision to name a few examples.
 
-```{r catena-sketch-figure, fig.cap="Illustration of an idealized hillslope catena for soil components from two adjacent mapunits within the Ozark Highlands.  SSURGO map unit soil components are approximately placed within a geomorphic hillslope context....."}
+```{r catena-sketch-figure, fig.cap="Illustration of an idealized hillslope catena for soil components from two adjacent mapunits within the Ozark Highlands.  SSURGO map unit soil components for two adjacent mapunits are placed within a geomorphic hillslope sequence to convey soil property to soil parent material relationships.  Munsell soil colors  from each official series description are displayed in tandem companion profiles."
 knitr::include_graphics('figures/cross-section.svg')
 ```
 

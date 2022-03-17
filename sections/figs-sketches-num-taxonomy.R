@@ -50,24 +50,24 @@ idx <- order(z.1$hzdept, z.2$hzdept)
 
 ## GHL colors
 
-# default, RColorBrewer spectral
-genhz.cols <- c("#3288BD", "#99D594", "#E6F598", "#FEE08B", "#FC8D59", "#D53E4F")
-genhz.cols <- darken(genhz.cols, amount = 0.25)
-
-# nah
-genhz.cols <- viridis::viridis(length(levels(x$genhz)))
-genhz.cols <- viridis::turbo(length(levels(x$genhz)))
-
-# no
-genhz.cols <- RColorBrewer::brewer.pal(6, 'Set2')
-genhz.cols <- darken(genhz.cols, amount = 0.25)
-
-# duplo colors
-genhz.cols <- RColorBrewer::brewer.pal(6, 'Set1')
-genhz.cols <- lighten(genhz.cols, amount = 0.1)
-
-# almost!
-genhz.cols <- wes_palette('Zissou1', n = length(levels(x$genhz)), type = 'continuous')
+# # default, RColorBrewer spectral
+# genhz.cols <- c("#3288BD", "#99D594", "#E6F598", "#FEE08B", "#FC8D59", "#D53E4F")
+# genhz.cols <- darken(genhz.cols, amount = 0.25)
+# 
+# # nah
+# genhz.cols <- viridis::viridis(length(levels(x$genhz)))
+# genhz.cols <- viridis::turbo(length(levels(x$genhz)))
+# 
+# # no
+# genhz.cols <- RColorBrewer::brewer.pal(6, 'Set2')
+# genhz.cols <- darken(genhz.cols, amount = 0.25)
+# 
+# # duplo colors
+# genhz.cols <- RColorBrewer::brewer.pal(6, 'Set1')
+# genhz.cols <- lighten(genhz.cols, amount = 0.1)
+# 
+# # almost!
+# genhz.cols <- wes_palette('Zissou1', n = length(levels(x$genhz)), type = 'continuous')
 
 # this is nice
 genhz.cols <- rev(met.brewer('Hiroshige', n = length(levels(x$genhz))))
@@ -108,9 +108,9 @@ svglite::svglite(filename = 'figures/genhz-dendrogram.svg', width = 10, height =
 
 par(mar = c(0, 0, 3, 1))
 
-plotProfileDendrogram(x, clust = h, scaling.factor = 0.008, y.offset = 0.05, color = 'genhz', col.label = 'Generalized Horizon Label', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -2.75, max.depth = 175, n.depth.ticks = 8)
+plotProfileDendrogram(x, clust = h, scaling.factor = 0.008, y.offset = 0.05, color = 'genhz', col.palette = genhz.cols, col.label = 'Generalized Horizon Label', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -2.75, max.depth = 175, n.depth.ticks = 8)
 
-!dev.off()
+dev.off()
 
 
 

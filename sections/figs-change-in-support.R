@@ -8,21 +8,23 @@ library(aqp)
 library(lattice)
 library(rms)
 library(reshape2)
+library(MetBrewer)
+library(svglite)
 
 ## pre-cached/subset data
 x <- readRDS('../local-data/clarksville-pedons-final.rds')
 
-x$genhz
+table(x$genhz)
 
 
-genzh.cols <- c("#3288BD", "#99D594", "#E6F598", "#FEE08B", "#FC8D59", "#D53E4F")
-
+# this is nice
+genhz.cols <- rev(met.brewer('Hiroshige', n = length(levels(x$genhz))))
 
 # keep track of generalized horizon names for later
 hz.names <- levels(x$genhz)
 
 # associate GHL colors
-x$genhz.soil_color <- genzh.cols[match(x$genhz, hz.names)]
+x$genhz.soil_color <- genhz.cols[match(x$genhz, hz.names)]
 
 # slice out color and horizon name into 1cm intervals: no aggregation
 max.depth <- 180
@@ -85,20 +87,43 @@ names(g.wide) <- make.names(names(g.wide))
 
 ## ... generalize this someday
 
-svglite(filename = 'figures/slice-slab-GHL-example.svg', width = 8, height = 3.5)
+
+## PO-LR curves
+
+svglite(filename = 'figures/slice-slab-GHL-PO-LR.svg', width = 8, height = 3.5)
 
 n.slices <- 50
 par(mar=c(0,0,0.5,2))
 plotSPC(s[1:25, 1:n.slices], color='genhz.soil_color', name='', print.id=FALSE, n=32, cex.depth.axis=1, divide.hz = TRUE, lwd = 0.5)
-legend('top', legend=hz.names[1:6], col=genzh.cols[1:6], pch=15, bty='n', horiz=TRUE, cex=1, pt.cex=2)
-lines(27 + (7*p$A[1:n.slices]), p$top[1:n.slices], col=genzh.cols[1], lwd=2)
-lines(27 + (7*p$E[1:n.slices]), p$top[1:n.slices], col=genzh.cols[2], lwd=2)
-lines(27 + (7*p$Bt1[1:n.slices]), p$top[1:n.slices], col=genzh.cols[3], lwd=2)
-lines(27 + (7*p$Bt2[1:n.slices]), p$top[1:n.slices], col=genzh.cols[4], lwd=2)
-lines(27 + (7*p$X2Bt3[1:n.slices]), p$top[1:n.slices], col=genzh.cols[5], lwd=2)
-lines(27 + (7*p$X3Bt4[1:n.slices]), p$top[1:n.slices], col=genzh.cols[6], lwd=2)
+legend('top', legend=hz.names[1:6], col=genhz.cols[1:6], pch=15, bty='n', horiz=TRUE, cex=1, pt.cex=2)
+lines(27 + (7*p$A[1:n.slices]), p$top[1:n.slices], col=genhz.cols[1], lwd=2)
+lines(27 + (7*p$E[1:n.slices]), p$top[1:n.slices], col=genhz.cols[2], lwd=2)
+lines(27 + (7*p$Bt1[1:n.slices]), p$top[1:n.slices], col=genhz.cols[3], lwd=2)
+lines(27 + (7*p$Bt2[1:n.slices]), p$top[1:n.slices], col=genhz.cols[4], lwd=2)
+lines(27 + (7*p$X2Bt3[1:n.slices]), p$top[1:n.slices], col=genhz.cols[5], lwd=2)
+lines(27 + (7*p$X3Bt4[1:n.slices]), p$top[1:n.slices], col=genhz.cols[6], lwd=2)
 
 dev.off()
+
+
+## empirical proportions
+
+svglite(filename = 'figures/slice-slab-GHL-empirical.svg', width = 8, height = 3.5)
+
+n.slices <- 50
+par(mar=c(0,0,0.5,2))
+plotSPC(s[1:25, 1:n.slices], color='genhz.soil_color', name='', print.id=FALSE, n=32, cex.depth.axis=1, divide.hz = TRUE, lwd = 0.5)
+legend('top', legend=hz.names[1:6], col=genhz.cols[1:6], pch=15, bty='n', horiz=TRUE, cex=1, pt.cex=2)
+lines(27 + (7*a$A[1:n.slices]), a$top[1:n.slices], col=genhz.cols[1], lwd=2)
+lines(27 + (7*a$E[1:n.slices]), a$top[1:n.slices], col=genhz.cols[2], lwd=2)
+lines(27 + (7*a$Bt1[1:n.slices]), a$top[1:n.slices], col=genhz.cols[3], lwd=2)
+lines(27 + (7*a$Bt2[1:n.slices]), a$top[1:n.slices], col=genhz.cols[4], lwd=2)
+lines(27 + (7*a$X2Bt3[1:n.slices]), a$top[1:n.slices], col=genhz.cols[5], lwd=2)
+lines(27 + (7*a$X3Bt4[1:n.slices]), a$top[1:n.slices], col=genhz.cols[6], lwd=2)
+
+dev.off()
+
+
 
 
 

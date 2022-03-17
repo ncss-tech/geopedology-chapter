@@ -44,26 +44,6 @@ knitr::include_graphics('figures/contast-chart.svg')
 
 
 
-<!-- #### Simulated Color Mixtures -->
-
-
-
-<!-- color measurement, standard observers, mixtures [@Marcus1998] -->
-
-<!-- https://www.munsellcolourscienceforpainters.com/ColourSciencePapers/OpenSourceInverseRenotationArticle.pdf --> 
-
-<!-- Paul Centore's work [@centore2012] -->
-
-
-<!-- `mixMunsell()` -->
-
-<!-- `plotColorMixture()` -->
-
-<!-- `colorMixtureVenn()` -->
-
-
-<!-- `data("soil_minerals")` -->
-
 ### Soil Profile Sketches
 
 Conceptual sketches of soil profiles that illustrate variation in morphology (e.g. horizon depths, horizon designations, color, texture, etc.) in relation to transect or catenary position are a pedologic staple. Either hand-drawn in field notes or carefully produced as part of a final soil survey manuscript, these sketches represent an important vehicle for communicating observation and context to technical and non-technical audiences alike. A data-driven approach to creating soil profile sketches was one the of the original motivations for the *aqp* R package [@beaudette2013_AQP]. Since 2010, the profile sketch authoring tools in *aqp* have progressed from basic layout of filled rectangles (profiles and horizons) to thematic coloring of horizons based on properties or classes, encoding of horizon boundary information, and handling of label collision to name a few examples.
@@ -94,21 +74,20 @@ The `depthOf()` family of functions utilize REGEX pattern matching to specific h
 
 
 
-<!-- c/o Pierre: this is really important / unique, we have to discuss it here -->
 
-### Change in Support
+### Change of Support
 
 <!-- figure showing slice/slab/MPS if we can -->
 
 <!-- Dylan will do this -->
 
-Soil data are typically collected by genetic horizon (e.g. A, Bt, C, etc.), regular depths (e.g. every 10cm), or composite samples representing depth intervals (e.g. 0-25cm). Shifting between these conventions represents a "change in support" **(citation)** that can take two main forms: down-scaling genetic horizon to sequence of regular depth-slices, and, aggregation of multiple depth-slices or genetic horizons to a more general depth interval. In *aqp*, down-scaling is referred to as "slicing" and implemented in the `dice()` function. Aggregation to depth-intervals within a single profile, or over a collection of profiles, is performed with the `slab()` function [@beaudette2013_AQP]. It is possible to summarize an entire collection of soil profiles by "slicing" horizon data (continuous or categorical) into 1cm-thick depth intervals and then aggregating via `slab()` over those depth intervals. Continuous values are reduced to select percentiles (or any user-defined function) per slice [@beaudette2013_terrain], and categorical values are reduced to proportions [@Beaudette_DSMorph2016].
+Soil data are typically collected by genetic horizon (e.g. A, Bt, C, etc.), regular depths (e.g. every 10cm), or composite samples representing depth intervals (e.g. 0-25cm). Shifting between these conventions represents a "change of support" **(citation)** that can take two main forms: down-scaling genetic horizon to sequence of regular depth-slices, and, aggregation of multiple depth-slices or genetic horizons to a more general depth interval. In *aqp*, down-scaling is referred to as "slicing" and implemented in the `dice()` function. Aggregation to depth-intervals within a single profile, or over a collection of profiles, is performed with the `slab()` function [@beaudette2013_AQP]. It is possible to summarize an entire collection of soil profiles by "slicing" horizon data (continuous or categorical) into 1cm-thick depth intervals and then aggregating via `slab()` over those depth intervals. Continuous values are reduced to select percentiles (or any user-defined function) per slice [@beaudette2013_terrain], and categorical values are reduced to proportions [@Beaudette_DSMorph2016].
 
 
 <!-- adapted from 2015 DSMorph ideas / figure -->
 <!-- not sure if this is going to work here -->
-```{r slice-slab-GHL-figure, fig.cap="..."}
-knitr::include_graphics('figures/slice-slab-GHL-example.svg')
+```{r slice-slab-GHL-figure, fig.cap="Change of support demonstration using 25 pedons correlatd to the Clarksville soil series. Generalized horizon labels (GHL) have been resampled to 1cm slices (left) via `slice()`, and aggregated across slices to GHL proportions (right) via `slab()`."}
+knitr::include_graphics('figures/slice-slab-GHL-PO-LR.svg')
 ```
 
 <!-- try to work-in [@harradine1963] -->
@@ -116,7 +95,7 @@ knitr::include_graphics('figures/slice-slab-GHL-example.svg')
 
 
 
-<!-- Pierre will do this -->
+<!-- Pierre will do this --> 
 **TODO: add key citations (Pierre)**
 
 Down-scaling and aggregation of horizon data can be performed with constrained interpolation (e.g. preservation of mass) is performed with the `spc2mpspline()` function...
@@ -127,25 +106,6 @@ Down-scaling and aggregation of horizon data can be performed with constrained i
 
 
 
-<!-- other ideas -->
-
-<!-- data quality / analysis [@Roecker2016] and DSMorph [@Beaudette_DSMorph2016] -->
-
-
- <!-- * misc. visualization methods (via `sharpshootR`) (Jay) -->
-
- 
- <!-- * `aggregateColorPlot()` -->
- <!-- * `aspect.plot()` -->
- <!-- * `huePositionPlot()` -->
- <!-- * `plotProfileDendrogram()` -->
- <!-- * `plotSoilRelationGraph()` -->
- <!-- * `plotWB()` -->
- 
- <!-- * `plotTransect()` -->
- <!-- * `vizHillslopePosition()` and related -->
-
- 
  
  
  

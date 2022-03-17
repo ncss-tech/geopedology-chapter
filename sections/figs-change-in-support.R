@@ -124,6 +124,70 @@ lines(27 + (7*a$X3Bt4[1:n.slices]), a$top[1:n.slices], col=genhz.cols[6], lwd=2)
 dev.off()
 
 
+## both!
+
+svglite(filename = 'figures/slice-slab-GHL-both.svg', width = 9, height = 3.5)
+
+n.slices <- 50
+par(mar=c(0.75, 0.05, 0.3, 1))
+
+plotSPC(s[1:25, 1:n.slices], color='genhz.soil_color', name='', print.id=FALSE, n = 40, cex.depth.axis=1, divide.hz = TRUE, lwd = 0.5, x.idx.offset = -1, axis.line.offset = -3)
+
+legend('top', legend=hz.names[1:6], col=genhz.cols[1:6], pch=15, bty='n', horiz=TRUE, cex=1, pt.cex=2)
+
+lines(26 + (7*a$A[1:n.slices]), a$top[1:n.slices], col=genhz.cols[1], lwd=2)
+lines(26 + (7*a$E[1:n.slices]), a$top[1:n.slices], col=genhz.cols[2], lwd=2)
+lines(26 + (7*a$Bt1[1:n.slices]), a$top[1:n.slices], col=genhz.cols[3], lwd=2)
+lines(26 + (7*a$Bt2[1:n.slices]), a$top[1:n.slices], col=genhz.cols[4], lwd=2)
+lines(26 + (7*a$X2Bt3[1:n.slices]), a$top[1:n.slices], col=genhz.cols[5], lwd=2)
+lines(26 + (7*a$X3Bt4[1:n.slices]), a$top[1:n.slices], col=genhz.cols[6], lwd=2)
+
+lines(35 + (7*p$A[1:n.slices]), p$top[1:n.slices], col=genhz.cols[1], lwd=2)
+lines(35 + (7*p$E[1:n.slices]), p$top[1:n.slices], col=genhz.cols[2], lwd=2)
+lines(35 + (7*p$Bt1[1:n.slices]), p$top[1:n.slices], col=genhz.cols[3], lwd=2)
+lines(35 + (7*p$Bt2[1:n.slices]), p$top[1:n.slices], col=genhz.cols[4], lwd=2)
+lines(35 + (7*p$X2Bt3[1:n.slices]), p$top[1:n.slices], col=genhz.cols[5], lwd=2)
+lines(35 + (7*p$X3Bt4[1:n.slices]), p$top[1:n.slices], col=genhz.cols[6], lwd=2)
+
+mtext(side = 1, at = 0, line = - 0.5, text = 'A)', font = 2)
+mtext(side = 1, at = 26.25, line = - 0.5, text = 'B)', font = 2)
+mtext(side = 1, at = 35.25, line = - 0.5, text = 'C)', font = 2)
+
+dev.off()
+
+
+
+## both and deeper
+
+svglite(filename = 'figures/slice-slab-GHL-both-full.svg', width = 10, height = 8)
+
+n.slices <- 180
+par(mar=c(0.75, 0.05, 0.3, 1))
+
+plotSPC(s[1:25, 1:n.slices], color='genhz.soil_color', name='', print.id=FALSE, n = 40, cex.depth.axis=1, divide.hz = TRUE, lwd = 0.5, x.idx.offset = -1, axis.line.offset = -3)
+
+legend('top', legend=hz.names[1:6], col=genhz.cols[1:6], pch=15, bty='n', horiz=TRUE, cex=1, pt.cex=2)
+
+lines(26 + (7*a$A[1:n.slices]), a$top[1:n.slices], col=genhz.cols[1], lwd=2)
+lines(26 + (7*a$E[1:n.slices]), a$top[1:n.slices], col=genhz.cols[2], lwd=2)
+lines(26 + (7*a$Bt1[1:n.slices]), a$top[1:n.slices], col=genhz.cols[3], lwd=2)
+lines(26 + (7*a$Bt2[1:n.slices]), a$top[1:n.slices], col=genhz.cols[4], lwd=2)
+lines(26 + (7*a$X2Bt3[1:n.slices]), a$top[1:n.slices], col=genhz.cols[5], lwd=2)
+lines(26 + (7*a$X3Bt4[1:n.slices]), a$top[1:n.slices], col=genhz.cols[6], lwd=2)
+
+lines(35 + (7*p$A[1:n.slices]), p$top[1:n.slices], col=genhz.cols[1], lwd=2)
+lines(35 + (7*p$E[1:n.slices]), p$top[1:n.slices], col=genhz.cols[2], lwd=2)
+lines(35 + (7*p$Bt1[1:n.slices]), p$top[1:n.slices], col=genhz.cols[3], lwd=2)
+lines(35 + (7*p$Bt2[1:n.slices]), p$top[1:n.slices], col=genhz.cols[4], lwd=2)
+lines(35 + (7*p$X2Bt3[1:n.slices]), p$top[1:n.slices], col=genhz.cols[5], lwd=2)
+lines(35 + (7*p$X3Bt4[1:n.slices]), p$top[1:n.slices], col=genhz.cols[6], lwd=2)
+
+mtext(side = 1, at = 0, line = - 0.5, text = 'A)', font = 2)
+mtext(side = 1, at = 26.25, line = - 0.5, text = 'B)', font = 2)
+mtext(side = 1, at = 35.25, line = - 0.5, text = 'C)', font = 2)
+
+dev.off()
+
 
 
 

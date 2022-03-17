@@ -87,7 +87,7 @@ Soil data are typically collected by genetic horizon (e.g. A, Bt, C, etc.), regu
 <!-- adapted from 2015 DSMorph ideas / figure -->
 <!-- not sure if this is going to work here -->
 ```{r slice-slab-GHL-figure, fig.cap="Change of support demonstration using 25 pedons correlatd to the Clarksville soil series. Generalized horizon labels (GHL) have been resampled to 1cm slices (left) via `slice()`, and aggregated across slices to GHL proportions (right) via `slab()`."}
-knitr::include_graphics('figures/slice-slab-GHL-PO-LR.svg')
+knitr::include_graphics('figures/slice-slab-GHL-both.svg')
 ```
 
 <!-- try to work-in [@harradine1963] -->

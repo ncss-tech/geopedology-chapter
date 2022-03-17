@@ -245,7 +245,7 @@ p <- c(p.bottom, p.top, x.same = TRUE, y.same = FALSE, layout = c(1, 2))
 p <- update(
   p, 
   ylab = c('Volumetric Water Content (cm/cm)', 'Precipitation | Surplus (mm)'),
-  main = 'Measured vs. Modeled Conditions ... SCAN Site ... 5cm Sensor Depth',
+  main = 'Measured vs. Modeled Conditions at 5cm Sensor Depth',
   xlim = .xlim,
   key = key.vwc,
   par.settings = tactile.theme(par.ylab.text = list(cex = 0.8))

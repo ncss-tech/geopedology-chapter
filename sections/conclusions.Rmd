@@ -4,16 +4,12 @@
 
 
 <!-- 500 words -->
-# Discussion and Conclusions
+# Conclusions
 
-<!-- vision and major TODOs -->
-<!-- functionality not described here -->
+Pedology and geomorphology are inherently visual, field-based sciences that share a common paradigm and fundamental units of description. Geomorphic description of landforms or geoforms and a merging of these disciplines functionally defined as geopedology is a progression that elevates the geoform as a primary landscape concept that can guide the operational inventory and integrated study of soil geomorphic relationships. Understanding the relevance and importance of contextual linkages to geomorphology in soil survey products adds value and integrates the information with other environmental data and is critical to informing the public and the wider scientific community.  Embracing a visual, quantitative analytical approach to collections of soil profiles and varying formats of soil survey data allows for creative abstraction of geopedologic concepts.
 
+Complex data structures and increasing volumes of available data demand progress in methods that allow iterative aggregation, summary and graphical expression of soil data. The *AQP* suite of packages works to provide examples and routines that meet these challenges with an emphasis on generalized methods that can be applied to common data structures and designed for analytical efficiency. This collection of tools leverages the flexibility and extensibility of the *R* programming environment. Novel methodologies enable logical checks of data, profile sketches, soil color conversion, slice and slab aggregation, changing of depth support, numerical classification and quantitative synthesis across available soil survey data sources.
 
-*Geopedology*....can/should we use this for the first time here!!  see if we can briefly work it into another section so this is not the first use of it.
-
-Complex data structures and increasing volumes of available data demand progress in methods that allow iterative aggregation, summary and graphical expression of soil data. The *aqp* suite of packages works to provide examples and routines that meet these challenges with an an emphasis on generalized methods that can be applied to common data structures that are designed for analytical efficiency.  This collection of tools leverages the flexibility and extensibility of the R programming environment and enables logical checks of data, profile sketches, color conversion, aggregation, numerical classification and synthesis across various sources of soil survey data.   
-
-Operational soil mapping and inventory is inherently a visual discipline of soil science and pedology. Conveying the relevancy and context of soil survey information and how that information can be integrated with other environmental data is critical to educating the public about the soil resource.  An understanding of the geomorphic context through the linkage of *geopedologic* concepts to soil survey remains a vital operational part of soil survey methodology.  New tools allow for new possibilities in products and lead to greater use of soil survey data......     
+ 
 
 

@@ -9,6 +9,11 @@ library(sharpshootR)
 library(cluster)
 library(dendextend)
 library(svglite)
+library(colorspace)
+library(wesanderson)
+
+# https://github.com/BlakeRMills/MetBrewer
+library(MetBrewer)
 
 ## pre-cached/subset data
 x <- readRDS('../local-data/clarksville-pedons-final.rds')
@@ -42,9 +47,34 @@ z.2 <- depthOf(x, pattern = '2Bt3', hzdesgn = 'genhz', no.contact.assigned = 0, 
 # ordering based on both criteria
 idx <- order(z.1$hzdept, z.2$hzdept)
 
+
+## GHL colors
+
+# default, RColorBrewer spectral
+genhz.cols <- c("#3288BD", "#99D594", "#E6F598", "#FEE08B", "#FC8D59", "#D53E4F")
+genhz.cols <- darken(genhz.cols, amount = 0.25)
+
+# nah
+genhz.cols <- viridis::viridis(length(levels(x$genhz)))
+genhz.cols <- viridis::turbo(length(levels(x$genhz)))
+
+# no
+genhz.cols <- RColorBrewer::brewer.pal(6, 'Set2')
+genhz.cols <- darken(genhz.cols, amount = 0.25)
+
+# duplo colors
+genhz.cols <- RColorBrewer::brewer.pal(6, 'Set1')
+genhz.cols <- lighten(genhz.cols, amount = 0.1)
+
+# almost!
+genhz.cols <- wes_palette('Zissou1', n = length(levels(x$genhz)), type = 'continuous')
+
+# this is nice
+genhz.cols <- rev(met.brewer('Hiroshige', n = length(levels(x$genhz))))
+
 # check
 par(mar = c(0, 0, 3, 0))
-plotSPC(x, color = 'genhz', col.label = 'Generalized Horizon Label', hz.distinctness.offset = 'hzd', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -4.5, max.depth = 175, n.depth.ticks = 8, plot.order = idx)
+plotSPC(x, color = 'genhz', col.palette = genhz.cols, col.label = 'Generalized Horizon Label', hz.distinctness.offset = 'hzd', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -4.5, max.depth = 175, n.depth.ticks = 8, plot.order = idx)
 
 
 
@@ -55,7 +85,7 @@ svglite::svglite(filename = 'figures/sketch-demo.svg', width = 10, height = 5)
 
 par(mar = c(0, 0, 3, 0))
 
-plotSPC(x, color = 'genhz', col.label = 'Generalized Horizon Label', hz.distinctness.offset = 'hzd', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -4.5, max.depth = 175, n.depth.ticks = 8, plot.order = idx, y.offset = -15)
+plotSPC(x, color = 'genhz', col.palette = genhz.cols, col.label = 'Generalized Horizon Label', hz.distinctness.offset = 'hzd', print.id = FALSE, name.style = 'center-center', cex.names = 0.66, width = 0.4, cex.depth.axis = 0.75, axis.line.offset = -4.5, max.depth = 175, n.depth.ticks = 8, plot.order = idx, y.offset = -15)
 
 dev.off()
 

@@ -44,7 +44,7 @@ idx <- 5
 # SPCs to plot
 .s <- list(
   x[idx, ], 
-  x[idx, 1], 
+  x[idx, 2], 
   x[idx, 3:6], 
   x[idx, , .FIRST],
   x[idx, , .LAST]
@@ -60,7 +60,7 @@ idx <- 5
 # labels
 .labs <- c(
   sprintf("x[%s, ]", idx), 
-  sprintf("x[%s, 1]", idx), 
+  sprintf("x[%s, 2]", idx), 
   sprintf("x[%s, 3:6]", idx), 
   sprintf("x[%s, , .FIRST]", idx),
   sprintf("x[%s, , .LAST]", idx)
@@ -83,7 +83,7 @@ dev.off()
 
 ## figure 2
 
-svglite(filename = 'figures/SPC-example-2.svg', width = 7, height = 4)
+svglite(filename = 'figures/SPC-example-2.svg', width = 7, height = 3.5)
 
 par(mar=c(0,0,0,1))
 
@@ -115,7 +115,7 @@ plotMultipleSPC(
   group.labels = .labs, 
   axis.line.offset = -2.1,
   label.offset = 10, 
-  label.cex = 1
+  label.cex = 0.85
 )
 
 segments(x0 = 0.66, y0 = .top, x1 = 3.33, y1 = .top, lwd = 2, lty = 2)

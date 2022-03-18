@@ -47,7 +47,7 @@ m2 <- sprintf("%s %s/%s", y$hue, y$value, y$chroma)
 
 cc <- colorContrast(m1, m2)
 
-svglite::svglite(filename = 'figures/contrast-class-dE00.svg', width = 10, height = 3.5)
+svglite::svglite(filename = 'figures/contrast-class-dE00.svg', width = 10, height = 3)
 colorContrastPlot(m1, m2, labels=c('Dry', 'Moist'), d.cex = 1, col.cex = 1)
 dev.off()
 
@@ -182,7 +182,7 @@ text(1:length(d), .bottoms, labels = d$pmkind[o], cex = 0.66, pos = 1, offset = 
 text(1:length(d), .yshift - 35, labels = d$nationalmusym[o], cex = 0.66, font = 3, pos = 1, offset = 1.25)
 
 ## annotation for fine earth fraction texture classes
-mtext("soil texture classes for fine earth fraction (<2mm)", side = 1, at = 8, line = -2.5, adj = 1)
+mtext("USDA soil texture classes for fine earth fraction (<2mm)", side = 1, at = 8, line = -2.5, adj = 1)
 
 
 ## splice in soil color
@@ -202,7 +202,7 @@ for(i in 1:length(d$compname)) {
 
 
 ## place soil texture triangle
-grid.raster(texture.tri.img, x = 0.18, y = 0.22, width = 0.23)
+grid.raster(texture.tri.img, x = 0.16, y = 0.22, width = 0.23)
 
 
 ## annotate OSD

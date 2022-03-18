@@ -1,7 +1,7 @@
 
 
 <!-- 500 words -->
-# Conclusions
+## Conclusions
 
 Pedology and geomorphology are inherently visual, field-based sciences that share a common paradigm and fundamental units of description. Geomorphic description of landforms or geoforms and a merging of these disciplines functionally defined as geopedology is a progression that elevates the geoform as a primary landscape concept that can guide the operational inventory and integrated study of soil geomorphic relationships. Understanding the relevance and importance of contextual linkages to geomorphology in soil survey products adds value and integrates the information with other environmental data and is critical to informing the public and the wider scientific community.  Embracing a visual, quantitative analytical approach to collections of soil profiles and varying formats of soil survey data allows for creative abstraction of geopedologic concepts.
 

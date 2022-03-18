@@ -256,6 +256,10 @@ svglite(filename = 'figures/WB-SCAN-synthesis.svg', width = 8, height = 5.5)
 print(p)
 dev.off()
 
+# PNG version without mojibake in y-axis
+ragg::agg_png(filename = 'figures/WB-SCAN-synthesis-custom.png', width = 1600, height = 1100, scaling = 2.5)
+print(p)
+dev.off()
 
 
 

@@ -30,7 +30,16 @@ update(p, sub = 'color chips with dE00(7.5YR 4/3) < 15')
 
 
 ##
+## Table 1
 ##
+m1 <- c('10YR 3/3', '7.5YR 6/6', '2.5Y 2/2')
+m2 <- c('10YR 3/4', '5YR 4/6', '5G 4/8')
+
+cc <- colorContrast(m1, m2)
+
+cc
+signif(cc$dE00, 3)
+
 
 
 

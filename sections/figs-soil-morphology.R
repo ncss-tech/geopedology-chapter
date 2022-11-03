@@ -90,7 +90,7 @@ d <- subset(d, !(compname == 'Taterhill' & nationalmusym == '2vxq8'))
 length(d)
 
 ## trimmed down but still busy
-d$profile_label <- paste(d$compname, d$hillslopeprof, sep=" - ")
+d$profile_label <- paste(d$compname, d$hillslopeprof, sep = "\n")
 
 
 ## remove annotation for O horizons
@@ -151,9 +151,7 @@ texture.rat <- read.csv('http://soilmap2-1.lawr.ucdavis.edu/800m_grids/RAT/textu
 cols <- texture.rat$hex[match(levels(d$fine_earth_texture_cl), texture.rat$names)]
 
 # image of soil texture triangle + colors
-tf <- tempfile()
-download.file('https://casoilresource.lawr.ucdavis.edu/soil-properties/images/soil-texture-legend-crop-small.png', destfile = tf, mode = 'wb')
-texture.tri.img <- readPNG(tf)
+texture.tri.img <- readPNG('figures/soil-texture-legend-crop.png')
 
 # plot order
 o <- order(as.numeric(d$hillslopeprof), decreasing = TRUE)
@@ -163,12 +161,14 @@ o <- order(as.numeric(d$hillslopeprof), decreasing = TRUE)
 idx <- match(1:length(d), o)
 
 
-svglite::svglite(filename = 'figures/cross-section.svg', width = 15, height = 8)
+svglite::svglite(filename = 'figures/cross-section.svg', width = 15.5, height = 8)
 
 par(mar = c(0, 0, 0.5, 0))
 
+# check ordering via 'profile_label
+
 set.seed(101001)
-plotSPC(d, name = '.newname', label = 'compname', color='fine_earth_texture_cl', cex.id = 0.75, cex.names = 0.66, name.style = 'center-center', width = 0.2, hz.depths = TRUE, id.style='top', fixLabelCollisions = TRUE, hz.depths.offset = 0.05, plot.depth.axis = FALSE, y.offset = .yshift[idx], plot.order = o, col.label = 'Soil Texture of Fine Earth Fraction (<2mm)', show.legend = FALSE, col.palette = cols)
+plotSPC(d, name = '.newname', label = 'compname', color='fine_earth_texture_cl', cex.id = 0.75, cex.names = 0.75, name.style = 'center-center', width = 0.2, hz.depths = TRUE, id.style='top', fixLabelCollisions = TRUE, hz.depths.offset = 0.05, plot.depth.axis = FALSE, y.offset = .yshift[idx], plot.order = o, col.label = 'Soil Texture of Fine Earth Fraction (<2mm)', show.legend = FALSE, col.palette = cols)
 
 
 ## add smoothed, idealized land surface
@@ -178,21 +178,11 @@ lines(x = .s, y = .sy, lwd = 3)
 mtext(text = 'Ozark Highlands Catena Concepts', side = 3, at = 12, line = -1, font = 2, adj = 1, cex = 1.5)
 
 ## annotate map units
-mtext(text = mu$txt[1], side = 3, at = 8.5, line = -5.5, font = 1, cex = 1, adj = 0)
-mtext(text = mu$txt[2], side = 3, at = 8.5, line = -8, font = 1, cex = 1, adj = 0)
-
-
-## add pmkind
-.bottoms <- profileApply(d, max) + .yshift
-text(1:length(d), .bottoms, labels = d$pmkind[o], cex = 0.66, pos = 1, offset = 0.5)
-
+mtext(text = mu$txt[1], side = 3, at = 8.5, line = -5, font = 1, cex = 1.25, adj = 0)
+mtext(text = mu$txt[2], side = 3, at = 8.5, line = -8, font = 1, cex = 1.25, adj = 0)
 
 ## add national map unit symbol
-text(1:length(d), .yshift - 35, labels = d$nationalmusym[o], cex = 0.66, font = 3, pos = 1, offset = 1.25)
-
-## annotation for fine earth fraction texture classes
-mtext("USDA soil texture classes for fine earth fraction (<2mm)", side = 1, at = 8, line = -2.5, adj = 1)
-
+text(1:length(d), .yshift - 35, labels = d$nationalmusym[o], cex = 0.75, font = 3, pos = 1, offset = 1.25)
 
 ## splice in soil color
 for(i in 1:length(d$compname)) {
@@ -213,14 +203,21 @@ for(i in 1:length(d$compname)) {
 ## place soil texture triangle
 grid.raster(texture.tri.img, x = 0.16, y = 0.22, width = 0.23)
 
+## add pmkind
+.bottoms <- profileApply(d, max) + .yshift
+text(1:length(d), .bottoms, labels = d$pmkind[o], cex = 0.75, pos = 1, offset = 0.5)
+
 
 ## annotate OSD
-text(x = 6, y = 315, label = 'Official Series\nDescription', cex = 1, pos = 1)
-arrows(x0 = 6, y0 = 315, x1 = 6.4, y1 = 280, length = 0.1, lwd = 1.5)
+text(x = 6, y = 315, label = 'Soil Survey', cex = 1, pos = 1)
+arrows(x0 = 6, y0 = 315, x1 = 6, y1 = 275, length = 0.1, lwd = 1.5)
 
 ## annotate component
-text(x = 4.5, y = 265, label = 'Soil Survey', cex = 1, pos = 1)
-arrows(x0 = 4.5, y0 = 265, x1 = 5.75, y1 = 230, length = 0.1, lwd = 1.5)
+text(x = 5, y = 275, label = 'Official Series\nDescription', cex = 1, pos = 1)
+arrows(x0 = 5, y0 = 270, x1 = 5.48, y1 = 245, length = 0.1, lwd = 1.5)
+
+## annotation for fine earth fraction texture classes
+mtext("USDA soil texture classes for fine earth fraction (<2mm)", side = 1, at = 9, line = -2.5, adj = 1, cex = 1.125)
 
 
 dev.off()

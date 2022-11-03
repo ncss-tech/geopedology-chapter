@@ -7,11 +7,11 @@ library(svglite)
 library(stringi)
 
 
-p <- contrastChart(m = '7.5YR 4/3', hues = c('5YR', '7.5YR', '10YR'))
-p <- update(p, scales = list(cex = 1), par.settings = list(fontsize = list(text = 14)))
+p <- contrastChart(m = '7.5YR 4/3', hues = c('5YR', '7.5YR', '10YR'), ccAbbreviate = 0, de00.cex = 0.8)
+p <- update(p, scales = list(cex = 1), par.settings = list(fontsize = list(text = 16)))
 
 
-svglite::svglite(filename = 'figures/contast-chart.svg', width = 15, height = 6.8)
+svglite::svglite(filename = 'figures/contast-chart.svg', width = 15, height = 7.15)
 print(p)
 dev.off()
 
